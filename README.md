@@ -4,7 +4,12 @@
 Scrum Project For Haaga-Helia University of Applied Sciences.
 Helsinki, Finland
 
-http://myy.haaga-helia.fi/~a1203246/sprinto/
+<a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">Sprinto webpage &rarr;</a>
+
+<a target="_blank"
+	href="https://docs.google.com/document/d/1SoRNnCHlEvq8GPFz-BMzROFjMddURASglIgJYtHs3XQ/edit?usp=sharing">
+	Desingn Specifications &rarr;</a>
+
 
 ==========================
 
@@ -12,7 +17,7 @@ Application Structure
 
 Our application will provide different kind of functionality for student and teacher users.
 
-<h1>Pages</h1>:
+<h1>Pages:</h1>
 
 <h3>Homepage:</h3>
 Containing log in form. The page is similar for both groups, but after login the application will redirect student or teacher based on their account types to role dependent home page.
