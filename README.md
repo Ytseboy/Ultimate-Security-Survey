@@ -1,4 +1,4 @@
-ï»¿Scrum-Project
+p»¿Scrum-Project
 =============
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
@@ -9,6 +9,8 @@ Helsinki, Finland
 <a target="_blank"
 	href="https://docs.google.com/document/d/1SoRNnCHlEvq8GPFz-BMzROFjMddURASglIgJYtHs3XQ/edit?usp=sharing">
 	Desingn Specifications &rarr;</a>
+
+Add make sure you add any preliminary changes to the TestBranch before moving it on to the Master branch!!
 
 
 ==========================
@@ -61,3 +63,4 @@ On this page the student see lists of the surveys that he is observing. Surveys 
 
 <h3>Report page:</h3> Teacher can read the survey report submitted by the student. Can validate it.
 >>>>>>> 0338255364fe13849a1e752bddf0f3ebbb0847e9
+
