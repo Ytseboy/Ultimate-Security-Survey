@@ -1,6 +1,8 @@
 Scrum-Project
 =============
 
+Teste!
+
 Scrum Project For Haaga-Helia 
 
 Application Structure
