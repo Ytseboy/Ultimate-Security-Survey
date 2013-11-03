@@ -1,4 +1,4 @@
-p»¿Scrum-Project
+Scrum-Project
 =============
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
@@ -35,7 +35,7 @@ The landing page should be a dashboard that can  be possibly modified and arrang
 <h3>List of surveys:</h3>
 On this page the student see lists of the surveys that he is observing. Surveys should have status options.
 
-<h3>Question and answers page:</h3> (Shouldnâ€™t be on the initial page menu, user is forwarded here from list of surveys)
+<h3>Question and answers page:</h3> (Shouldn't be on the initial page menu, user is forwarded here from list of surveys)
 From  list of surveys student can choose a survey, and then all the questions related are displayed. Student can read the company answers and analyse them by giving points.
 
 For each answer there is short textbox for possible observer comment.
