@@ -10,7 +10,7 @@ Helsinki, Finland
 	href="https://docs.google.com/document/d/1SoRNnCHlEvq8GPFz-BMzROFjMddURASglIgJYtHs3XQ/edit?usp=sharing">
 	Desingn Specifications &rarr;</a>
 
-Add make sure you add any preliminary changes to the TestBranch before moving it on to the Master branch!!
+And make sure you add any preliminary changes to the TestBranch before moving it on to the Master branch!!
 
 
 ==========================
