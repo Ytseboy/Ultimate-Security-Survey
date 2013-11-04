@@ -1,4 +1,4 @@
-Scrum-Project
+﻿Scrum-Project
 =============
 
 Scrum Project For Haaga-Helia 
@@ -7,7 +7,7 @@ Application Structure
 
 Our application will provide different kind of functionality for student and teacher users.
 
-<h1>Pages</h1>:
+<h1>Pages:</h1>
 
 <h3>Homepage:</h3>
 Containing log in form. The page is similar for both groups, but after login the application will redirect student or teacher based on their account types to role dependent home page.
