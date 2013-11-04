@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateSecuritySurvey", "UltimateSecuritySurvey\UltimateSecuritySurvey.csproj", "{4E69D402-BBD3-4008-804D-1DBCA896F09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateSecuritySurvey.Tests", "UltimateSecuritySurvey.Tests\UltimateSecuritySurvey.Tests.csproj", "{EB4432E5-A332-4BA9-B926-AFEE3B349EE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E69D402-BBD3-4008-804D-1DBCA896F09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E69D402-BBD3-4008-804D-1DBCA896F09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E69D402-BBD3-4008-804D-1DBCA896F09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E69D402-BBD3-4008-804D-1DBCA896F09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4432E5-A332-4BA9-B926-AFEE3B349EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4432E5-A332-4BA9-B926-AFEE3B349EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4432E5-A332-4BA9-B926-AFEE3B349EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4432E5-A332-4BA9-B926-AFEE3B349EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
