@@ -1,7 +1,19 @@
 ﻿Scrum-Project
 =============
 
-Scrum Project For Haaga-Helia 
+Scrum Project For Haaga-Helia University of Applied Sciences.
+Helsinki, Finland
+
+<a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">Sprinto webpage &rarr;</a>
+
+<a target="_blank"
+	href="https://docs.google.com/document/d/1SoRNnCHlEvq8GPFz-BMzROFjMddURASglIgJYtHs3XQ/edit?usp=sharing">
+	Desingn Specifications &rarr;</a>
+
+And make sure you add any preliminary changes to the TestBranch before moving it on to the Master branch!!
+
+
+==========================
 
 Application Structure
 
@@ -23,7 +35,7 @@ The landing page should be a dashboard that can  be possibly modified and arrang
 <h3>List of surveys:</h3>
 On this page the student see lists of the surveys that he is observing. Surveys should have status options.
 
-<h3>Question and answers page:</h3> (Shouldn’t be on the initial page menu, user is forwarded here from list of surveys)
+<h3>Question and answers page:</h3> (Shouldn't be on the initial page menu, user is forwarded here from list of surveys)
 From  list of surveys student can choose a survey, and then all the questions related are displayed. Student can read the company answers and analyse them by giving points.
 
 For each answer there is short textbox for possible observer comment.
@@ -50,3 +62,5 @@ On this page the student see lists of the surveys that he is observing. Surveys 
 <h3>Single student page:</h3> Name, id so on…
 
 <h3>Report page:</h3> Teacher can read the survey report submitted by the student. Can validate it.
+>>>>>>> 0338255364fe13849a1e752bddf0f3ebbb0847e9
+
