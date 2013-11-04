@@ -1,4 +1,4 @@
-Scrum-Project
+﻿Scrum-Project
 =============
 
 Scrum Project For Haaga-Helia University of Applied Sciences.

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<style>
+body{
+margin: 0;
+background: brown;
+background-image: url(textures/wood1.jpg);
+background-color: brown;
+
+}
+
+#ground{
+background: white;
+
+margin: 15px auto 10px auto;
+border: 1px solid #0E0E0E;
+border-radius: 4px;
+
+width: 95%;
+height: 500px;
+
+box-shadow: 10px 0 20px #0E0E0E, -10px 0 20px #0E0E0E;
+}
+
+#topPanel, #sidePanel{
+color: white;
+}
+
+#topPanel{
+background: grey;
+background-image: url(textures/dark_dot.png);
+height: 60px;
+
+border-radius: 2px 2px 0 0;
+}
+
+#sidePanel{
+background: grey;
+background-image: url(textures/dark_dot.png);
+width: 70px;
+height: 440px;
+
+border-radius: 0 0 0 2px;
+float: left;
+
+}
+
+#whiteSpace{
+margin: 0;
+float: left;
+padding: 0;
+
+}
+
+#greyBox{
+margin: -10px -25px 10px 0;
+background: #E6E6E6;
+border-bottom: 1px solid #BABABA;
+width: 961px;
+
+}
+
+#SecondWhiteBox{
+
+}
+
+
+#menu{
+margin: 30px 0 0 0;
+}
+
+.menuItemTop, .menuItem{
+border-top: 1px solid #4C4C4C;
+}
+
+.menuItem, .menuItemBottom{
+border-bottom: 1px solid #4C4C4C;
+}
+
+#menu img{
+width: 50px;
+margin: 10px 0 0 10px;
+
+}
+
+/*OTHER*/
+#shieldLogo{
+margin: 5px;
+width: 50px;
+vertical-align: middle;
+
+}
+
+p{
+margin: 10px;
+}
+
+p.noMargin{
+margin: 0;
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="ground">
+<div id="topPanel">
+
+<p class="noMargin"><img src="logos/1.png" id="shieldLogo"/> 
+HH SECURITY SURVEY
+</div>
+
+<div id="sidePanel">
+	<div id="menu">
+	<div class="menuItemTop"><img src="icons/PokemonS.png" ></div>
+	<div class="menuItem"><img src="icons/MusicDiskS.png" ></div>
+	<div class="menuItemBottom"><img src="icons/DashboardS.png" ></div>
+	</div>
+
+</div>
+
+<div id="whiteSpace">
+	<div id="greyBox">
+	<p>(User info, notifications)
+	</div>
+	
+	<div id="SecondWhiteBox">
+	<p>(content, jQuery ui boxes)  
+	</div>
+
+</div>
+
+</div>
+</body>
+
+</html>
