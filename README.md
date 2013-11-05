@@ -7,6 +7,8 @@ Application Structure
 
 Our application will provide different kind of functionality for student and teacher users.
 
+<h3>Change from HH computer</h3>
+
 <h1>Pages:</h1>
 
 <h3>Homepage:</h3>
