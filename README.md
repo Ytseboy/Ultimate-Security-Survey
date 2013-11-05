@@ -1,25 +1,23 @@
-﻿Scrum-Project
+﻿Ultimate Security Survey
 =============
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
 Helsinki, Finland
 
-<a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">Sprinto webpage &rarr;</a>
+<a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">
+	Sprinto webpage &rarr;</a>
 
 <a target="_blank"
 	href="https://docs.google.com/document/d/1SoRNnCHlEvq8GPFz-BMzROFjMddURASglIgJYtHs3XQ/edit?usp=sharing">
 	Desingn Specifications &rarr;</a>
 
+==========================
 And make sure you add any preliminary changes to the TestBranch before moving it on to the Master branch!!
-
-
 ==========================
 
 Application Structure
 
 Our application will provide different kind of functionality for student and teacher users.
-
-<h3>Change from HH computer</h3>
 
 <h1>Pages:</h1>
 
