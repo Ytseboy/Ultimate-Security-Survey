@@ -12,12 +12,9 @@ Helsinki, Finland
 	Desingn Specifications &rarr;</a>
 
 ==========================
-And make sure you add any preliminary changes to the TestBranch before moving it on to the Master branch!!
-==========================
 
-Application Structure
+<h5>Any preliminary changes to the TestBranch first before moving it on to the Master branch<h5>
 
-Our application will provide different kind of functionality for student and teacher users.
 
 <h1>Pages:</h1>
 
