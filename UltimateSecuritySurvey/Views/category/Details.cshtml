@@ -1,0 +1,36 @@
+﻿@model UltimateSecuritySurvey.Models.QuestionCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>QuestionCategory</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.categoryId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.categoryId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.categoryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.categoryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
