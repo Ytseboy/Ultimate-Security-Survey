@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SecuritySurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SecuritySurveyModelStoreContainer">
+          <EntitySet Name="AnswerOption" EntityType="SecuritySurveyModel.Store.AnswerOption" store:Type="Tables" store:Schema="dbo" store:Name="AnswerOption">
+            <DefiningQuery>SELECT 
+      [AnswerOption].[questionId] AS [questionId], 
+      [AnswerOption].[answerNumber] AS [answerNumber], 
+      [AnswerOption].[answerText] AS [answerText]
+      FROM [dbo].[AnswerOption] AS [AnswerOption]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GenericSurvey" EntityType="SecuritySurveyModel.Store.GenericSurvey" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question" EntityType="SecuritySurveyModel.Store.Question" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionCategory" EntityType="SecuritySurveyModel.Store.QuestionCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionType" EntityType="SecuritySurveyModel.Store.QuestionType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SurveyQuestion" EntityType="SecuritySurveyModel.Store.SurveyQuestion" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_SurveyQuestion_ToGenericSurvey" Association="SecuritySurveyModel.Store.FK_SurveyQuestion_ToGenericSurvey">
+            <End Role="GenericSurvey" EntitySet="GenericSurvey" />
+            <End Role="SurveyQuestion" EntitySet="SurveyQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveyQuestion_ToQuestion" Association="SecuritySurveyModel.Store.FK_SurveyQuestion_ToQuestion">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="SurveyQuestion" EntitySet="SurveyQuestion" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\A1203246\DESKTOP\SCRUMO\ULTIMATE-SECURITY-SURVEY\ULTIMATESECURITYSURVEY\APP_DATA\SECURITYSURVEY.MDF.dbo.AnswerOption' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="AnswerOption">
+          <Key>
+            <PropertyRef Name="questionId" />
+            <PropertyRef Name="answerNumber" />
+            <PropertyRef Name="answerText" />
+          </Key>
+          <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="answerNumber" Type="int" Nullable="false" />
+          <Property Name="answerText" Type="varchar" Nullable="false" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="GenericSurvey">
+          <Key>
+            <PropertyRef Name="surveyId" />
+          </Key>
+          <Property Name="surveyId" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="baseLevel" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="categoryId" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="questionTypeId" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="questionTextMain" Type="varchar(max)" Nullable="false" />
+          <Property Name="questionTextExtra" Type="varchar(max)" />
+          <Property Name="baseLevel2RequirementText" Type="varchar(max)" Nullable="false" />
+          <Property Name="additionalInfo" Type="varchar(max)" />
+          <Property Name="additionalNote" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="QuestionCategory">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="categoryName" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="description" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="questionTypeId" />
+          </Key>
+          <Property Name="questionTypeId" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="questionTypeName" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SurveyQuestion">
+          <Key>
+            <PropertyRef Name="surveyId" />
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="surveyId" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+        </EntityType>
+        <Association Name="FK_SurveyQuestion_ToGenericSurvey">
+          <End Role="GenericSurvey" Type="SecuritySurveyModel.Store.GenericSurvey" Multiplicity="1" />
+          <End Role="SurveyQuestion" Type="SecuritySurveyModel.Store.SurveyQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenericSurvey">
+              <PropertyRef Name="surveyId" />
+            </Principal>
+            <Dependent Role="SurveyQuestion">
+              <PropertyRef Name="surveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveyQuestion_ToQuestion">
+          <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="1" />
+          <End Role="SurveyQuestion" Type="SecuritySurveyModel.Store.SurveyQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="SurveyQuestion">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_01_CreateTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_02_DropTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_03_DeleteData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_04_InsertData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_05_RebuildDB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SecuritySurveyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SecuritySurveyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnswerOptions" EntityType="SecuritySurveyModel.AnswerOption" />
+          <EntitySet Name="GenericSurveys" EntityType="SecuritySurveyModel.GenericSurvey" />
+          <EntitySet Name="Questions" EntityType="SecuritySurveyModel.Question" />
+          <EntitySet Name="QuestionCategories" EntityType="SecuritySurveyModel.QuestionCategory" />
+          <EntitySet Name="QuestionTypes" EntityType="SecuritySurveyModel.QuestionType" />
+          <AssociationSet Name="SurveyQuestion" Association="SecuritySurveyModel.SurveyQuestion">
+            <End Role="GenericSurvey" EntitySet="GenericSurveys" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <FunctionImport Name="sp_01_CreateTables" />
+          <FunctionImport Name="sp_02_DropTables" />
+          <FunctionImport Name="sp_03_DeleteData" />
+          <FunctionImport Name="sp_04_InsertData" />
+          <FunctionImport Name="sp_05_RebuildDB" />
+        </EntityContainer>
+        <EntityType Name="AnswerOption">
+          <Key>
+            <PropertyRef Name="questionId" />
+            <PropertyRef Name="answerNumber" />
+            <PropertyRef Name="answerText" />
+          </Key>
+          <Property Name="questionId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="answerNumber" Type="Int32" Nullable="false" />
+          <Property Name="answerText" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="GenericSurvey">
+          <Key>
+            <PropertyRef Name="surveyId" />
+          </Key>
+          <Property Name="surveyId" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="baseLevel" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="SecuritySurveyModel.SurveyQuestion" FromRole="GenericSurvey" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionId" />
+          </Key>
+          <Property Name="questionId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="categoryId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="questionTypeId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="questionTextMain" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="questionTextExtra" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="baseLevel2RequirementText" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="additionalInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="additionalNote" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="GenericSurveys" Relationship="SecuritySurveyModel.SurveyQuestion" FromRole="Question" ToRole="GenericSurvey" />
+        </EntityType>
+        <EntityType Name="QuestionCategory">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="categoryName" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="questionTypeId" />
+          </Key>
+          <Property Name="questionTypeId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="questionTypeName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="SurveyQuestion">
+          <End Role="GenericSurvey" Type="SecuritySurveyModel.GenericSurvey" Multiplicity="*" />
+          <End Role="Question" Type="SecuritySurveyModel.Question" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SecuritySurveyModelStoreContainer" CdmEntityContainer="SecuritySurveyEntities">
+          <EntitySetMapping Name="AnswerOptions">
+            <EntityTypeMapping TypeName="SecuritySurveyModel.AnswerOption">
+              <MappingFragment StoreEntitySet="AnswerOption">
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="answerNumber" ColumnName="answerNumber" />
+                <ScalarProperty Name="answerText" ColumnName="answerText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenericSurveys">
+            <EntityTypeMapping TypeName="SecuritySurveyModel.GenericSurvey">
+              <MappingFragment StoreEntitySet="GenericSurvey">
+                <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="baseLevel" ColumnName="baseLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="SecuritySurveyModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="questionTypeId" ColumnName="questionTypeId" />
+                <ScalarProperty Name="questionTextMain" ColumnName="questionTextMain" />
+                <ScalarProperty Name="questionTextExtra" ColumnName="questionTextExtra" />
+                <ScalarProperty Name="baseLevel2RequirementText" ColumnName="baseLevel2RequirementText" />
+                <ScalarProperty Name="additionalInfo" ColumnName="additionalInfo" />
+                <ScalarProperty Name="additionalNote" ColumnName="additionalNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionCategories">
+            <EntityTypeMapping TypeName="SecuritySurveyModel.QuestionCategory">
+              <MappingFragment StoreEntitySet="QuestionCategory">
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="SecuritySurveyModel.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionType">
+                <ScalarProperty Name="questionTypeId" ColumnName="questionTypeId" />
+                <ScalarProperty Name="questionTypeName" ColumnName="questionTypeName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SurveyQuestion" TypeName="SecuritySurveyModel.SurveyQuestion" StoreEntitySet="SurveyQuestion">
+            <EndProperty Name="GenericSurvey">
+              <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+            </EndProperty>
+            <EndProperty Name="Question">
+              <ScalarProperty Name="questionId" ColumnName="questionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_01_CreateTables" FunctionName="SecuritySurveyModel.Store.sp_01_CreateTables" />
+          <FunctionImportMapping FunctionImportName="sp_02_DropTables" FunctionName="SecuritySurveyModel.Store.sp_02_DropTables" />
+          <FunctionImportMapping FunctionImportName="sp_03_DeleteData" FunctionName="SecuritySurveyModel.Store.sp_03_DeleteData" />
+          <FunctionImportMapping FunctionImportName="sp_04_InsertData" FunctionName="SecuritySurveyModel.Store.sp_04_InsertData" />
+          <FunctionImportMapping FunctionImportName="sp_05_RebuildDB" FunctionName="SecuritySurveyModel.Store.sp_05_RebuildDB" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

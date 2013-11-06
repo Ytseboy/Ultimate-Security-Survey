@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SecuritySurveyModelStoreContainer" CdmEntityContainer="SecuritySurveyEntities">
+    <EntitySetMapping Name="AnswerOptions">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.AnswerOption">
+        <MappingFragment StoreEntitySet="AnswerOption">
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="answerNumber" ColumnName="answerNumber" />
+          <ScalarProperty Name="answerText" ColumnName="answerText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GenericSurveys">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.GenericSurvey">
+        <MappingFragment StoreEntitySet="GenericSurvey">
+          <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="baseLevel" ColumnName="baseLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="questionTypeId" ColumnName="questionTypeId" />
+          <ScalarProperty Name="questionTextMain" ColumnName="questionTextMain" />
+          <ScalarProperty Name="questionTextExtra" ColumnName="questionTextExtra" />
+          <ScalarProperty Name="baseLevel2RequirementText" ColumnName="baseLevel2RequirementText" />
+          <ScalarProperty Name="additionalInfo" ColumnName="additionalInfo" />
+          <ScalarProperty Name="additionalNote" ColumnName="additionalNote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionCategories">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.QuestionCategory">
+        <MappingFragment StoreEntitySet="QuestionCategory">
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTypes">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.QuestionType">
+        <MappingFragment StoreEntitySet="QuestionType">
+          <ScalarProperty Name="questionTypeId" ColumnName="questionTypeId" />
+          <ScalarProperty Name="questionTypeName" ColumnName="questionTypeName" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SurveyQuestion" TypeName="SecuritySurveyModel.SurveyQuestion" StoreEntitySet="SurveyQuestion">
+      <EndProperty Name="GenericSurvey">
+        <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+      </EndProperty>
+      <EndProperty Name="Question">
+        <ScalarProperty Name="questionId" ColumnName="questionId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_01_CreateTables" FunctionName="SecuritySurveyModel.Store.sp_01_CreateTables" />
+    <FunctionImportMapping FunctionImportName="sp_02_DropTables" FunctionName="SecuritySurveyModel.Store.sp_02_DropTables" />
+    <FunctionImportMapping FunctionImportName="sp_03_DeleteData" FunctionName="SecuritySurveyModel.Store.sp_03_DeleteData" />
+    <FunctionImportMapping FunctionImportName="sp_04_InsertData" FunctionName="SecuritySurveyModel.Store.sp_04_InsertData" />
+    <FunctionImportMapping FunctionImportName="sp_05_RebuildDB" FunctionName="SecuritySurveyModel.Store.sp_05_RebuildDB" />
+  </EntityContainerMapping>
+</Mapping>

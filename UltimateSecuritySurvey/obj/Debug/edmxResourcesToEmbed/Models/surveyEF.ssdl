@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SecuritySurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="SecuritySurveyModelStoreContainer">
+    <EntitySet Name="AnswerOption" EntityType="SecuritySurveyModel.Store.AnswerOption" store:Type="Tables" store:Schema="dbo" store:Name="AnswerOption">
+      <DefiningQuery>SELECT 
+      [AnswerOption].[questionId] AS [questionId], 
+      [AnswerOption].[answerNumber] AS [answerNumber], 
+      [AnswerOption].[answerText] AS [answerText]
+      FROM [dbo].[AnswerOption] AS [AnswerOption]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GenericSurvey" EntityType="SecuritySurveyModel.Store.GenericSurvey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Question" EntityType="SecuritySurveyModel.Store.Question" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionCategory" EntityType="SecuritySurveyModel.Store.QuestionCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionType" EntityType="SecuritySurveyModel.Store.QuestionType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SurveyQuestion" EntityType="SecuritySurveyModel.Store.SurveyQuestion" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_SurveyQuestion_ToGenericSurvey" Association="SecuritySurveyModel.Store.FK_SurveyQuestion_ToGenericSurvey">
+      <End Role="GenericSurvey" EntitySet="GenericSurvey" />
+      <End Role="SurveyQuestion" EntitySet="SurveyQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SurveyQuestion_ToQuestion" Association="SecuritySurveyModel.Store.FK_SurveyQuestion_ToQuestion">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="SurveyQuestion" EntitySet="SurveyQuestion" />
+    </AssociationSet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\A1203246\DESKTOP\SCRUMO\ULTIMATE-SECURITY-SURVEY\ULTIMATESECURITYSURVEY\APP_DATA\SECURITYSURVEY.MDF.dbo.AnswerOption' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="AnswerOption">
+    <Key>
+      <PropertyRef Name="questionId" />
+      <PropertyRef Name="answerNumber" />
+      <PropertyRef Name="answerText" />
+    </Key>
+    <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+    <Property Name="answerNumber" Type="int" Nullable="false" />
+    <Property Name="answerText" Type="varchar" Nullable="false" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="GenericSurvey">
+    <Key>
+      <PropertyRef Name="surveyId" />
+    </Key>
+    <Property Name="surveyId" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar(max)" Nullable="false" />
+    <Property Name="baseLevel" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+    <Property Name="categoryId" Type="varchar" Nullable="false" MaxLength="6" />
+    <Property Name="questionTypeId" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="questionTextMain" Type="varchar(max)" Nullable="false" />
+    <Property Name="questionTextExtra" Type="varchar(max)" />
+    <Property Name="baseLevel2RequirementText" Type="varchar(max)" Nullable="false" />
+    <Property Name="additionalInfo" Type="varchar(max)" />
+    <Property Name="additionalNote" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="QuestionCategory">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="varchar" Nullable="false" MaxLength="6" />
+    <Property Name="categoryName" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="description" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="QuestionType">
+    <Key>
+      <PropertyRef Name="questionTypeId" />
+    </Key>
+    <Property Name="questionTypeId" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="questionTypeName" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="description" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SurveyQuestion">
+    <Key>
+      <PropertyRef Name="surveyId" />
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="surveyId" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+  </EntityType>
+  <Association Name="FK_SurveyQuestion_ToGenericSurvey">
+    <End Role="GenericSurvey" Type="SecuritySurveyModel.Store.GenericSurvey" Multiplicity="1" />
+    <End Role="SurveyQuestion" Type="SecuritySurveyModel.Store.SurveyQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenericSurvey">
+        <PropertyRef Name="surveyId" />
+      </Principal>
+      <Dependent Role="SurveyQuestion">
+        <PropertyRef Name="surveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SurveyQuestion_ToQuestion">
+    <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="1" />
+    <End Role="SurveyQuestion" Type="SecuritySurveyModel.Store.SurveyQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="SurveyQuestion">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_01_CreateTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_02_DropTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_03_DeleteData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_04_InsertData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_05_RebuildDB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

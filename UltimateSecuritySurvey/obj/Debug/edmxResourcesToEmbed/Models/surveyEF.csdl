@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SecuritySurveyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="SecuritySurveyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AnswerOptions" EntityType="SecuritySurveyModel.AnswerOption" />
+    <EntitySet Name="GenericSurveys" EntityType="SecuritySurveyModel.GenericSurvey" />
+    <EntitySet Name="Questions" EntityType="SecuritySurveyModel.Question" />
+    <EntitySet Name="QuestionCategories" EntityType="SecuritySurveyModel.QuestionCategory" />
+    <EntitySet Name="QuestionTypes" EntityType="SecuritySurveyModel.QuestionType" />
+    <AssociationSet Name="SurveyQuestion" Association="SecuritySurveyModel.SurveyQuestion">
+      <End Role="GenericSurvey" EntitySet="GenericSurveys" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <FunctionImport Name="sp_01_CreateTables" />
+    <FunctionImport Name="sp_02_DropTables" />
+    <FunctionImport Name="sp_03_DeleteData" />
+    <FunctionImport Name="sp_04_InsertData" />
+    <FunctionImport Name="sp_05_RebuildDB" />
+  </EntityContainer>
+  <EntityType Name="AnswerOption">
+    <Key>
+      <PropertyRef Name="questionId" />
+      <PropertyRef Name="answerNumber" />
+      <PropertyRef Name="answerText" />
+    </Key>
+    <Property Name="questionId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="answerNumber" Type="Int32" Nullable="false" />
+    <Property Name="answerText" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="GenericSurvey">
+    <Key>
+      <PropertyRef Name="surveyId" />
+    </Key>
+    <Property Name="surveyId" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="baseLevel" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Questions" Relationship="SecuritySurveyModel.SurveyQuestion" FromRole="GenericSurvey" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="questionId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="categoryId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="questionTypeId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="questionTextMain" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="questionTextExtra" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="baseLevel2RequirementText" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="additionalInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="additionalNote" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="GenericSurveys" Relationship="SecuritySurveyModel.SurveyQuestion" FromRole="Question" ToRole="GenericSurvey" />
+  </EntityType>
+  <EntityType Name="QuestionCategory">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="categoryName" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="QuestionType">
+    <Key>
+      <PropertyRef Name="questionTypeId" />
+    </Key>
+    <Property Name="questionTypeId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="questionTypeName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <Association Name="SurveyQuestion">
+    <End Role="GenericSurvey" Type="SecuritySurveyModel.GenericSurvey" Multiplicity="*" />
+    <End Role="Question" Type="SecuritySurveyModel.Question" Multiplicity="*" />
+  </Association>
+</Schema>

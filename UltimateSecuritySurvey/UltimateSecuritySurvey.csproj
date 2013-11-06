@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -133,6 +135,36 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnswerOption.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GenericSurvey.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuestionCategory.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuestionType.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\surveyEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>surveyEF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\surveyEF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\surveyEF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>surveyEF.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +228,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <EntityDeploy Include="Models\surveyEF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>surveyEF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\surveyEF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>surveyEF.edmx</DependentUpon>
+      <LastGenOutput>surveyEF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\surveyEF.edmx.diagram">
+      <DependentUpon>surveyEF.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\surveyEF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>surveyEF.edmx</DependentUpon>
+      <LastGenOutput>surveyEF.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -226,10 +275,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
