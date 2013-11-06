@@ -133,12 +133,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\categoryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AnswerOption.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FrontPageModel.cs" />
     <Compile Include="Models\GenericSurvey.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
@@ -278,6 +280,7 @@
     <Content Include="Views\category\Create.cshtml" />
     <Content Include="Views\category\Edit.cshtml" />
     <Content Include="Views\category\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

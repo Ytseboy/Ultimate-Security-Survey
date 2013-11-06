@@ -1,0 +1,16 @@
+﻿@model UltimateSecuritySurvey.Models.FrontPageModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <legend>FrontPageModel</legend>
+</fieldset>
+@Html.DisplayFor(x => x.myQuestion.questionId)
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
