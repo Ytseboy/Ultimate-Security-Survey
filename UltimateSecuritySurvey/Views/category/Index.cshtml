@@ -35,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.categoryId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.categoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.categoryId })
         </td>
     </tr>
 }
