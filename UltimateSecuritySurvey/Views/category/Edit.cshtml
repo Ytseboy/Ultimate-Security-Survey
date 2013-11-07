@@ -14,15 +14,15 @@
         <legend>QuestionCategory</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.categoryId)
+          <strong>  @Html.LabelFor(model => model.categoryId) </strong>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.categoryId)
+            @Html.DisplayFor(model => model.categoryId)
             @Html.ValidationMessageFor(model => model.categoryId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.categoryName)
+        <strong>    @Html.LabelFor(model => model.categoryName) </strong>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.categoryName)
@@ -30,7 +30,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.description)
+        <strong>    @Html.LabelFor(model => model.description) </strong>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.description)

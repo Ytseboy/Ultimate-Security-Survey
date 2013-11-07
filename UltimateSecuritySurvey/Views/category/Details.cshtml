@@ -10,27 +10,27 @@
     <legend>QuestionCategory</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.categoryId)
+      <strong>   @Html.DisplayNameFor(model => model.categoryId) </strong>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.categoryId)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.categoryName)
+      <strong>   @Html.DisplayNameFor(model => model.categoryName) </strong>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.categoryName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.description)
+       <strong>  @Html.DisplayNameFor(model => model.description) </strong>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.description)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = item.categoryId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.categoryId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

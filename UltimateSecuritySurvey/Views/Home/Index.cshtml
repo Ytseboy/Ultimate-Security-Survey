@@ -7,10 +7,11 @@
 <h2>Index</h2>
 
 <fieldset>
-    <legend>FrontPageModel</legend>
+    <legend>Questions</legend>
+    @Html.Partial("QuestionBox", Model.questions)
 </fieldset>
-@Html.DisplayFor(x => x.myQuestion.questionId)
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<fieldset>
+    <legend>Categories</legend>
+    @Html.Partial("CategoryBox", Model.categories)
+</fieldset>
