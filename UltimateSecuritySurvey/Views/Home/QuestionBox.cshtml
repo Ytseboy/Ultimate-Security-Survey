@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<UltimateSecuritySurvey.Models.Question>
 
-
 <table>
     <tr>
-
         <th>
             @Html.DisplayNameFor(model => model.questionTextMain)
         </th>
@@ -13,12 +11,10 @@
         <th>
             @Html.DisplayNameFor(model => model.baseLevel2RequirementText)
         </th>
-
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-
         <td>
             @Html.DisplayFor(modelItem => item.questionTextMain)
         </td>
@@ -28,12 +24,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.baseLevel2RequirementText)
         </td>
-
-
     </tr>
 }
 
 </table>
 <p>
-    @Html.ActionLink("Full Question List", "Index", "question")
+    @Html.ActionLink("Full Question List", "Index", "Question")
 </p>
