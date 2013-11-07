@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.QuestionCategory>
+
+
+<table>
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.categoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+
+    </tr>
+
+           
+
+}
+
+</table>
+<p>
+    @Html.ActionLink("Full Category List", "Index", "category")
+</p>

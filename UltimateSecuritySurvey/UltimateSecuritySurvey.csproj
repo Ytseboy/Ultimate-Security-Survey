@@ -281,6 +281,8 @@
     <Content Include="Views\category\Edit.cshtml" />
     <Content Include="Views\category\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\QuestionBox.cshtml" />
+    <Content Include="Views\Home\CategoryBox.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

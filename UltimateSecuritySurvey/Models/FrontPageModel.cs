@@ -7,13 +7,13 @@ namespace UltimateSecuritySurvey.Models
 {
     public class FrontPageModel
     {
-        SecuritySurveyEntities db = new SecuritySurveyEntities();
-
-        public FrontPageModel() 
+        public FrontPageModel() { }
+        public FrontPageModel(List<Question> questions, List<QuestionCategory> categories) 
         {
-            this.myQuestion = db.Questions.Find("q1");
+            this.questions = questions;
+            this.categories = categories;
         }
-
-        public Question myQuestion { get; set; }
+        public List<Question> questions { get; set; }
+        public List<QuestionCategory> categories { get; set; }
     }
 }
