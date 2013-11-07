@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using UltimateSecuritySurvey.Models;
 namespace UltimateSecuritySurvey.Controllers
 {
+    /// <summary>
+    /// This controller is for the front page
+    /// </summary>
     public class HomeController : Controller
     {
-   
 
         SecuritySurveyEntities entities = new SecuritySurveyEntities();
 
@@ -16,7 +18,10 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // GET: /Home/
-
+        /// <summary>
+        /// This is our Index method
+        /// </summary>
+        /// <returns>It returns five questions and five categories, both in descending order</returns>
         public ActionResult Index()
         {
             //Get five last questions in a list
