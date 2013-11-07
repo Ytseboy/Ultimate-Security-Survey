@@ -8,7 +8,21 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <nav>
+        menu:
+        @Html.ActionLink("Dashboard", "Index", "Home")
+        @Html.ActionLink("Categories", "Index", "Category")
+        @Html.ActionLink("About", "Index", "About")
+    </nav>
+
+    <section><!--Tag section is added by Alex, so can be deleted when we have normal Layout-->
+    @{/*RenderBody() = Here Our views go*/}
     @RenderBody()
+    </section>
+
+    <footer>
+       Ultimate Security Survey &copy; 2013   
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

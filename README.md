@@ -15,14 +15,6 @@ Helsinki, Finland
 
 <h5>Any preliminary changes to the TestBranch first before moving it on to the Master branch<h5>
 
-
-
-Other check (that line to be deleted later)
-
-
-Just testing
-
-
 <h4>About</h4>
 
 Security Survey is an application to make Security Audits for small and middle size companies. 
