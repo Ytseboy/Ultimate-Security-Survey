@@ -24,7 +24,7 @@ namespace UltimateSecuritySurvey.Controllers
         // GET: /category/
         public ActionResult Index()
         {
-            ViewBag.DeleteError = (TempData["DeleteError"]) ?? string.Empty;
+            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
             return View(db.QuestionCategories.ToList());
         }
 
@@ -133,34 +133,19 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            QuestionCategory questioncategory = db.QuestionCategories.Find(id);
-            if (CheckIfQuestionsExistForCategory(questioncategory.categoryId))
+            QuestionCategory questionCategory = db.QuestionCategories.Find(id);
+            bool childExist = db.Questions.Any(x => x.categoryId == questionCategory.categoryId);
+
+            if (!childExist)
             {
-                db.QuestionCategories.Remove(questioncategory);
+                db.QuestionCategories.Remove(questionCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["DeleteError"] = "Cannot delete this Category because related questions exist!!";
+                TempData["Message"] = "Cannot delete this Category because related questions exist!!";
                 return RedirectToAction("Index");
-            }
-         }
-
-        /// <summary>
-        /// This method to Check if this category has questions in question table, in a case of delete violation
-        /// </summary>
-        /// <param name="id">The chosen category id</param>
-        private bool CheckIfQuestionsExistForCategory(string id)
-        {
-            Question question = db.Questions.Where(x => x.categoryId == id).First();
-            if (question == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
 
