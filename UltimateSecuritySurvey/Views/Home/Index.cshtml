@@ -7,6 +7,11 @@
 <h2>Dashboard</h2>
 
 <fieldset>
+    <legend>The project & Haaga-Helia</legend>
+    @Html.Partial("InfoBox")
+</fieldset>
+
+<fieldset>
     <legend>Questions</legend>
     @Html.Partial("QuestionBox", Model.questions)
 </fieldset>

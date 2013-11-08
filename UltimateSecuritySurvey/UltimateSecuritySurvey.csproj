@@ -287,6 +287,7 @@
     <Content Include="Views\Home\QuestionBox.cshtml" />
     <Content Include="Views\Home\CategoryBox.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Home\InfoBox.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
