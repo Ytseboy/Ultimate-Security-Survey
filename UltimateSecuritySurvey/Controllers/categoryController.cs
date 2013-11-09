@@ -64,13 +64,16 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(QuestionCategory questioncategory)
         {
-            if (ModelState.IsValid)
+            bool uniqueViolation = db.QuestionCategories.Any(x => x.categoryId == questioncategory.categoryId)
+                                || db.QuestionCategories.Any(x => x.categoryName == questioncategory.categoryName);
+
+            if (ModelState.IsValid && !uniqueViolation)
             {
                 db.QuestionCategories.Add(questioncategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Message = "Id and Name must be unique!";
             return View(questioncategory);
         }
 
@@ -99,12 +102,18 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(QuestionCategory questioncategory)
         {
-            if (ModelState.IsValid)
+            bool uniqueViolation = db.QuestionCategories
+                .Any(x => x.categoryName == questioncategory.categoryName 
+                    && x.categoryId != questioncategory.categoryId);
+
+            if (ModelState.IsValid && !uniqueViolation)
             {
                 db.Entry(questioncategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Message = "Name must be unique!";
             return View(questioncategory);
         }
 
@@ -140,13 +149,13 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 db.QuestionCategories.Remove(questionCategory);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
             else
             {
                 TempData["Message"] = "Cannot delete this Category because related questions exist!!";
-                return RedirectToAction("Index");
             }
+
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

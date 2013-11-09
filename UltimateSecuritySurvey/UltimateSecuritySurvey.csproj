@@ -136,6 +136,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\GenericSurveyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -288,6 +289,11 @@
     <Content Include="Views\Home\CategoryBox.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Home\InfoBox.cshtml" />
+    <Content Include="Views\GenericSurvey\Index.cshtml" />
+    <Content Include="Views\GenericSurvey\Details.cshtml" />
+    <Content Include="Views\GenericSurvey\Create.cshtml" />
+    <Content Include="Views\GenericSurvey\Edit.cshtml" />
+    <Content Include="Views\GenericSurvey\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -5,7 +5,7 @@
 }
 
 <h2>Edit</h2>
-
+<h3>@ViewBag.Message</h3>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -13,11 +13,12 @@
     <fieldset>
         <legend>QuestionCategory</legend>
 
-        <div class="editor-label">
+        <div class="editor-field">
           <strong>  @Html.LabelFor(model => model.categoryId) </strong>
         </div>
         <div class="editor-field">
             @Html.DisplayFor(model => model.categoryId)
+            @Html.HiddenFor(model => model.categoryId)
             @Html.ValidationMessageFor(model => model.categoryId)
         </div>
 

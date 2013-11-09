@@ -1,32 +1,31 @@
-﻿@model UltimateSecuritySurvey.Models.QuestionCategory
+﻿@model UltimateSecuritySurvey.Models.GenericSurvey
 
 @{
-    ViewBag.Title = "Create category";
+    ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
-<h3>@ViewBag.Message</h3>
+
 @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>QuestionCategory</legend>
+        <legend>GenericSurvey</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.categoryId)
+            @Html.LabelFor(model => model.surveyId)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.categoryId)
-            @Html.ValidationMessageFor(model => model.categoryId)
+            @Html.EditorFor(model => model.surveyId)
+            @Html.ValidationMessageFor(model => model.surveyId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.categoryName)
+            @Html.LabelFor(model => model.title)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.categoryName)
-            @Html.ValidationMessageFor(model => model.categoryName)
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
         </div>
 
         <div class="editor-label">
@@ -35,6 +34,14 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.description)
             @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.baseLevel)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.baseLevel)
+            @Html.ValidationMessageFor(model => model.baseLevel)
         </div>
 
         <p>
