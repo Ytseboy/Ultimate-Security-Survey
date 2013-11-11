@@ -1,0 +1,53 @@
+﻿CREATE PROCEDURE [dbo].[sp_02_DropTables]
+AS
+
+--Second level Dependency Tables
+IF OBJECT_ID('SurveyQuestion') IS NOT NULL
+	BEGIN
+		DROP TABLE SurveyQuestion;
+	END
+
+-- First level Dependency tables
+IF OBJECT_ID('AnswerOption') IS NOT NULL
+	BEGIN
+		DROP TABLE AnswerOption;
+	END
+	
+IF OBJECT_ID('Question') IS NOT NULL
+	BEGIN
+		DROP TABLE Question;
+	END
+
+--Independent Tables--
+IF OBJECT_ID('GenericSurvey') IS NOT NULL
+	BEGIN
+		DROP TABLE GenericSurvey;
+	END
+
+IF OBJECT_ID('QuestionCategory') IS NOT NULL
+	BEGIN
+		DROP TABLE QuestionCategory;
+	END
+
+IF OBJECT_ID('QuestionType') IS NOT NULL
+	BEGIN
+		DROP TABLE QuestionType;
+	END
+
+-- Finally, display a message
+IF (@@Error = 0) 
+	BEGIN
+		PRINT '================================='
+		PRINT ' ALL TABLES DROPPED SUCCESSFULLY.'
+		PRINT '================================='
+		PRINT ' '
+	END
+ELSE
+	BEGIN
+		PRINT '=============================='
+		PRINT ' See the error messages above!'
+		PRINT '=============================='
+		PRINT ' '
+	END
+
+-- End

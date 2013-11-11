@@ -1,0 +1,82 @@
+﻿CREATE PROCEDURE [dbo].[sp_01_CreateTables]
+AS
+
+--Independent Tables--
+CREATE TABLE [dbo].[QuestionType]
+(
+	[questionTypeId]	INTEGER		NOT NULL,
+	[questionTypeName]	VARCHAR(50) NOT NULL,
+	[description]		VARCHAR(300)
+
+	CONSTRAINT [PK_QuestionType] PRIMARY KEY CLUSTERED ([questionTypeId] ASC),
+    UNIQUE NONCLUSTERED ([questionTypeName] ASC)
+);
+
+CREATE TABLE [dbo].[QuestionCategory]
+(
+	[categoryId]	INTEGER		IDENTITY(1,1)	NOT NULL,
+	[categoryName]	VARCHAR(50)					NOT NULL,
+	[description]	VARCHAR(300)
+
+	CONSTRAINT [PK_QuestionCategory] PRIMARY KEY CLUSTERED ([categoryId] ASC),
+    UNIQUE NONCLUSTERED ([categoryName] ASC)
+);
+
+CREATE TABLE [dbo].[GenericSurvey]
+(
+	[surveyId]		INTEGER			IDENTITY(11,1)	NOT NULL,
+	[title]			VARCHAR(100)					NOT NULL,
+	[description]	VARCHAR(MAX)					NOT NULL,
+	[baseLevel]		INTEGER							NOT NULL
+
+	CONSTRAINT [PK_GenericSurvey] PRIMARY KEY CLUSTERED ([surveyId] ASC)
+);
+
+-- First level Dependency tables
+CREATE TABLE [dbo].[Question]
+(
+	[questionId]				INTEGER			IDENTITY(101,1)	NOT NULL,
+	[categoryId]				INTEGER							NOT NULL,
+	[questionTypeId]			INTEGER							NOT NULL,
+	[questionTextMain]			VARCHAR(MAX)					NOT NULL,
+	[questionTextExtra]			VARCHAR(1000),
+	[baseLevel2RequirementText] VARCHAR(MAX)					NOT NULL,
+	[additionalInfo]			VARCHAR(MAX),
+	[additionalNote]			VARCHAR(MAX), 
+
+	CONSTRAINT [PK_Question] PRIMARY KEY CLUSTERED ([questionId] ASC),
+    CONSTRAINT [FK_Question_ToQuestionCategory] FOREIGN KEY ([categoryId]) REFERENCES [dbo].[QuestionCategory] ([categoryId]),
+    CONSTRAINT [FK_Question_ToQuestionType] FOREIGN KEY ([questionTypeId]) REFERENCES [dbo].[QuestionType] ([questionTypeId])
+);
+
+--Second level Dependency Tables
+CREATE TABLE [dbo].[AnswerOption]
+(
+	[questionId]	INTEGER							NOT NULL,
+	[answerNumber]	INTEGER			IDENTITY(1,1)	NOT NULL,
+	[answerText]	VARCHAR(1000)					NOT NULL
+
+	CONSTRAINT [PK_AnswerOption] PRIMARY KEY CLUSTERED ([questionId] ASC, [answerNumber] ASC), 
+    CONSTRAINT [FK_AnswerOption_ToQuestion] FOREIGN KEY ([questionId]) REFERENCES [Question]([questionId])
+);
+
+CREATE TABLE [dbo].[SurveyQuestion]
+(
+	[surveyId]		INTEGER		NOT NULL,
+	[questionId]	INTEGER		NOT NULL
+
+	CONSTRAINT [PK_SurveyQuestion] PRIMARY KEY CLUSTERED ([surveyId] ASC, [questionId] ASC),
+	CONSTRAINT [FK_SurveyQuestion_ToGenericSurvey] FOREIGN KEY ([surveyId]) REFERENCES [GenericSurvey]([surveyId]),
+	CONSTRAINT [FK_SurveyQuestion_ToQuestion] FOREIGN KEY ([questionId]) REFERENCES [Question]([questionId])
+);
+
+-- Finally, display a message
+IF (@@Error = 0) 
+	BEGIN
+		PRINT '============================='
+		PRINT ' TABLES CREATED SUCCESSFULLY.'
+		PRINT '============================='
+		PRINT ' '
+	END
+
+-- End --

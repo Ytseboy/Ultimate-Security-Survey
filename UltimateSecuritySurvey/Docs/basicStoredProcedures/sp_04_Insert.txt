@@ -1,0 +1,167 @@
+﻿CREATE PROCEDURE [dbo].[sp_04_InsertData]
+AS
+
+EXEC dbo.sp_03_DeleteData;
+
+--Independent Tables --
+
+/*Type*/
+INSERT INTO QuestionType (questionTypeId, questionTypeName, description)
+VALUES (1, 'Qualitative questions',		'Question with longer text answer.');
+ 
+INSERT INTO QuestionType (questionTypeId, questionTypeName, description)
+VALUES (2, 'Quantitative questions',	'Questions with yes/no options and possibly short comment');
+
+/*Category*/
+INSERT INTO QuestionCategory (categoryName, description)
+VALUES ('Administrative Security',	'Questions regarding the security management in the company');
+ 
+INSERT INTO QuestionCategory (categoryName, description)
+VALUES ('Personnel Security',		'Questions regarding personnel dealing with classified information');
+ 
+INSERT INTO QuestionCategory (categoryName, description)
+VALUES ('Physical security',		'Questions regarding security on premises');
+
+INSERT INTO QuestionCategory (categoryName, description)
+VALUES ('Information assurance',	'Questions regarding security and quality of information');
+
+/*GenericSurvey*/
+INSERT INTO GenericSurvey (title, description, baseLevel)
+VALUES ('IT-security survey for ABC',	'Survey for a smaller Software design company called ABC',	2); /*base Level 2,3 or 4*/
+ 
+INSERT INTO GenericSurvey (title, description, baseLevel)
+VALUES ('Survey for Makia',				'General survey for a young Finnish clothing company',		2);
+
+INSERT INTO GenericSurvey (title, description, baseLevel)
+VALUES ('Basic Survey',					'General survey containint basic questions',				2);
+
+-- First level dendency Tables --
+/*Question*/
+INSERT INTO Question 
+(categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(1, 2, 'Have the statutory requirements of activities been taken into account?', 
+'How are the statutory requirements followed and how are they taken into account in activities? For
+example, are the handling processes of personal data on the level required by the
+Personal Data Act?', 
+'-', '-', '-');
+ 
+INSERT INTO Question 
+(categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(2, 2, 'Has a list been made of the persons taking part in the project?', 
+'-',
+'A list shall be made of the personnel taking part in the project; the list shall 
+contain the following information: name and personal identity number, the job 
+and the name and department of the company where the person is employed. 
+The person responsible for security of the project shall approve the list of persons.',
+'-','-'  );
+ 
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(3, 1, 'What material are the walls, ceiling and floor of the room?', 
+'-',
+'The walls, ceiling and floor are of regular office structure.',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(1, 2, 'Has the management of organisation defined and approved the security policy?', 
+'Has the policy been reviewed at regular intervals?',
+'It is a top-level security document, which is approved by the top management. ',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(1, 2, 'Does the security policy take into account the obligations of general legislation?', 
+'-',
+'There is a person responsible for that',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(2, 2, 'Does training documentation exist?', 
+'-',
+'The personnel taking part in the project shall receive training in the project-related security',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(2, 2, 'Does a list of visitors exist and is it kept in an appropriate way?', 
+'Are the hosting personnel aware of how to deal with visitors?',
+'Visitors shall not be left in the said premises without the host or his/her representative.',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(2, 2, 'Is a drug test available if it seems necessary?', 
+'-',
+'A drug test is required, if necessary.',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(2, 2, 'Is a probation period used in recruitment and if so, how long is it?', 
+'-',
+'A probation period is used.',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(2, 1, 'How a new employee is introduced to the security regulations of the company?', 
+'-',
+'Introduction to security.',
+'-', '-');
+
+-- Second level dependency Tables --
+/*Answer*/
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (103, 'The materials are strengthened with steel.');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (102, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (101, 'No, the company does not do security checks.');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (104, 'Yes, every half of year');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (105, 'No, company managment does not think that it is nessesary');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (106, 'No, usually all explanations have a verbal manner');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (107, 'No, company managment does not think that it is nessesary');
+
+/*SurveyQuestion*/
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (11, 101);
+ 
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (11, 102);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (11, 104);
+ 
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (12, 103);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (12, 105);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (12, 106);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (13, 107);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (13, 108);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (13, 109);
+
+RETURN 1
