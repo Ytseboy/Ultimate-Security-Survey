@@ -17,7 +17,7 @@
     <div class="container">
         <div class="sixteen columns clearfix">
             <div class="four columns alpha">
-                <img src="~/Content/themes/base/images/logo.jpg" alt="logo" />
+                <img src="@Url.Content("~/Content/themes/base/images/logo.jpg")" alt="logo" />
             </div>
             <div class="ten columns"><h1>Ultimate Security Survey</h1></div>
             <div class="two columns omega"><h6>@DateTime.Now.DayOfWeek</h6></div>
@@ -27,6 +27,7 @@
             <nav>
                 @Html.ActionLink("Dashboard", "Index", "Home")
                 @Html.ActionLink("Categories", "Index", "Category")
+                @Html.ActionLink("Questions", "Index", "Question")
                 @Html.ActionLink("About", "Index", "About")
             </nav>
         </div>

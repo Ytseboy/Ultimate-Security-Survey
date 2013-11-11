@@ -1,0 +1,61 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="CSSTableGenerator">
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.questionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.questionTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.questionTextMain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.baseLevel2RequirementText)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.questionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.questionTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.questionTextMain)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.baseLevel2RequirementText)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.questionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.questionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.questionId })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

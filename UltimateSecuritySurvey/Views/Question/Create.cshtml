@@ -1,0 +1,92 @@
+﻿@model UltimateSecuritySurvey.Models.Question
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<h3>@ViewBag.message</h3>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Question</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.questionId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.questionId)
+            @Html.ValidationMessageFor(model => model.questionId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.categoryId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.categoryId)
+            @Html.ValidationMessageFor(model => model.categoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.questionTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.questionTypeId)
+            @Html.ValidationMessageFor(model => model.questionTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.questionTextMain)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.questionTextMain)
+            @Html.ValidationMessageFor(model => model.questionTextMain)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.questionTextExtra)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.questionTextExtra)
+            @Html.ValidationMessageFor(model => model.questionTextExtra)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.baseLevel2RequirementText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.baseLevel2RequirementText)
+            @Html.ValidationMessageFor(model => model.baseLevel2RequirementText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.additionalInfo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.additionalInfo)
+            @Html.ValidationMessageFor(model => model.additionalInfo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.additionalNote)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.additionalNote)
+            @Html.ValidationMessageFor(model => model.additionalNote)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

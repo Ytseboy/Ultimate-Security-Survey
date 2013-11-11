@@ -1,0 +1,68 @@
+﻿@model UltimateSecuritySurvey.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Question</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.categoryId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.categoryId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.questionTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.questionTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.questionTextMain)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.questionTextMain)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.questionTextExtra)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.questionTextExtra)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.baseLevel2RequirementText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.baseLevel2RequirementText)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.additionalInfo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.additionalInfo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.additionalNote)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.additionalNote)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

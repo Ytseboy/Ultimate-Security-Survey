@@ -1,0 +1,64 @@
+﻿@model UltimateSecuritySurvey.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Question</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.categoryId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.categoryId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.questionTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.questionTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.questionTextMain)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.questionTextMain)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.questionTextExtra)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.questionTextExtra)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.baseLevel2RequirementText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.baseLevel2RequirementText)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.additionalInfo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.additionalInfo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.additionalNote)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.additionalNote)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.questionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
