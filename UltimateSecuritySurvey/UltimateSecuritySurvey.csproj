@@ -296,20 +296,18 @@
     <Content Include="Views\Home\CategoryBox.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Home\InfoBox.cshtml" />
-    <Content Include="Views\GenericSurvey\Index.cshtml" />
-    <Content Include="Views\GenericSurvey\Details.cshtml" />
-    <Content Include="Views\GenericSurvey\Create.cshtml" />
-    <Content Include="Views\GenericSurvey\Edit.cshtml" />
-    <Content Include="Views\GenericSurvey\Delete.cshtml" />
-    <Content Include="Views\Question\Create.cshtml" />
-    <Content Include="Views\Question\Delete.cshtml" />
-    <Content Include="Views\Question\Details.cshtml" />
-    <Content Include="Views\Question\Edit.cshtml" />
-    <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\CreateEdit.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Question\CreateEdit.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\GenericSurvey\Index.cshtml" />
+    <Content Include="Views\GenericSurvey\Details.cshtml" />
+    <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
+    <Content Include="Views\GenericSurvey\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,24 +1,13 @@
 ﻿@model UltimateSecuritySurvey.Models.GenericSurvey
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Survey editor";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreateEdit", "GenericSurvey")) {
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>GenericSurvey</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.surveyId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.surveyId)
-            @Html.ValidationMessageFor(model => model.surveyId)
-        </div>
+        @Html.HiddenFor(model => model.surveyId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.title)
@@ -43,11 +32,10 @@
             @Html.EditorFor(model => model.baseLevel)
             @Html.ValidationMessageFor(model => model.baseLevel)
         </div>
-
+        <br />
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
-    </fieldset>
 }
 
 <div>

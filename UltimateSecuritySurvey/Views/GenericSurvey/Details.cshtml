@@ -1,43 +1,46 @@
 ﻿@model UltimateSecuritySurvey.Models.GenericSurvey
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Survey Details";
 }
 
 <h2>Details</h2>
 
-<fieldset>
-    <legend>GenericSurvey</legend>
-
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.surveyId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.surveyId)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.title)
+         <h5>@Html.DisplayNameFor(model => model.title) </h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.title)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.description)
+         <h5>@Html.DisplayNameFor(model => model.description)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.description)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.baseLevel)
+         <h5>@Html.DisplayNameFor(model => model.baseLevel)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.baseLevel)
     </div>
-</fieldset>
+    
+    <br />
+    <div class="display-label">
+         <h5>Questions</h5>
+    </div>
+    <div class="display-field">
+        <ul>
+        @foreach (var item in Model.Questions)
+        {
+            <li>-@item.questionTextMain</li>
+        }
+        </ul>
+    </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.surveyId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.surveyId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

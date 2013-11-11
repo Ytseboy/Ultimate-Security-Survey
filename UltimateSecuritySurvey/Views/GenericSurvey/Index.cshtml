@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<UltimateSecuritySurvey.Models.GenericSurvey>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Surveys";
 }
 
-<h2>Index</h2>
+<h2>Surveys</h2>
+<h3> @ViewBag.DeleteError </h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<div class="CSSTableGenerator">
 <table>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.surveyId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.title)
         </th>
@@ -23,14 +23,12 @@
         <th>
             @Html.DisplayNameFor(model => model.baseLevel)
         </th>
+        <th>Questions</th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.surveyId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.title)
         </td>
@@ -41,6 +39,9 @@
             @Html.DisplayFor(modelItem => item.baseLevel)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Questions.Count)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.surveyId }) |
             @Html.ActionLink("Details", "Details", new { id=item.surveyId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.surveyId })
@@ -49,3 +50,4 @@
 }
 
 </table>
+</div>

@@ -1,39 +1,27 @@
 ﻿@model UltimateSecuritySurvey.Models.Question
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Question editor";
 }
 
-<h2>Create</h2>
-<h3>@ViewBag.message</h3>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+@using (Html.BeginForm("CreateEdit", "Question")) {
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Question</legend>
+        @Html.HiddenFor(model => model.questionId)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.questionId)
+            @Html.LabelFor(model => model.categoryId, "QuestionCategory")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.questionId)
-            @Html.ValidationMessageFor(model => model.questionId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.categoryId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.categoryId)
+            @Html.DropDownList("categoryId", String.Empty)
             @Html.ValidationMessageFor(model => model.categoryId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.questionTypeId)
+            @Html.LabelFor(model => model.questionTypeId, "QuestionType")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.questionTypeId)
+            @Html.DropDownList("questionTypeId", String.Empty)
             @Html.ValidationMessageFor(model => model.questionTypeId)
         </div>
 
@@ -78,9 +66,8 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
-    </fieldset>
 }
 
 <div>

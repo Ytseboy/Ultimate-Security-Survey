@@ -1,63 +1,60 @@
 ﻿@model UltimateSecuritySurvey.Models.Question
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Question details";
 }
 
 <h2>Details</h2>
 
-<fieldset>
-    <legend>Question</legend>
-
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.categoryId)
+         <h5>@Html.DisplayNameFor(model => model.QuestionCategory.categoryName)</h5>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.categoryId)
+        @Html.DisplayFor(model => model.QuestionCategory.categoryName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.questionTypeId)
+         <h5>@Html.DisplayNameFor(model => model.QuestionType.questionTypeName)</h5>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.questionTypeId)
+        @Html.DisplayFor(model => model.QuestionType.questionTypeName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.questionTextMain)
+         <h5>@Html.DisplayNameFor(model => model.questionTextMain)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.questionTextMain)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.questionTextExtra)
+         <h5>@Html.DisplayNameFor(model => model.questionTextExtra)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.questionTextExtra)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.baseLevel2RequirementText)
+         <h5>@Html.DisplayNameFor(model => model.baseLevel2RequirementText)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.baseLevel2RequirementText)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.additionalInfo)
+         <h5>@Html.DisplayNameFor(model => model.additionalInfo)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.additionalInfo)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.additionalNote)
+         <h5>@Html.DisplayNameFor(model => model.additionalNote)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.additionalNote)
     </div>
-</fieldset>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.questionId }) |
     @Html.ActionLink("Back to List", "Index")

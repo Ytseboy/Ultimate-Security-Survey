@@ -9,25 +9,35 @@ using UltimateSecuritySurvey.Models;
 
 namespace UltimateSecuritySurvey.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class QuestionController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         //
         // GET: /Question/
-
         public ActionResult Index()
         {
-            return View(db.Questions.ToList());
+            var questions = db.Questions.Include(q => q.QuestionCategory).Include(q => q.QuestionType);
+            return View(questions.ToList());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //
         // GET: /Question/Details/5
-
-        public ActionResult Details(string id = null)
+        public ActionResult Details(int id = 0)
         {
             Question question = db.Questions.Find(id);
-
             if (question == null)
             {
                 return HttpNotFound();
@@ -35,66 +45,79 @@ namespace UltimateSecuritySurvey.Controllers
             return View(question);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         //
         // GET: /Question/Create
-
         public ActionResult Create()
         {
-            return View();
+            ViewBag.categoryId = new SelectList(db.QuestionCategories, "categoryId", "categoryName");
+            ViewBag.questionTypeId = new SelectList(db.QuestionTypes, "questionTypeId", "questionTypeName");
+            return View("CreateEdit", new Question());
         }
 
-        //
-        // POST: /Question/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Question question)
-        {
-            bool uniqueViolation = db.Questions.Any(x => x.questionId == question.questionId);
-
-            if (ModelState.IsValid && !uniqueViolation)
-            {
-                db.Questions.Add(question);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.message = "Id must be unique!";
-            return View(question);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //
         // GET: /Question/Edit/5
-
-        public ActionResult Edit(string id = null)
+        public ActionResult Edit(int id = 0)
         {
             Question question = db.Questions.Find(id);
             if (question == null)
             {
                 return HttpNotFound();
             }
-            return View(question);
+
+            ViewBag.categoryId = new SelectList(db.QuestionCategories, "categoryId", "categoryName", question.categoryId);
+            ViewBag.questionTypeId = new SelectList(db.QuestionTypes, "questionTypeId", "questionTypeName", question.questionTypeId);
+            return View("CreateEdit", question);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         //
         // POST: /Question/Edit/5
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Question question)
+        public ActionResult CreateEdit(Question question)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(question).State = EntityState.Modified;
+                //No Id => Add
+                if (question.questionId <= 0)
+                {
+                    db.Questions.Add(question);
+                }
+                //Is Id => Update
+                else
+                {
+                    db.Entry(question).State = EntityState.Modified;
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.categoryId = new SelectList(db.QuestionCategories, "categoryId", "categoryName", question.categoryId);
+            ViewBag.questionTypeId = new SelectList(db.QuestionTypes, "questionTypeId", "questionTypeName", question.questionTypeId);
             return View(question);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //
         // GET: /Question/Delete/5
-
-        public ActionResult Delete(string id = null)
+        public ActionResult Delete(int id = 0)
         {
             Question question = db.Questions.Find(id);
             if (question == null)
@@ -104,15 +127,17 @@ namespace UltimateSecuritySurvey.Controllers
             return View(question);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         //
         // POST: /Question/Delete/5
-
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Question question = db.Questions.Find(id);
-
             db.Questions.Remove(question);
             db.SaveChanges();
             return RedirectToAction("Index");

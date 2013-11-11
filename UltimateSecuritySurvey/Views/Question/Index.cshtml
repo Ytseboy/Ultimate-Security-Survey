@@ -4,25 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Questions</h2>
+<h3> @ViewBag.DeleteError </h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <div class="CSSTableGenerator">
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.questionId)
+            @Html.DisplayNameFor(model => model.QuestionCategory.categoryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.categoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.questionTypeId)
+            @Html.DisplayNameFor(model => model.QuestionType.questionTypeName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.questionTextMain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.questionTextExtra)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.baseLevel2RequirementText)
@@ -33,22 +35,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.questionId)
+            @Html.DisplayFor(modelItem => item.QuestionCategory.categoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.categoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.questionTypeId)
+            @Html.DisplayFor(modelItem => item.QuestionType.questionTypeName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.questionTextMain)
         </td>
-        
+        <td>
+            @Html.DisplayFor(modelItem => item.questionTextExtra)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.baseLevel2RequirementText)
         </td>
-        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.questionId }) |
             @Html.ActionLink("Details", "Details", new { id=item.questionId }) |

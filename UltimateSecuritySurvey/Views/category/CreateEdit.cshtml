@@ -9,9 +9,6 @@
 @using (Html.BeginForm("CreateEdit", "Category")) {
     @Html.ValidationSummary(true)
 
-    <!--<fieldset>
-        <legend>Question Category</legend>-->
-
         @Html.HiddenFor(model => model.categoryId)
 
         <div class="editor-label">
@@ -33,7 +30,6 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-    <!--</fieldset>-->
 }
 
 <div>
