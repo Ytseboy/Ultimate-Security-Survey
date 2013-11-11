@@ -6,17 +6,25 @@
 
 <h2>Dashboard</h2>
 
-<fieldset>
-    <legend>The project & Haaga-Helia</legend>
-    @Html.Partial("InfoBox")
-</fieldset>
+<div class="sixteen columns">
+    <fieldset>
+        <legend>The project & Haaga-Helia</legend>
+        @Html.Partial("InfoBox")
+    </fieldset>
+</div>
 
-<fieldset>
-    <legend>Questions</legend>
-    @Html.Partial("QuestionBox", Model.questions)
-</fieldset>
+<hr />
+<div class="seven columns alpha">
+    <fieldset>
+        <legend>Questions</legend>
+        @Html.Partial("QuestionBox", Model.questions)
+    </fieldset>
+</div>
 
-<fieldset>
-    <legend>Categories</legend>
-    @Html.Partial("CategoryBox", Model.categories)
-</fieldset>
+
+<div class="seven columns omega offset-by-two">
+    <fieldset>
+        <legend>Categories</legend>
+        @Html.Partial("CategoryBox", Model.categories)
+    </fieldset>
+</div>

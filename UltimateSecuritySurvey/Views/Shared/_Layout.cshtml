@@ -5,24 +5,45 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+
+    @Styles.Render("~/Content/skeletonCSS/base.css")
+    @Styles.Render("~/Content/skeletonCSS/layout.css")
+    @Styles.Render("~/Content/skeletonCSS/skeleton.css")
+    @Styles.Render("~/Content/table.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav>
-        menu:
-        @Html.ActionLink("Dashboard", "Index", "Home")
-        @Html.ActionLink("Categories", "Index", "Category")
-        @Html.ActionLink("About", "Index", "About")
-    </nav>
 
-    <section><!--Tag section is added by Alex, so can be deleted when we have normal Layout-->
-    @{/*RenderBody() = Here Our views go*/}
-    @RenderBody()
-    </section>
+    <div class="container">
+        <div class="sixteen columns clearfix">
+            <div class="four columns alpha">
+                <img src="~/Content/themes/base/images/logo.jpg" alt="logo" />
+            </div>
+            <div class="ten columns"><h1>Ultimate Security Survey</h1></div>
+            <div class="two columns omega"><h6>@DateTime.Now.DayOfWeek</h6></div>
+        </div>
 
-    <footer>
-       Ultimate Security Survey &copy; 2013   
-    </footer>
+        <div class="sixteen columns">
+            <nav>
+                @Html.ActionLink("Dashboard", "Index", "Home")
+                @Html.ActionLink("Categories", "Index", "Category")
+                @Html.ActionLink("About", "Index", "About")
+            </nav>
+        </div>
+        
+        <div class="sixteen columns clearfix">
+            @RenderBody()
+        </div>
+
+        <div class="sixteen columns">
+
+            <footer>
+                Ultimate Security Survey &copy; 2013   
+            </footer>
+
+        </div>
+
+    </div><!--END of .container-->
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
