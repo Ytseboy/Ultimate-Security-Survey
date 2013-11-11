@@ -4,12 +4,13 @@ categoryId
 
 [Required(ErrorMessage="Category name is mandatory!")]
 [DisplayName("Category Name")]
-[StringLength(50)]
+[StringLength(50, ErrorMessage = "Name value cannot exceed 50 characters.")]
 
 categoryName 
 
 [Required(ErrorMessage = "Description is mandatory!")]
 [DisplayName("Description")]
-[StringLength(300)]
+[StringLength(300, ErrorMessage = "Description cannot exceed 300 characters.")]
+[DataType(DataType.MultilineText)]
 
 description

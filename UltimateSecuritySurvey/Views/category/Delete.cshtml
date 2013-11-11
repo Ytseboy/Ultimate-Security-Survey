@@ -10,29 +10,23 @@
 <fieldset>
     <legend>QuestionCategory</legend>
 
-    <div class="display-label">
-     <strong>   @Html.DisplayNameFor(model => model.categoryId) </strong>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.categoryId)
-    </div>
+    @Html.HiddenFor(model => model.categoryId)
 
     <div class="display-label">
-      <strong>   @Html.DisplayNameFor(model => model.categoryName) </strong>
+         @Html.DisplayNameFor(model => model.categoryName)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.categoryName)
     </div>
 
     <div class="display-label">
-      <strong>   @Html.DisplayNameFor(model => model.description)   </strong>
+         @Html.DisplayNameFor(model => model.description)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.description)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Delete" /> |
         @Html.ActionLink("Back to List", "Index")

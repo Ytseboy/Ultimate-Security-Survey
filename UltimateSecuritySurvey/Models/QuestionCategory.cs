@@ -11,6 +11,8 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class QuestionCategory
     {
@@ -18,9 +20,19 @@ namespace UltimateSecuritySurvey.Models
         {
             this.Questions = new HashSet<Question>();
         }
-    
+
+        [DisplayName("Category Id")]
         public int categoryId { get; set; }
+
+        [Required(ErrorMessage = "Category name is mandatory!")]
+        [DisplayName("Category Name")]
+        [StringLength(50, ErrorMessage = "Name value cannot exceed 50 characters.")]
         public string categoryName { get; set; }
+
+        [Required(ErrorMessage = "Description is mandatory!")]
+        [DisplayName("Description")]
+        [StringLength(300, ErrorMessage = "Description cannot exceed 300 characters.")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }

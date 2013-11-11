@@ -6,30 +6,20 @@
 
 <h2>Details</h2>
 
-<fieldset>
-    <legend>QuestionCategory</legend>
-
     <div class="display-label">
-      <strong>   @Html.DisplayNameFor(model => model.categoryId) </strong>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.categoryId)
-    </div>
-
-    <div class="display-label">
-      <strong>   @Html.DisplayNameFor(model => model.categoryName) </strong>
+      <h5>@Html.DisplayNameFor(model => model.categoryName) </h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.categoryName)
     </div>
 
     <div class="display-label">
-       <strong>  @Html.DisplayNameFor(model => model.description) </strong>
+       <h5> @Html.DisplayNameFor(model => model.description) </h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.description)
     </div>
-</fieldset>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.categoryId }) |
     @Html.ActionLink("Back to List", "Index")

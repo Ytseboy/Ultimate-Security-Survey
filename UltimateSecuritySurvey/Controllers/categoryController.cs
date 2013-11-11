@@ -21,7 +21,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// Here is also a view bag to display delete errors
         /// </summary>
         //
-        // GET: /category/
+        // GET: /Category/
         public ActionResult Index()
         {
             ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
@@ -34,7 +34,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <param name="id">Primary of Question Category</param>
         //
         // GET: /category/Details/5
-        public ActionResult Details(string id = null)
+        public ActionResult Details(int id = 0)
         {
             QuestionCategory questioncategory = db.QuestionCategories.Find(id);
             if (questioncategory == null)
@@ -51,30 +51,7 @@ namespace UltimateSecuritySurvey.Controllers
         // GET: /category/Create
         public ActionResult Create()
         {
-            return View();
-        }
-
-        /// <summary>
-        /// This method to add new categories
-        /// </summary>
-        /// <param name="questioncategory">Question category object from textbox</param>
-        //
-        // POST: /category/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(QuestionCategory questioncategory)
-        {
-            bool uniqueViolation = db.QuestionCategories.Any(x => x.categoryId == questioncategory.categoryId)
-                                || db.QuestionCategories.Any(x => x.categoryName == questioncategory.categoryName);
-
-            if (ModelState.IsValid && !uniqueViolation)
-            {
-                db.QuestionCategories.Add(questioncategory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Message = "Id and Name must be unique!";
-            return View(questioncategory);
+            return View("CreateEdit", new QuestionCategory());
         }
 
         /// <summary>
@@ -82,33 +59,41 @@ namespace UltimateSecuritySurvey.Controllers
         /// </summary>
         //
         // GET: /category/Edit/5
-        public ActionResult Edit(string id = null)
+        public ActionResult Edit(int id = 0)
         {
             QuestionCategory questioncategory = db.QuestionCategories.Find(id);
             if (questioncategory == null)
             {
                 return HttpNotFound();
             }
-            return View(questioncategory);
+            return View("CreateEdit",questioncategory);
         }
 
         /// <summary>
-        /// This method to edit the category details, cant change the id
+        /// This method to create/edit the category details
         /// </summary>
-        /// <param name="questioncategory">Existing category object</param>
+        /// <param name="questioncategory">category object</param>
         //
         // POST: /category/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(QuestionCategory questioncategory)
+        public ActionResult CreateEdit(QuestionCategory questioncategory)
         {
-            bool uniqueViolation = db.QuestionCategories
-                .Any(x => x.categoryName == questioncategory.categoryName 
-                    && x.categoryId != questioncategory.categoryId);
+            bool uniqueViolation = db.QuestionCategories.Any(x => x.categoryName == questioncategory.categoryName
+                                    && x.categoryId != questioncategory.categoryId);
 
             if (ModelState.IsValid && !uniqueViolation)
             {
-                db.Entry(questioncategory).State = EntityState.Modified;
+                //No Id => Add
+                if (questioncategory.categoryId <= 0)
+                {
+                    db.QuestionCategories.Add(questioncategory);
+                }
+                //Is Id => Update
+                else
+                {
+                    db.Entry(questioncategory).State = EntityState.Modified;
+                }
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -122,7 +107,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// </summary>
         //
         // GET: /category/Delete/5
-        public ActionResult Delete(string id = null)
+        public ActionResult Delete(int id = 0)
         {
             QuestionCategory questioncategory = db.QuestionCategories.Find(id);
             if (questioncategory == null)
@@ -139,15 +124,14 @@ namespace UltimateSecuritySurvey.Controllers
         //
         // POST: /category/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            QuestionCategory questionCategory = db.QuestionCategories.Find(id);
-            bool childExist = db.Questions.Any(x => x.categoryId == questionCategory.categoryId);
+            QuestionCategory questioncategory = db.QuestionCategories.Find(id);
+            bool childExist = db.Questions.Any(x => x.categoryId == questioncategory.categoryId);
 
             if (!childExist)
             {
-                db.QuestionCategories.Remove(questionCategory);
+                db.QuestionCategories.Remove(questioncategory);
                 db.SaveChanges();
             }
             else

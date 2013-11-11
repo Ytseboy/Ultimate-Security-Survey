@@ -6,15 +6,14 @@
 
 <h2>Categories</h2>
 <h3> @ViewBag.DeleteError </h3>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <div class="CSSTableGenerator">
 <table>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.categoryId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.categoryName)
         </th>
@@ -27,18 +26,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.categoryId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.categoryName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.categoryId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.categoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.categoryId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.categoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.categoryId  }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.categoryId  }) 
         </td>
     </tr>
 }

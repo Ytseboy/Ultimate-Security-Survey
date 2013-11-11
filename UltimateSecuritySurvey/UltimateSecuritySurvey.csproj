@@ -291,11 +291,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\Details.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\Edit.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\QuestionBox.cshtml" />
     <Content Include="Views\Home\CategoryBox.cshtml" />
@@ -311,6 +306,10 @@
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Question\Edit.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\CreateEdit.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
