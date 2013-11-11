@@ -19,10 +19,10 @@ namespace UltimateSecuritySurvey.Models
             this.Questions = new HashSet<Question>();
         }
     
-        public string surveyId { get; set; }
+        public int surveyId { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-        public byte baseLevel { get; set; }
+        public int baseLevel { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }
     }

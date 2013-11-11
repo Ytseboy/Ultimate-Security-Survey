@@ -14,8 +14,15 @@ namespace UltimateSecuritySurvey.Models
     
     public partial class QuestionType
     {
-        public string questionTypeId { get; set; }
+        public QuestionType()
+        {
+            this.Questions = new HashSet<Question>();
+        }
+    
+        public int questionTypeId { get; set; }
         public string questionTypeName { get; set; }
         public string description { get; set; }
+    
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

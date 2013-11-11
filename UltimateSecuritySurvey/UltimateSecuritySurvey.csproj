@@ -239,6 +239,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Docs\annotations\QuestionCategory.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_01_Create.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_02_Drop.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_03_Delete.txt" />

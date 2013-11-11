@@ -11,24 +11,18 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;  
     
     public partial class QuestionCategory
     {
-        [Required(ErrorMessage = "Category Id is mandatory!")]
-        [DisplayName("Category Id")]
-        [StringLength(6)]
-        public string categoryId { get; set; }
-
-        [Required(ErrorMessage="Category name is mandatory!")]
-        [DisplayName("Category Name")]
-        [StringLength(40)]
+        public QuestionCategory()
+        {
+            this.Questions = new HashSet<Question>();
+        }
+    
+        public int categoryId { get; set; }
         public string categoryName { get; set; }
-
-        [Required(ErrorMessage = "Description is mandatory!")]
-        [DisplayName("Description")]
-        [StringLength(300)]
         public string description { get; set; }
+    
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

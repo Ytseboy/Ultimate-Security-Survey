@@ -6,18 +6,24 @@
     <edmx:StorageModels>
       <Schema Namespace="SecuritySurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SecuritySurveyModelStoreContainer">
-          <EntitySet Name="AnswerOption" EntityType="SecuritySurveyModel.Store.AnswerOption" store:Type="Tables" store:Schema="dbo" store:Name="AnswerOption">
-            <DefiningQuery>SELECT 
-      [AnswerOption].[questionId] AS [questionId], 
-      [AnswerOption].[answerNumber] AS [answerNumber], 
-      [AnswerOption].[answerText] AS [answerText]
-      FROM [dbo].[AnswerOption] AS [AnswerOption]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="AnswerOption" EntityType="SecuritySurveyModel.Store.AnswerOption" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GenericSurvey" EntityType="SecuritySurveyModel.Store.GenericSurvey" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Question" EntityType="SecuritySurveyModel.Store.Question" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuestionCategory" EntityType="SecuritySurveyModel.Store.QuestionCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuestionType" EntityType="SecuritySurveyModel.Store.QuestionType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SurveyQuestion" EntityType="SecuritySurveyModel.Store.SurveyQuestion" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AnswerOption_ToQuestion" Association="SecuritySurveyModel.Store.FK_AnswerOption_ToQuestion">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="AnswerOption" EntitySet="AnswerOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ToQuestionCategory" Association="SecuritySurveyModel.Store.FK_Question_ToQuestionCategory">
+            <End Role="QuestionCategory" EntitySet="QuestionCategory" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ToQuestionType" Association="SecuritySurveyModel.Store.FK_Question_ToQuestionType">
+            <End Role="QuestionType" EntitySet="QuestionType" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
           <AssociationSet Name="FK_SurveyQuestion_ToGenericSurvey" Association="SecuritySurveyModel.Store.FK_SurveyQuestion_ToGenericSurvey">
             <End Role="GenericSurvey" EntitySet="GenericSurvey" />
             <End Role="SurveyQuestion" EntitySet="SurveyQuestion" />
@@ -27,37 +33,33 @@
             <End Role="SurveyQuestion" EntitySet="SurveyQuestion" />
           </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\A1203246\DESKTOP\SCRUMO\ULTIMATE-SECURITY-SURVEY\ULTIMATESECURITYSURVEY\APP_DATA\SECURITYSURVEY.MDF.dbo.AnswerOption' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="AnswerOption">
           <Key>
             <PropertyRef Name="questionId" />
             <PropertyRef Name="answerNumber" />
-            <PropertyRef Name="answerText" />
           </Key>
-          <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
-          <Property Name="answerNumber" Type="int" Nullable="false" />
+          <Property Name="questionId" Type="int" Nullable="false" />
+          <Property Name="answerNumber" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="answerText" Type="varchar" Nullable="false" MaxLength="1000" />
         </EntityType>
         <EntityType Name="GenericSurvey">
           <Key>
             <PropertyRef Name="surveyId" />
           </Key>
-          <Property Name="surveyId" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="surveyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="description" Type="varchar(max)" Nullable="false" />
-          <Property Name="baseLevel" Type="tinyint" Nullable="false" />
+          <Property Name="baseLevel" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="questionId" />
           </Key>
-          <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
-          <Property Name="categoryId" Type="varchar" Nullable="false" MaxLength="6" />
-          <Property Name="questionTypeId" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="questionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="categoryId" Type="int" Nullable="false" />
+          <Property Name="questionTypeId" Type="int" Nullable="false" />
           <Property Name="questionTextMain" Type="varchar(max)" Nullable="false" />
-          <Property Name="questionTextExtra" Type="varchar(max)" />
+          <Property Name="questionTextExtra" Type="varchar" MaxLength="1000" />
           <Property Name="baseLevel2RequirementText" Type="varchar(max)" Nullable="false" />
           <Property Name="additionalInfo" Type="varchar(max)" />
           <Property Name="additionalNote" Type="varchar(max)" />
@@ -66,26 +68,62 @@
           <Key>
             <PropertyRef Name="categoryId" />
           </Key>
-          <Property Name="categoryId" Type="varchar" Nullable="false" MaxLength="6" />
-          <Property Name="categoryName" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="categoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="description" Type="varchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
             <PropertyRef Name="questionTypeId" />
           </Key>
-          <Property Name="questionTypeId" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="questionTypeName" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="questionTypeId" Type="int" Nullable="false" />
+          <Property Name="questionTypeName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="SurveyQuestion">
           <Key>
             <PropertyRef Name="surveyId" />
             <PropertyRef Name="questionId" />
           </Key>
-          <Property Name="surveyId" Type="varchar" Nullable="false" MaxLength="4" />
-          <Property Name="questionId" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="surveyId" Type="int" Nullable="false" />
+          <Property Name="questionId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AnswerOption_ToQuestion">
+          <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="1" />
+          <End Role="AnswerOption" Type="SecuritySurveyModel.Store.AnswerOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="AnswerOption">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ToQuestionCategory">
+          <End Role="QuestionCategory" Type="SecuritySurveyModel.Store.QuestionCategory" Multiplicity="1" />
+          <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionCategory">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ToQuestionType">
+          <End Role="QuestionType" Type="SecuritySurveyModel.Store.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="questionTypeId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="questionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SurveyQuestion_ToGenericSurvey">
           <End Role="GenericSurvey" Type="SecuritySurveyModel.Store.GenericSurvey" Multiplicity="1" />
           <End Role="SurveyQuestion" Type="SecuritySurveyModel.Store.SurveyQuestion" Multiplicity="*" />
@@ -126,6 +164,18 @@
           <EntitySet Name="Questions" EntityType="SecuritySurveyModel.Question" />
           <EntitySet Name="QuestionCategories" EntityType="SecuritySurveyModel.QuestionCategory" />
           <EntitySet Name="QuestionTypes" EntityType="SecuritySurveyModel.QuestionType" />
+          <AssociationSet Name="FK_AnswerOption_ToQuestion" Association="SecuritySurveyModel.FK_AnswerOption_ToQuestion">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="AnswerOption" EntitySet="AnswerOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ToQuestionCategory" Association="SecuritySurveyModel.FK_Question_ToQuestionCategory">
+            <End Role="QuestionCategory" EntitySet="QuestionCategories" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ToQuestionType" Association="SecuritySurveyModel.FK_Question_ToQuestionType">
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
           <AssociationSet Name="SurveyQuestion" Association="SecuritySurveyModel.SurveyQuestion">
             <End Role="GenericSurvey" EntitySet="GenericSurveys" />
             <End Role="Question" EntitySet="Questions" />
@@ -140,52 +190,93 @@
           <Key>
             <PropertyRef Name="questionId" />
             <PropertyRef Name="answerNumber" />
-            <PropertyRef Name="answerText" />
           </Key>
-          <Property Name="questionId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
-          <Property Name="answerNumber" Type="Int32" Nullable="false" />
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <Property Name="answerNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="answerText" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Question" Relationship="SecuritySurveyModel.FK_AnswerOption_ToQuestion" FromRole="AnswerOption" ToRole="Question" />
         </EntityType>
         <EntityType Name="GenericSurvey">
           <Key>
             <PropertyRef Name="surveyId" />
           </Key>
-          <Property Name="surveyId" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="surveyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="baseLevel" Type="Byte" Nullable="false" />
+          <Property Name="baseLevel" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Questions" Relationship="SecuritySurveyModel.SurveyQuestion" FromRole="GenericSurvey" ToRole="Question" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="questionId" />
           </Key>
-          <Property Name="questionId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
-          <Property Name="categoryId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
-          <Property Name="questionTypeId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="questionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="questionTypeId" Type="Int32" Nullable="false" />
           <Property Name="questionTextMain" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="questionTextExtra" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="questionTextExtra" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="baseLevel2RequirementText" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="additionalInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="additionalNote" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="AnswerOptions" Relationship="SecuritySurveyModel.FK_AnswerOption_ToQuestion" FromRole="Question" ToRole="AnswerOption" />
+          <NavigationProperty Name="QuestionCategory" Relationship="SecuritySurveyModel.FK_Question_ToQuestionCategory" FromRole="Question" ToRole="QuestionCategory" />
+          <NavigationProperty Name="QuestionType" Relationship="SecuritySurveyModel.FK_Question_ToQuestionType" FromRole="Question" ToRole="QuestionType" />
           <NavigationProperty Name="GenericSurveys" Relationship="SecuritySurveyModel.SurveyQuestion" FromRole="Question" ToRole="GenericSurvey" />
         </EntityType>
         <EntityType Name="QuestionCategory">
           <Key>
             <PropertyRef Name="categoryId" />
           </Key>
-          <Property Name="categoryId" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
-          <Property Name="categoryName" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="description" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Questions" Relationship="SecuritySurveyModel.FK_Question_ToQuestionCategory" FromRole="QuestionCategory" ToRole="Question" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
             <PropertyRef Name="questionTypeId" />
           </Key>
-          <Property Name="questionTypeId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
-          <Property Name="questionTypeName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="questionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="questionTypeName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Questions" Relationship="SecuritySurveyModel.FK_Question_ToQuestionType" FromRole="QuestionType" ToRole="Question" />
         </EntityType>
+        <Association Name="FK_AnswerOption_ToQuestion">
+          <End Role="Question" Type="SecuritySurveyModel.Question" Multiplicity="1" />
+          <End Role="AnswerOption" Type="SecuritySurveyModel.AnswerOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="questionId" />
+            </Principal>
+            <Dependent Role="AnswerOption">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ToQuestionCategory">
+          <End Role="QuestionCategory" Type="SecuritySurveyModel.QuestionCategory" Multiplicity="1" />
+          <End Role="Question" Type="SecuritySurveyModel.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionCategory">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ToQuestionType">
+          <End Role="QuestionType" Type="SecuritySurveyModel.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="SecuritySurveyModel.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="questionTypeId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="questionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SurveyQuestion">
           <End Role="GenericSurvey" Type="SecuritySurveyModel.GenericSurvey" Multiplicity="*" />
           <End Role="Question" Type="SecuritySurveyModel.Question" Multiplicity="*" />

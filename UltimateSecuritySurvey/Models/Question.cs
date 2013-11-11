@@ -16,18 +16,22 @@ namespace UltimateSecuritySurvey.Models
     {
         public Question()
         {
+            this.AnswerOptions = new HashSet<AnswerOption>();
             this.GenericSurveys = new HashSet<GenericSurvey>();
         }
     
-        public string questionId { get; set; }
-        public string categoryId { get; set; }
-        public string questionTypeId { get; set; }
+        public int questionId { get; set; }
+        public int categoryId { get; set; }
+        public int questionTypeId { get; set; }
         public string questionTextMain { get; set; }
         public string questionTextExtra { get; set; }
         public string baseLevel2RequirementText { get; set; }
         public string additionalInfo { get; set; }
         public string additionalNote { get; set; }
     
+        public virtual ICollection<AnswerOption> AnswerOptions { get; set; }
+        public virtual QuestionCategory QuestionCategory { get; set; }
+        public virtual QuestionType QuestionType { get; set; }
         public virtual ICollection<GenericSurvey> GenericSurveys { get; set; }
     }
 }

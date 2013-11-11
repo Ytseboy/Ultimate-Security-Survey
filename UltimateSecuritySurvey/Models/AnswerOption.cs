@@ -14,8 +14,10 @@ namespace UltimateSecuritySurvey.Models
     
     public partial class AnswerOption
     {
-        public string questionId { get; set; }
+        public int questionId { get; set; }
         public int answerNumber { get; set; }
         public string answerText { get; set; }
+    
+        public virtual Question Question { get; set; }
     }
 }

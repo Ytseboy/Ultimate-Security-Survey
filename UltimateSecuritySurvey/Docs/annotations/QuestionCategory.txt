@@ -1,0 +1,15 @@
+﻿[DisplayName("Category Id")]
+
+categoryId 
+
+[Required(ErrorMessage="Category name is mandatory!")]
+[DisplayName("Category Name")]
+[StringLength(50)]
+
+categoryName 
+
+[Required(ErrorMessage = "Description is mandatory!")]
+[DisplayName("Description")]
+[StringLength(300)]
+
+description
