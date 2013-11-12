@@ -1024,7 +1024,7 @@
         </member>
         <member name="M:System.Data.Entity.Migrations.Builders.ColumnBuilder.Double(System.Nullable{System.Boolean},System.Nullable{System.Double},System.String,System.String,System.String)">
             <summary>
-                Creates a new column definition to store Double data.
+                Creates a new column definition to store Double data.
             </summary>
             <param name = "nullable">Value indicating whether or not the column allows null values.</param>
             <param name = "defaultValue">Constant value to use as the default value for this column.</param>

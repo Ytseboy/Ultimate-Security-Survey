@@ -3142,7 +3142,7 @@
             <param name="innerException">The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</param>
         </member>
         <member name="P:Newtonsoft.Json.JsonWriterException.Path">
-            <summary>
+            <summary>
             Gets the path to the JSON where the error occurred.
             </summary>
             <value>The path to the JSON where the error occurred.</value>

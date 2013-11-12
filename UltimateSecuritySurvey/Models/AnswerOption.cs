@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace UltimateSecuritySurvey.Models
 {
     using System;
@@ -16,6 +18,8 @@ namespace UltimateSecuritySurvey.Models
     {
         public int questionId { get; set; }
         public int answerNumber { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string answerText { get; set; }
     
         public virtual Question Question { get; set; }

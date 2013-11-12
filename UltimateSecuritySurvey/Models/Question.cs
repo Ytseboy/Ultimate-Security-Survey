@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace UltimateSecuritySurvey.Models
 {
     using System;
@@ -23,10 +25,18 @@ namespace UltimateSecuritySurvey.Models
         public int questionId { get; set; }
         public int categoryId { get; set; }
         public int questionTypeId { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string questionTextMain { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string questionTextExtra { get; set; }
         public string baseLevel2RequirementText { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string additionalInfo { get; set; }
+       
+        [DataType(DataType.MultilineText)]
         public string additionalNote { get; set; }
     
         public virtual ICollection<AnswerOption> AnswerOptions { get; set; }

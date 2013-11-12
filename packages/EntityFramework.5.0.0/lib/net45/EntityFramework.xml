@@ -3639,7 +3639,7 @@
             <summary>
                 Generates SQL for a <see cref="T:System.Data.Entity.Migrations.Model.DropIndexOperation"/>.
                 Generated SQL should be added using the Statement method.
-            </summary>
+            </summary>
             <param name="dropIndexOperation">The operation to produce SQL for.</param>
         </member>
         <member name="M:System.Data.Entity.Migrations.Sql.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation)">
@@ -11435,7 +11435,7 @@
                 Code First creates internally.
             </summary>
         </member>
-        <member name="M:System.Data.Entity.Infrastructure.EdmxWriter.WriteEdmx(System.Data.Entity.DbContext,System.Xml.XmlWriter)">
+        <member name="M:System.Data.Entity.Infrastructure.EdmxWriter.WriteEdmx(System.Data.Entity.DbContext,System.Xml.XmlWriter)">
             <summary>
                 Uses Code First with the given context and writes the resulting Entity Data Model to the given
                 writer in EDMX form.  This method can only be used with context instances that use Code First

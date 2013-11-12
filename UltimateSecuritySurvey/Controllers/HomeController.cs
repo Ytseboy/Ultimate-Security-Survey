@@ -22,15 +22,19 @@ namespace UltimateSecuritySurvey.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            //Get five last questions in a list
-            var DescendingQuestions = entities.Questions.OrderByDescending(x => x.questionId).ToList();
-            int questionCount = (DescendingQuestions.Count >= 5) ? 5 : DescendingQuestions.Count;
-            var lastFiveQuestions = DescendingQuestions.GetRange(0, questionCount);
+            //Get five last questions in a list using linq
+            List<Question> lastFiveQuestions = entities.Questions.OrderByDescending(x => x.questionId).Take(5).ToList();
+            
+            //OLD VERSION
+            //int questionCount = (DescendingQuestions.Count >= 5) ? 5 : DescendingQuestions.Count;
+            //var lastFiveQuestions = DescendingQuestions.GetRange(0, questionCount);
 
             //Get five last categories in a list
-            var DescendingCategories = entities.QuestionCategories.OrderByDescending(y => y.categoryId).ToList();
-            int categoryCount = (DescendingCategories.Count >= 5) ? 5 : DescendingCategories.Count;
-            var lastFiveCategories = DescendingCategories.GetRange(0, categoryCount);
+            List<QuestionCategory> lastFiveCategories = entities.QuestionCategories.OrderByDescending(y => y.categoryId).Take(5).ToList();
+            
+            //OLD VERSION
+            //int categoryCount = (DescendingCategories.Count >= 5) ? 5 : DescendingCategories.Count;
+            //var lastFiveCategories = DescendingCategories.GetRange(0, categoryCount);
 
             FrontPageModel frontPageView = new FrontPageModel(lastFiveQuestions, lastFiveCategories);
             return View(frontPageView);

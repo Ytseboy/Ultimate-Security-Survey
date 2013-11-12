@@ -672,7 +672,7 @@
             </summary>
             <param name="value">The <see cref="T:Byte[]"/> value to write.</param>
         </member>
-        <member name="M:Newtonsoft.Json.JsonWriter.WriteValue(System.Uri)">
+        <member name="M:Newtonsoft.Json.JsonWriter.WriteValue(System.Uri)">
             <summary>
             Writes a <see cref="T:System.Uri"/> value.
             </summary>
@@ -6404,7 +6404,7 @@
             <summary>
             Creates a <see cref="T:Newtonsoft.Json.Serialization.JsonLinqContract"/> for the given type.
             </summary>
-            <param name="objectType">Type of the object.</param>
+            <param name="objectType">Type of the object.</param>
             <returns>A <see cref="T:Newtonsoft.Json.Serialization.JsonLinqContract"/> for the given type.</returns>
         </member>
         <member name="M:Newtonsoft.Json.Serialization.DefaultContractResolver.CreateISerializableContract(System.Type)">
