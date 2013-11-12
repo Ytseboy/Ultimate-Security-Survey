@@ -1,0 +1,15 @@
+﻿[DataType(DataType.MultilineText)]
+question.Description
+
+[DataType(DataType.MultilineText)]
+public string questionTextMain
+
+[DataType(DataType.MultilineText)]
+public string questionTextExtra 
+       
+
+[DataType(DataType.MultilineText)]
+public string additionalInfo
+       
+[DataType(DataType.MultilineText)]
+ public string additionalNote

@@ -137,6 +137,8 @@ namespace UltimateSecuritySurvey.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
+            //TODO: Add logic concerning the  Generic Surveys
+
             Question question = db.Questions.Find(id);
             db.Questions.Remove(question);
             db.SaveChanges();
