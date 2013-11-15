@@ -2,6 +2,34 @@
 AS
 
 --Independent Tables--
+CREATE TABLE [dbo].[UserAccount]
+(
+	[userId]	INTEGER		IDENTITY(11,1)	NOT NULL,
+	[firstName]	VARCHAR(100)				NOT NULL,
+	[lastName]	VARCHAR(100)				NOT NULL,
+	[email]		VARCHAR(100)				NOT NULL,
+	[phone]		VARCHAR(100),
+	[userName]	VARCHAR(50)					NOT NULL,
+	[password]	VARCHAR(30)					NOT NULL,
+	[isTeacher] BIT							NOT NULL
+
+	CONSTRAINT [PK_UserAccount] PRIMARY KEY CLUSTERED ([userId] ASC),
+	UNIQUE NONCLUSTERED ([email] ASC),
+	UNIQUE NONCLUSTERED ([userName] ASC)
+);
+
+CREATE TABLE [dbo].[Customer]
+(
+	[customerId]		INTEGER		IDENTITY(11,1)	NOT NULL,
+	[companyName]		VARCHAR(100)				NOT NULL,
+	[contactFirstName]	VARCHAR(100)				NOT NULL,
+	[email]				VARCHAR(100)				NOT NULL,
+	[phone]				VARCHAR(100)
+
+	CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([customerId] ASC),
+	UNIQUE NONCLUSTERED ([email] ASC)
+);
+
 CREATE TABLE [dbo].[QuestionType]
 (
 	[questionTypeId]	INTEGER		NOT NULL,
@@ -22,17 +50,37 @@ CREATE TABLE [dbo].[QuestionCategory]
     UNIQUE NONCLUSTERED ([categoryName] ASC)
 );
 
-CREATE TABLE [dbo].[GenericSurvey]
+CREATE TABLE [dbo].[ObserverStatus]
 (
-	[surveyId]		INTEGER			IDENTITY(11,1)	NOT NULL,
-	[title]			VARCHAR(100)					NOT NULL,
-	[description]	VARCHAR(MAX)					NOT NULL,
-	[baseLevel]		INTEGER							NOT NULL
+	[statusValue]	INTEGER			NOT NULL,
+	[description]	VARCHAR(100)	NOT NULL
 
-	CONSTRAINT [PK_GenericSurvey] PRIMARY KEY CLUSTERED ([surveyId] ASC)
+	CONSTRAINT [PK_ObserverStatus] PRIMARY KEY CLUSTERED ([statusValue] ASC),
+	CONSTRAINT [chk_ObservedStatus_statusValue] CHECK (statusValue >= -3 AND statusValue <= 3)
+);
+
+CREATE TABLE [dbo].[AnswerStatus]
+(
+	[statusValue]	INTEGER			NOT NULL,
+	[description]	VARCHAR(100)	NOT NULL
+
+	CONSTRAINT [PK_AnswerStatus] PRIMARY KEY CLUSTERED ([statusValue] ASC),
+	CONSTRAINT [chk_AnswerStatus_statusValue] CHECK (statusValue >= 0 AND statusValue <= 3)
 );
 
 -- First level Dependency tables
+CREATE TABLE [dbo].[GenericSurvey]
+(
+	[surveyId]			INTEGER			IDENTITY(11,1)	NOT NULL,
+	[title]				VARCHAR(100)					NOT NULL,
+	[description]		VARCHAR(MAX)					NOT NULL,
+	[baseLevel]			INTEGER							NOT NULL,
+	[supervisorUserId]	INTEGER							NOT NULL
+
+	CONSTRAINT [PK_GenericSurvey] PRIMARY KEY CLUSTERED ([surveyId] ASC),
+	CONSTRAINT [FK_GenericSurvey_ToUserAccount] FOREIGN KEY ([supervisorUserId]) REFERENCES [dbo].[UserAccount] ([userId])
+);
+
 CREATE TABLE [dbo].[Question]
 (
 	[questionId]				INTEGER			IDENTITY(101,1)	NOT NULL,
@@ -70,13 +118,44 @@ CREATE TABLE [dbo].[SurveyQuestion]
 	CONSTRAINT [FK_SurveyQuestion_ToQuestion] FOREIGN KEY ([questionId]) REFERENCES [Question]([questionId])
 );
 
--- Finally, display a message
-IF (@@Error = 0) 
-	BEGIN
-		PRINT '============================='
-		PRINT ' TABLES CREATED SUCCESSFULLY.'
-		PRINT '============================='
-		PRINT ' '
-	END
+CREATE TABLE [dbo].[CustomerSurvey]
+(
+	[surveyId]				INTEGER			NOT NULL,
+	[customerId]			INTEGER			NOT NULL,
+	[startDate]				DATE			NOT NULL,
+	[startComment]			VARCHAR(MAX)	NOT NULL,
+	[customerSurveyTitle]	VARCHAR(100)	NOT NULL,
 
--- End --
+	[observerUserId]		INTEGER			NOT NULL,
+	[supervisorUserId]		INTEGER			NOT NULL,
+	
+	[endDate]				DATE,
+	[endComment]			VARCHAR(MAX)
+
+	CONSTRAINT [PK_CustomerSurvey] PRIMARY KEY CLUSTERED ([surveyId] ASC, [customerId] ASC, [startDate] ASC),
+	CONSTRAINT [FK_CustomerSurvey_ToGenericSurvey] FOREIGN KEY ([surveyId]) REFERENCES [GenericSurvey]([surveyId]),
+	CONSTRAINT [FK_CustomerSurvey_ToCustomer] FOREIGN KEY ([customerId]) REFERENCES [Customer]([customerId]),
+
+	CONSTRAINT [FK_CustomerSurvey_ToObserver] FOREIGN KEY ([observerUserId]) REFERENCES [UserAccount]([userId]),
+	CONSTRAINT [FK_CustomerSurvey_ToSupervisor] FOREIGN KEY ([supervisorUserId]) REFERENCES [UserAccount]([userId])
+);
+
+CREATE TABLE [dbo].[GenericCountermeasure]
+(
+	[countermeasureId]		INTEGER		IDENTITY(1001,1)	NOT NULL,
+	[questionId]			INTEGER							NOT NULL,
+	[title]					VARCHAR(100)					NOT NULL,
+	[description]			VARCHAR(MAX)					NOT NULL,
+	[dateAndTime]			DATETIME						NOT NULL,
+	[motherCountermeasure]	INTEGER
+
+	CONSTRAINT [PK_GenericCountermeasure] PRIMARY KEY CLUSTERED([countermeasureId] ASC),
+	CONSTRAINT [FK_GenericCountermeasure_ToQuestion] FOREIGN KEY ([questionId]) REFERENCES [Question]([questionId]),
+	CONSTRAINT [FK_GenericCountermeasure_ToMother] 
+				FOREIGN KEY ([motherCountermeasure]) REFERENCES [GenericCountermeasure]([countermeasureId])
+);
+
+--Third level Dependency
+--TO DO CustomerAnswer
+
+RETURN 1

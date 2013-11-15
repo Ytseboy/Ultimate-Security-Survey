@@ -34,20 +34,4 @@ IF OBJECT_ID('QuestionType') IS NOT NULL
 		DROP TABLE QuestionType;
 	END
 
--- Finally, display a message
-IF (@@Error = 0) 
-	BEGIN
-		PRINT '================================='
-		PRINT ' ALL TABLES DROPPED SUCCESSFULLY.'
-		PRINT '================================='
-		PRINT ' '
-	END
-ELSE
-	BEGIN
-		PRINT '=============================='
-		PRINT ' See the error messages above!'
-		PRINT '=============================='
-		PRINT ' '
-	END
-
--- End
+RETURN 1
