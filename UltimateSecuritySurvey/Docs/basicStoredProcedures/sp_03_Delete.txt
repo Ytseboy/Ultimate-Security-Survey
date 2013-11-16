@@ -1,14 +1,22 @@
 ﻿CREATE PROCEDURE [dbo].[sp_03_DeleteData]
 AS
 
+--Third level Dependency
+DELETE FROM CustomerAnswer;
 --Second level Dependency Tables
+DELETE FROM GenericCountermeasure;
+DELETE FROM CustomerSurvey;
 DELETE FROM SurveyQuestion;
--- First level Dependency tables
 DELETE FROM AnswerOption;
+-- First level Dependency tables
 DELETE FROM Question;
---Independent Tables--
 DELETE FROM GenericSurvey;
+--Independent Tables--
+DELETE FROM AnswerStatus;
+DELETE FROM ObserverStatus;
 DELETE FROM QuestionCategory;
 DELETE FROM QuestionType;
+DELETE FROM Customer;
+DELETE FROM UserAccount;
 
 RETURN 1

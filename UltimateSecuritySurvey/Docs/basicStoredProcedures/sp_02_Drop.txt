@@ -1,27 +1,53 @@
 ﻿CREATE PROCEDURE [dbo].[sp_02_DropTables]
 AS
 
+--Third level Dependency
+IF OBJECT_ID('CustomerAnswer') IS NOT NULL
+	BEGIN
+		DROP TABLE CustomerAnswer;
+	END
+
 --Second level Dependency Tables
+IF OBJECT_ID('GenericCountermeasure') IS NOT NULL
+	BEGIN
+		DROP TABLE GenericCountermeasure;
+	END
+
+IF OBJECT_ID('CustomerSurvey') IS NOT NULL
+	BEGIN
+		DROP TABLE CustomerSurvey;
+	END
+
 IF OBJECT_ID('SurveyQuestion') IS NOT NULL
 	BEGIN
 		DROP TABLE SurveyQuestion;
 	END
 
--- First level Dependency tables
 IF OBJECT_ID('AnswerOption') IS NOT NULL
 	BEGIN
 		DROP TABLE AnswerOption;
 	END
-	
+
+-- First level Dependency tables
 IF OBJECT_ID('Question') IS NOT NULL
 	BEGIN
 		DROP TABLE Question;
 	END
 
---Independent Tables--
 IF OBJECT_ID('GenericSurvey') IS NOT NULL
 	BEGIN
 		DROP TABLE GenericSurvey;
+	END
+
+--Independent Tables--
+IF OBJECT_ID('AnswerStatus') IS NOT NULL
+	BEGIN
+		DROP TABLE AnswerStatus;
+	END
+
+IF OBJECT_ID('ObserverStatus') IS NOT NULL
+	BEGIN
+		DROP TABLE ObserverStatus;
 	END
 
 IF OBJECT_ID('QuestionCategory') IS NOT NULL
@@ -34,4 +60,13 @@ IF OBJECT_ID('QuestionType') IS NOT NULL
 		DROP TABLE QuestionType;
 	END
 
+IF OBJECT_ID('Customer') IS NOT NULL
+	BEGIN
+		DROP TABLE Customer;
+	END
+
+IF OBJECT_ID('UserAccount') IS NOT NULL
+	BEGIN
+		DROP TABLE QuestionType;
+	END
 RETURN 1

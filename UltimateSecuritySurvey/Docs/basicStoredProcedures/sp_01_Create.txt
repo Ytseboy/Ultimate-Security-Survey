@@ -156,6 +156,49 @@ CREATE TABLE [dbo].[GenericCountermeasure]
 );
 
 --Third level Dependency
---TO DO CustomerAnswer
+CREATE TABLE [dbo].[CustomerAnswer]
+(
+	[surveyId]						INTEGER			NOT NULL,
+	[customerId]					INTEGER			NOT NULL,
+	[startDate]						DATE			NOT NULL,
+	[questionId]					INTEGER			NOT NULL,
+
+	[answerStatusValue]				INTEGER			NOT NULL,
+	[answerOptionQuestionId]		INTEGER,
+	[answerOptionNumber]			INTEGER,
+	[answerText]					VARCHAR(MAX)	NOT NULL,
+	[observerStatusValue]			INTEGER			NOT NULL,
+
+	[countermeasureId1]				INTEGER,
+	[countermeasureId2]				INTEGER,
+	[countermeasureId3]				INTEGER,
+
+	[observerComment]				VARCHAR(MAX),
+	[observerCommentDateAndTime]	DATETIME,
+
+	[supervisorComment]				VARCHAR(MAX),
+	[supervisorCommentDateAndTime]	DATETIME
+
+	CONSTRAINT [PK_CustomerAnswer] PRIMARY KEY CLUSTERED ([surveyId] ASC, [customerId] ASC, [startDate] ASC, [questionId] ASC),
+	CONSTRAINT [FK_CustomerAnswer_ToCustomerSurvey] FOREIGN KEY ([surveyId], [customerId], [startDate])
+						REFERENCES [CustomerSurvey]([surveyId], [customerId], [startDate]),
+
+	CONSTRAINT [FK_CustomerAnswer_ToQuestion] FOREIGN KEY ([questionId]) REFERENCES [Question]([questionId]),
+	CONSTRAINT [FK_CustomerAnswer_ToAnswerOption] FOREIGN KEY ([answerOptionQuestionId], [answerOptionNumber])
+						REFERENCES [AnswerOption]([questionId], [answerNumber]),
+
+	CONSTRAINT [FK_CustomerAnswer_ToAnswerStatus] FOREIGN KEY ([answerStatusValue])
+						REFERENCES [AnswerStatus]([statusValue]),
+	CONSTRAINT [FK_CustomerAnswer_ToObserverStatus] FOREIGN KEY ([observerStatusValue])
+						REFERENCES [ObserverStatus]([statusValue]),
+
+	CONSTRAINT [FK_CustomerAnswer_ToGenericCountermeasure_1] FOREIGN KEY ([countermeasureId1])
+						REFERENCES [GenericCountermeasure]([countermeasureId]),
+	CONSTRAINT [FK_CustomerAnswer_ToGenericCountermeasure_2] FOREIGN KEY ([countermeasureId2])
+						REFERENCES [GenericCountermeasure]([countermeasureId]),
+	CONSTRAINT [FK_CustomerAnswer_ToGenericCountermeasure_3] FOREIGN KEY ([countermeasureId3])
+						REFERENCES [GenericCountermeasure]([countermeasureId])
+
+);
 
 RETURN 1

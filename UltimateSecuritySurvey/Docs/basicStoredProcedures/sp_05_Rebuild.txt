@@ -6,13 +6,4 @@ EXEC dbo.sp_02_DropTables;
 EXEC dbo.sp_01_CreateTables;
 EXEC dbo.sp_04_InsertData;
 
--- Finally, display a message
-IF (@@Error = 0) 
-	BEGIN
-		PRINT '=================================='
-		PRINT ' DataBase is Rebuilt SUCCESSFULLY.'
-		PRINT '=================================='
-		PRINT ' '
-	END
-
--- End --
+RETURN 1
