@@ -10,6 +10,75 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AnswerStatus">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.AnswerStatu">
+        <MappingFragment StoreEntitySet="AnswerStatus">
+          <ScalarProperty Name="statusValue" ColumnName="statusValue" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="contactFirstName" ColumnName="contactFirstName" />
+          <ScalarProperty Name="contactLastName" ColumnName="contactLastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerAnswers">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.CustomerAnswer">
+        <MappingFragment StoreEntitySet="CustomerAnswer">
+          <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="answerStatusValue" ColumnName="answerStatusValue" />
+          <ScalarProperty Name="answerOptionQuestionId" ColumnName="answerOptionQuestionId" />
+          <ScalarProperty Name="answerOptionNumber" ColumnName="answerOptionNumber" />
+          <ScalarProperty Name="answerText" ColumnName="answerText" />
+          <ScalarProperty Name="observerStatusValue" ColumnName="observerStatusValue" />
+          <ScalarProperty Name="countermeasureId1" ColumnName="countermeasureId1" />
+          <ScalarProperty Name="countermeasureId2" ColumnName="countermeasureId2" />
+          <ScalarProperty Name="countermeasureId3" ColumnName="countermeasureId3" />
+          <ScalarProperty Name="observerComment" ColumnName="observerComment" />
+          <ScalarProperty Name="observerCommentDateAndTime" ColumnName="observerCommentDateAndTime" />
+          <ScalarProperty Name="supervisorComment" ColumnName="supervisorComment" />
+          <ScalarProperty Name="supervisorCommentDateAndTime" ColumnName="supervisorCommentDateAndTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerSurveys">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.CustomerSurvey">
+        <MappingFragment StoreEntitySet="CustomerSurvey">
+          <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="startComment" ColumnName="startComment" />
+          <ScalarProperty Name="customerSurveyTitle" ColumnName="customerSurveyTitle" />
+          <ScalarProperty Name="observerUserId" ColumnName="observerUserId" />
+          <ScalarProperty Name="supervisorUserId" ColumnName="supervisorUserId" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="endComment" ColumnName="endComment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GenericCountermeasures">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.GenericCountermeasure">
+        <MappingFragment StoreEntitySet="GenericCountermeasure">
+          <ScalarProperty Name="countermeasureId" ColumnName="countermeasureId" />
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dateAndTime" ColumnName="dateAndTime" />
+          <ScalarProperty Name="motherCountermeasure" ColumnName="motherCountermeasure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GenericSurveys">
       <EntityTypeMapping TypeName="SecuritySurveyModel.GenericSurvey">
         <MappingFragment StoreEntitySet="GenericSurvey">
@@ -17,6 +86,15 @@
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="baseLevel" ColumnName="baseLevel" />
+          <ScalarProperty Name="supervisorUserId" ColumnName="supervisorUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ObserverStatus">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.ObserverStatu">
+        <MappingFragment StoreEntitySet="ObserverStatus">
+          <ScalarProperty Name="statusValue" ColumnName="statusValue" />
+          <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -49,6 +127,20 @@
           <ScalarProperty Name="questionTypeId" ColumnName="questionTypeId" />
           <ScalarProperty Name="questionTypeName" ColumnName="questionTypeName" />
           <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAccounts">
+      <EntityTypeMapping TypeName="SecuritySurveyModel.UserAccount">
+        <MappingFragment StoreEntitySet="UserAccount">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isTeacher" ColumnName="isTeacher" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

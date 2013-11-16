@@ -4,13 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="673f455f6e4b48e8bf398e3831030ee4" Name="Diagram1">
-        <EntityTypeShape EntityType="SecuritySurveyModel.AnswerOption" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecuritySurveyModel.GenericSurvey" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecuritySurveyModel.Question" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecuritySurveyModel.QuestionCategory" Width="1.5" PointX="6.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecuritySurveyModel.QuestionType" Width="1.5" PointX="6.75" PointY="3.875" IsExpanded="true" />
+      <Diagram DiagramId="0eb4af5de5bd4c6e8078397a930df8bf" Name="Diagram1">
+        <EntityTypeShape EntityType="SecuritySurveyModel.AnswerOption" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.AnswerStatu" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.Customer" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.CustomerAnswer" Width="1.5" PointX="9.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.CustomerSurvey" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.GenericCountermeasure" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.GenericSurvey" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.ObserverStatu" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.Question" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.QuestionCategory" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.QuestionType" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SecuritySurveyModel.UserAccount" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <AssociationConnector Association="SecuritySurveyModel.FK_AnswerOption_ToQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToAnswerOption" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToAnswerStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerSurvey_ToCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToCustomerSurvey" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToGenericCountermeasure_1" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToGenericCountermeasure_2" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToGenericCountermeasure_3" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToObserverStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerAnswer_ToQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerSurvey_ToGenericSurvey" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerSurvey_ToObserver" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_CustomerSurvey_ToSupervisor" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_GenericCountermeasure_ToMother" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_GenericCountermeasure_ToQuestion" ManuallyRouted="false" />
+        <AssociationConnector Association="SecuritySurveyModel.FK_GenericSurvey_ToUserAccount" ManuallyRouted="false" />
         <AssociationConnector Association="SecuritySurveyModel.FK_Question_ToQuestionCategory" ManuallyRouted="false" />
         <AssociationConnector Association="SecuritySurveyModel.FK_Question_ToQuestionType" ManuallyRouted="false" />
         <AssociationConnector Association="SecuritySurveyModel.SurveyQuestion" ManuallyRouted="false" />

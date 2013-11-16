@@ -23,6 +23,7 @@ CREATE TABLE [dbo].[Customer]
 	[customerId]		INTEGER		IDENTITY(11,1)	NOT NULL,
 	[companyName]		VARCHAR(100)				NOT NULL,
 	[contactFirstName]	VARCHAR(100)				NOT NULL,
+	[contactLastName]	VARCHAR(100)				NOT NULL,
 	[email]				VARCHAR(100)				NOT NULL,
 	[phone]				VARCHAR(100)
 

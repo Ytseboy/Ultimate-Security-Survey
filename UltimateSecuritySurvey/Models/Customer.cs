@@ -12,18 +12,20 @@ namespace UltimateSecuritySurvey.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AnswerOption
+    public partial class Customer
     {
-        public AnswerOption()
+        public Customer()
         {
-            this.CustomerAnswers = new HashSet<CustomerAnswer>();
+            this.CustomerSurveys = new HashSet<CustomerSurvey>();
         }
     
-        public int questionId { get; set; }
-        public int answerNumber { get; set; }
-        public string answerText { get; set; }
+        public int customerId { get; set; }
+        public string companyName { get; set; }
+        public string contactFirstName { get; set; }
+        public string contactLastName { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
     
-        public virtual Question Question { get; set; }
-        public virtual ICollection<CustomerAnswer> CustomerAnswers { get; set; }
+        public virtual ICollection<CustomerSurvey> CustomerSurveys { get; set; }
     }
 }

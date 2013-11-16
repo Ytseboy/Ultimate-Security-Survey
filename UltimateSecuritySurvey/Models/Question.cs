@@ -7,18 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-
 namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Question
     {
         public Question()
         {
             this.AnswerOptions = new HashSet<AnswerOption>();
+            this.CustomerAnswers = new HashSet<CustomerAnswer>();
+            this.GenericCountermeasures = new HashSet<GenericCountermeasure>();
             this.GenericSurveys = new HashSet<GenericSurvey>();
         }
     
@@ -31,15 +32,19 @@ namespace UltimateSecuritySurvey.Models
 
         [DataType(DataType.MultilineText)]
         public string questionTextExtra { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string baseLevel2RequirementText { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string additionalInfo { get; set; }
-       
+
         [DataType(DataType.MultilineText)]
         public string additionalNote { get; set; }
     
         public virtual ICollection<AnswerOption> AnswerOptions { get; set; }
+        public virtual ICollection<CustomerAnswer> CustomerAnswers { get; set; }
+        public virtual ICollection<GenericCountermeasure> GenericCountermeasures { get; set; }
         public virtual QuestionCategory QuestionCategory { get; set; }
         public virtual QuestionType QuestionType { get; set; }
         public virtual ICollection<GenericSurvey> GenericSurveys { get; set; }

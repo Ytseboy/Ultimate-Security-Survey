@@ -2,14 +2,81 @@
 <Schema Namespace="SecuritySurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="SecuritySurveyModelStoreContainer">
     <EntitySet Name="AnswerOption" EntityType="SecuritySurveyModel.Store.AnswerOption" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnswerStatus" EntityType="SecuritySurveyModel.Store.AnswerStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customer" EntityType="SecuritySurveyModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerAnswer" EntityType="SecuritySurveyModel.Store.CustomerAnswer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerSurvey" EntityType="SecuritySurveyModel.Store.CustomerSurvey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GenericCountermeasure" EntityType="SecuritySurveyModel.Store.GenericCountermeasure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GenericSurvey" EntityType="SecuritySurveyModel.Store.GenericSurvey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ObserverStatus" EntityType="SecuritySurveyModel.Store.ObserverStatus" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Question" EntityType="SecuritySurveyModel.Store.Question" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="QuestionCategory" EntityType="SecuritySurveyModel.Store.QuestionCategory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="QuestionType" EntityType="SecuritySurveyModel.Store.QuestionType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SurveyQuestion" EntityType="SecuritySurveyModel.Store.SurveyQuestion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAccount" EntityType="SecuritySurveyModel.Store.UserAccount" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_AnswerOption_ToQuestion" Association="SecuritySurveyModel.Store.FK_AnswerOption_ToQuestion">
       <End Role="Question" EntitySet="Question" />
       <End Role="AnswerOption" EntitySet="AnswerOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToAnswerOption" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToAnswerOption">
+      <End Role="AnswerOption" EntitySet="AnswerOption" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToAnswerStatus" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToAnswerStatus">
+      <End Role="AnswerStatus" EntitySet="AnswerStatus" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToCustomerSurvey" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToCustomerSurvey">
+      <End Role="CustomerSurvey" EntitySet="CustomerSurvey" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToGenericCountermeasure_1" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToGenericCountermeasure_1">
+      <End Role="GenericCountermeasure" EntitySet="GenericCountermeasure" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToGenericCountermeasure_2" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToGenericCountermeasure_2">
+      <End Role="GenericCountermeasure" EntitySet="GenericCountermeasure" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToGenericCountermeasure_3" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToGenericCountermeasure_3">
+      <End Role="GenericCountermeasure" EntitySet="GenericCountermeasure" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToObserverStatus" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToObserverStatus">
+      <End Role="ObserverStatus" EntitySet="ObserverStatus" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAnswer_ToQuestion" Association="SecuritySurveyModel.Store.FK_CustomerAnswer_ToQuestion">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="CustomerAnswer" EntitySet="CustomerAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerSurvey_ToCustomer" Association="SecuritySurveyModel.Store.FK_CustomerSurvey_ToCustomer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerSurvey" EntitySet="CustomerSurvey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerSurvey_ToGenericSurvey" Association="SecuritySurveyModel.Store.FK_CustomerSurvey_ToGenericSurvey">
+      <End Role="GenericSurvey" EntitySet="GenericSurvey" />
+      <End Role="CustomerSurvey" EntitySet="CustomerSurvey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerSurvey_ToObserver" Association="SecuritySurveyModel.Store.FK_CustomerSurvey_ToObserver">
+      <End Role="UserAccount" EntitySet="UserAccount" />
+      <End Role="CustomerSurvey" EntitySet="CustomerSurvey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerSurvey_ToSupervisor" Association="SecuritySurveyModel.Store.FK_CustomerSurvey_ToSupervisor">
+      <End Role="UserAccount" EntitySet="UserAccount" />
+      <End Role="CustomerSurvey" EntitySet="CustomerSurvey" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenericCountermeasure_ToMother" Association="SecuritySurveyModel.Store.FK_GenericCountermeasure_ToMother">
+      <End Role="GenericCountermeasure" EntitySet="GenericCountermeasure" />
+      <End Role="GenericCountermeasure1" EntitySet="GenericCountermeasure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenericCountermeasure_ToQuestion" Association="SecuritySurveyModel.Store.FK_GenericCountermeasure_ToQuestion">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="GenericCountermeasure" EntitySet="GenericCountermeasure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenericSurvey_ToUserAccount" Association="SecuritySurveyModel.Store.FK_GenericSurvey_ToUserAccount">
+      <End Role="UserAccount" EntitySet="UserAccount" />
+      <End Role="GenericSurvey" EntitySet="GenericSurvey" />
     </AssociationSet>
     <AssociationSet Name="FK_Question_ToQuestionCategory" Association="SecuritySurveyModel.Store.FK_Question_ToQuestionCategory">
       <End Role="QuestionCategory" EntitySet="QuestionCategory" />
@@ -37,6 +104,75 @@
     <Property Name="answerNumber" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="answerText" Type="varchar" Nullable="false" MaxLength="1000" />
   </EntityType>
+  <EntityType Name="AnswerStatus">
+    <Key>
+      <PropertyRef Name="statusValue" />
+    </Key>
+    <Property Name="statusValue" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="contactFirstName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="contactLastName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="phone" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="CustomerAnswer">
+    <Key>
+      <PropertyRef Name="surveyId" />
+      <PropertyRef Name="customerId" />
+      <PropertyRef Name="startDate" />
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="surveyId" Type="int" Nullable="false" />
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="startDate" Type="date" Nullable="false" />
+    <Property Name="questionId" Type="int" Nullable="false" />
+    <Property Name="answerStatusValue" Type="int" Nullable="false" />
+    <Property Name="answerOptionQuestionId" Type="int" />
+    <Property Name="answerOptionNumber" Type="int" />
+    <Property Name="answerText" Type="varchar(max)" Nullable="false" />
+    <Property Name="observerStatusValue" Type="int" Nullable="false" />
+    <Property Name="countermeasureId1" Type="int" />
+    <Property Name="countermeasureId2" Type="int" />
+    <Property Name="countermeasureId3" Type="int" />
+    <Property Name="observerComment" Type="varchar(max)" />
+    <Property Name="observerCommentDateAndTime" Type="datetime" />
+    <Property Name="supervisorComment" Type="varchar(max)" />
+    <Property Name="supervisorCommentDateAndTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CustomerSurvey">
+    <Key>
+      <PropertyRef Name="surveyId" />
+      <PropertyRef Name="customerId" />
+      <PropertyRef Name="startDate" />
+    </Key>
+    <Property Name="surveyId" Type="int" Nullable="false" />
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="startDate" Type="date" Nullable="false" />
+    <Property Name="startComment" Type="varchar(max)" Nullable="false" />
+    <Property Name="customerSurveyTitle" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="observerUserId" Type="int" Nullable="false" />
+    <Property Name="supervisorUserId" Type="int" Nullable="false" />
+    <Property Name="endDate" Type="date" />
+    <Property Name="endComment" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="GenericCountermeasure">
+    <Key>
+      <PropertyRef Name="countermeasureId" />
+    </Key>
+    <Property Name="countermeasureId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="questionId" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar(max)" Nullable="false" />
+    <Property Name="dateAndTime" Type="datetime" Nullable="false" />
+    <Property Name="motherCountermeasure" Type="int" />
+  </EntityType>
   <EntityType Name="GenericSurvey">
     <Key>
       <PropertyRef Name="surveyId" />
@@ -45,6 +181,14 @@
     <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="description" Type="varchar(max)" Nullable="false" />
     <Property Name="baseLevel" Type="int" Nullable="false" />
+    <Property Name="supervisorUserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ObserverStatus">
+    <Key>
+      <PropertyRef Name="statusValue" />
+    </Key>
+    <Property Name="statusValue" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="Question">
     <Key>
@@ -83,6 +227,19 @@
     <Property Name="surveyId" Type="int" Nullable="false" />
     <Property Name="questionId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="lastName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="phone" Type="varchar" MaxLength="100" />
+    <Property Name="userName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="isTeacher" Type="bit" Nullable="false" />
+  </EntityType>
   <Association Name="FK_AnswerOption_ToQuestion">
     <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="1" />
     <End Role="AnswerOption" Type="SecuritySurveyModel.Store.AnswerOption" Multiplicity="*" />
@@ -92,6 +249,192 @@
       </Principal>
       <Dependent Role="AnswerOption">
         <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToAnswerOption">
+    <End Role="AnswerOption" Type="SecuritySurveyModel.Store.AnswerOption" Multiplicity="0..1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerOption">
+        <PropertyRef Name="questionId" />
+        <PropertyRef Name="answerNumber" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="answerOptionQuestionId" />
+        <PropertyRef Name="answerOptionNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToAnswerStatus">
+    <End Role="AnswerStatus" Type="SecuritySurveyModel.Store.AnswerStatus" Multiplicity="1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerStatus">
+        <PropertyRef Name="statusValue" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="answerStatusValue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToCustomerSurvey">
+    <End Role="CustomerSurvey" Type="SecuritySurveyModel.Store.CustomerSurvey" Multiplicity="1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerSurvey">
+        <PropertyRef Name="surveyId" />
+        <PropertyRef Name="customerId" />
+        <PropertyRef Name="startDate" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="surveyId" />
+        <PropertyRef Name="customerId" />
+        <PropertyRef Name="startDate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToGenericCountermeasure_1">
+    <End Role="GenericCountermeasure" Type="SecuritySurveyModel.Store.GenericCountermeasure" Multiplicity="0..1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenericCountermeasure">
+        <PropertyRef Name="countermeasureId" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="countermeasureId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToGenericCountermeasure_2">
+    <End Role="GenericCountermeasure" Type="SecuritySurveyModel.Store.GenericCountermeasure" Multiplicity="0..1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenericCountermeasure">
+        <PropertyRef Name="countermeasureId" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="countermeasureId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToGenericCountermeasure_3">
+    <End Role="GenericCountermeasure" Type="SecuritySurveyModel.Store.GenericCountermeasure" Multiplicity="0..1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenericCountermeasure">
+        <PropertyRef Name="countermeasureId" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="countermeasureId3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToObserverStatus">
+    <End Role="ObserverStatus" Type="SecuritySurveyModel.Store.ObserverStatus" Multiplicity="1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ObserverStatus">
+        <PropertyRef Name="statusValue" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="observerStatusValue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAnswer_ToQuestion">
+    <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="1" />
+    <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="CustomerAnswer">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerSurvey_ToCustomer">
+    <End Role="Customer" Type="SecuritySurveyModel.Store.Customer" Multiplicity="1" />
+    <End Role="CustomerSurvey" Type="SecuritySurveyModel.Store.CustomerSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="CustomerSurvey">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerSurvey_ToGenericSurvey">
+    <End Role="GenericSurvey" Type="SecuritySurveyModel.Store.GenericSurvey" Multiplicity="1" />
+    <End Role="CustomerSurvey" Type="SecuritySurveyModel.Store.CustomerSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenericSurvey">
+        <PropertyRef Name="surveyId" />
+      </Principal>
+      <Dependent Role="CustomerSurvey">
+        <PropertyRef Name="surveyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerSurvey_ToObserver">
+    <End Role="UserAccount" Type="SecuritySurveyModel.Store.UserAccount" Multiplicity="1" />
+    <End Role="CustomerSurvey" Type="SecuritySurveyModel.Store.CustomerSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="CustomerSurvey">
+        <PropertyRef Name="observerUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerSurvey_ToSupervisor">
+    <End Role="UserAccount" Type="SecuritySurveyModel.Store.UserAccount" Multiplicity="1" />
+    <End Role="CustomerSurvey" Type="SecuritySurveyModel.Store.CustomerSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="CustomerSurvey">
+        <PropertyRef Name="supervisorUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenericCountermeasure_ToMother">
+    <End Role="GenericCountermeasure" Type="SecuritySurveyModel.Store.GenericCountermeasure" Multiplicity="0..1" />
+    <End Role="GenericCountermeasure1" Type="SecuritySurveyModel.Store.GenericCountermeasure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GenericCountermeasure">
+        <PropertyRef Name="countermeasureId" />
+      </Principal>
+      <Dependent Role="GenericCountermeasure1">
+        <PropertyRef Name="motherCountermeasure" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenericCountermeasure_ToQuestion">
+    <End Role="Question" Type="SecuritySurveyModel.Store.Question" Multiplicity="1" />
+    <End Role="GenericCountermeasure" Type="SecuritySurveyModel.Store.GenericCountermeasure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="GenericCountermeasure">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenericSurvey_ToUserAccount">
+    <End Role="UserAccount" Type="SecuritySurveyModel.Store.UserAccount" Multiplicity="1" />
+    <End Role="GenericSurvey" Type="SecuritySurveyModel.Store.GenericSurvey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="GenericSurvey">
+        <PropertyRef Name="supervisorUserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

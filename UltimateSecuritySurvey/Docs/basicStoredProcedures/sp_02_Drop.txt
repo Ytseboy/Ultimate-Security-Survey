@@ -67,6 +67,6 @@ IF OBJECT_ID('Customer') IS NOT NULL
 
 IF OBJECT_ID('UserAccount') IS NOT NULL
 	BEGIN
-		DROP TABLE QuestionType;
+		DROP TABLE UserAccount;
 	END
 RETURN 1

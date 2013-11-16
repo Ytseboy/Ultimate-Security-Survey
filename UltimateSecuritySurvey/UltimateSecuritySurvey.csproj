@@ -136,7 +136,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\GenericSurveyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -145,8 +144,26 @@
     <Compile Include="Models\AnswerOption.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnswerStatu.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerAnswer.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerSurvey.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FrontPageModel.cs" />
+    <Compile Include="Models\GenericCountermeasure.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GenericSurvey.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObserverStatu.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Question.cs">
@@ -172,6 +189,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>surveyEF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserAccount.cs">
+      <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -304,10 +324,6 @@
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Question\CreateEdit.cshtml" />
     <Content Include="Views\Question\Delete.cshtml" />
-    <Content Include="Views\GenericSurvey\Index.cshtml" />
-    <Content Include="Views\GenericSurvey\Details.cshtml" />
-    <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
-    <Content Include="Views\GenericSurvey\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -12,22 +12,26 @@ namespace UltimateSecuritySurvey.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GenericSurvey
+    public partial class UserAccount
     {
-        public GenericSurvey()
+        public UserAccount()
         {
             this.CustomerSurveys = new HashSet<CustomerSurvey>();
-            this.Questions = new HashSet<Question>();
+            this.CustomerSurveys1 = new HashSet<CustomerSurvey>();
+            this.GenericSurveys = new HashSet<GenericSurvey>();
         }
     
-        public int surveyId { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public int baseLevel { get; set; }
-        public int supervisorUserId { get; set; }
+        public int userId { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public string userName { get; set; }
+        public string password { get; set; }
+        public bool isTeacher { get; set; }
     
         public virtual ICollection<CustomerSurvey> CustomerSurveys { get; set; }
-        public virtual UserAccount UserAccount { get; set; }
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<CustomerSurvey> CustomerSurveys1 { get; set; }
+        public virtual ICollection<GenericSurvey> GenericSurveys { get; set; }
     }
 }

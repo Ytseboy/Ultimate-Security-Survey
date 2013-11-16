@@ -4,13 +4,56 @@ AS
 EXEC dbo.sp_03_DeleteData;
 
 --Independent Tables --
+/*UserAccount*/
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('John',		'Doe',			'john@mail.com',	'-',	'student',	'1',	0);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Marry',	'Red',			'marry@mail.com',	'-',	'teacher',	'1',	1);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Markku',	'Kuitanen',		'markku@mail.com',	'-',	'kuima',	'123',	1);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Juhani',	'Valimaki',		'juhani@mail.com',	'-',	'valju',	'123',	1);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Alex',		'Shkunov',		'alex@mail.com',	'-',	'shkal',	'123',	0);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Daniel',	'Freitas',		'daniel@mail.com',	'-',	'freda',	'123',	0);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Antti',	'Marsio',		'antti@mail.com',	'-',	'maran',	'123',	0);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Topi',		'Asikainen',	'topi@mail.com',	'-',	'asito',	'123',	0);
+
+INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
+VALUES ('Ksenia',	'Aksenova',		'ksenia@mail.com',	'-',	'aksks',	'123',	0);
+
+/*Customer*/
+INSERT INTO Customer (companyName, contactFirstName, contactLastName, email, phone)
+VALUES ('Sony',		'Kenji',	'Yamamoto',		'kenji@mail.com',	'-');
+
+INSERT INTO Customer (companyName, contactFirstName, contactLastName, email, phone)
+VALUES ('Kiva Oy',	'Matti',	'Vuorinen',		'matti@mail.com',	'-');
+
+INSERT INTO Customer (companyName, contactFirstName, contactLastName, email, phone)
+VALUES ('Elisa',	'Sanni',	'Risanen',		'sanni@mail.com',	'-');
+
+INSERT INTO Customer (companyName, contactFirstName, contactLastName, email, phone)
+VALUES ('Valio',	'Pekka',	'Makinen',		'pekka@mail.com',	'-');
+
+INSERT INTO Customer (companyName, contactFirstName, contactLastName, email, phone)
+VALUES ('Kone',		'Liisa',	'Aalto',		'liisa@mail.com',	'-');
 
 /*Type*/
 INSERT INTO QuestionType (questionTypeId, questionTypeName, description)
-VALUES (1, 'Qualitative questions',		'Question with longer text answer.');
+VALUES (1, 'Qualitative',	'Question with longer text answer');
  
 INSERT INTO QuestionType (questionTypeId, questionTypeName, description)
-VALUES (2, 'Quantitative questions',	'Questions with yes/no options and possibly short comment');
+VALUES (2, 'Quantitative',	'Questions with yes/no options and possibly short comment');
 
 /*Category*/
 INSERT INTO QuestionCategory (categoryName, description)
@@ -25,17 +68,55 @@ VALUES ('Physical security',		'Questions regarding security on premises');
 INSERT INTO QuestionCategory (categoryName, description)
 VALUES ('Information assurance',	'Questions regarding security and quality of information');
 
-/*GenericSurvey*/
-INSERT INTO GenericSurvey (title, description, baseLevel)
-VALUES ('IT-security survey for ABC',	'Survey for a smaller Software design company called ABC',	2); /*base Level 2,3 or 4*/
- 
-INSERT INTO GenericSurvey (title, description, baseLevel)
-VALUES ('Survey for Makia',				'General survey for a young Finnish clothing company',		2);
+/*ObserverStatus*/
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (-3,	'Security improvements nessesary');
 
-INSERT INTO GenericSurvey (title, description, baseLevel)
-VALUES ('Basic Survey',					'General survey containint basic questions',				2);
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (-2,	'Security improvements desirable');
+
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (-1,	'Security improvements optional');
+
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (0,	'Not set');
+
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (1,	'Security OK');
+
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (2,	'Security very good');
+
+INSERT INTO ObserverStatus (statusValue, description)
+VALUES (3,	'Security excellent');
+
+/*AnswerStatus*/
+INSERT INTO AnswerStatus(statusValue, description)
+VALUES (0, 'status not set yet');
+
+INSERT INTO AnswerStatus(statusValue, description)
+VALUES (1, 'observer saved the answer in review');
+
+INSERT INTO AnswerStatus(statusValue, description)
+VALUES (2, 'observer selected three prioritaized countermeasures and writes a comment');
+
+INSERT INTO AnswerStatus(statusValue, description)
+VALUES (3, 'supervisor checked the countermeasures and comment');
 
 -- First level dendency Tables --
+/*GenericSurvey*/
+INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
+VALUES ('IT-security survey',		'Survey for a smaller Software companies',			2, 12); /*base Level 2,3 or 4*/
+ 
+INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
+VALUES ('Survey for start-Ups',		'General survey for a young Finnish companies',		2, 13);
+
+INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
+VALUES ('Basic Survey',				'General survey containts basic questions',			2, 12);
+
+INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
+VALUES ('HR survey',				'General survey with personell questions',			2, 13);
+
 /*Question*/
 INSERT INTO Question 
 (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
@@ -163,5 +244,12 @@ VALUES (13, 108);
 
 INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (13, 109);
+
+/*Customer Survey*/
+INSERT INTO CustomerSurvey (surveyId, customerId, startDate, startComment, customerSurveyTitle, observerUserId, supervisorUserId)
+VALUES (11, 11, '2013-11-17', 'Difficult one',	'First survey for Sony',	11, 12);
+
+INSERT INTO CustomerSurvey (surveyId, customerId, startDate, startComment, customerSurveyTitle, observerUserId, supervisorUserId)
+VALUES (13, 12, '2013-11-18', 'Easy one',		'First survey for Kiva',	16, 13);
 
 RETURN 1

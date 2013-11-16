@@ -29,10 +29,17 @@ namespace UltimateSecuritySurvey.Models
         }
     
         public DbSet<AnswerOption> AnswerOptions { get; set; }
+        public DbSet<AnswerStatu> AnswerStatus { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerAnswer> CustomerAnswers { get; set; }
+        public DbSet<CustomerSurvey> CustomerSurveys { get; set; }
+        public DbSet<GenericCountermeasure> GenericCountermeasures { get; set; }
         public DbSet<GenericSurvey> GenericSurveys { get; set; }
+        public DbSet<ObserverStatu> ObserverStatus { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
         public DbSet<QuestionType> QuestionTypes { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
     
         public virtual int sp_01_CreateTables()
         {
