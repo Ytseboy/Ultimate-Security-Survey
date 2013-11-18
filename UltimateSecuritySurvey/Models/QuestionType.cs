@@ -11,6 +11,8 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class QuestionType
     {
@@ -18,9 +20,14 @@ namespace UltimateSecuritySurvey.Models
         {
             this.Questions = new HashSet<Question>();
         }
-    
+        
+        [DisplayName("Question Type Id")]
         public int questionTypeId { get; set; }
+
+        [DisplayName("Question Type")]
         public string questionTypeName { get; set; }
+
+        [DisplayName("Description")]
         public string description { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }

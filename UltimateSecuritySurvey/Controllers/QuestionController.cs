@@ -10,16 +10,16 @@ using UltimateSecuritySurvey.Models;
 namespace UltimateSecuritySurvey.Controllers
 {
     /// <summary>
-    /// 
+    /// This is the controller for Question page and managing questions
     /// </summary>
     public class QuestionController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
 
         /// <summary>
-        /// 
+        /// This method Gets list of existing questions from the database with Category and Question Type
         /// </summary>
-        /// <returns></returns>
+        
         //
         // GET: /Question/
         public ActionResult Index()
@@ -29,10 +29,10 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// 
+        /// This method finds one question and shows it in more detailed view
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Primary of Question</param>
+        /// <returns>View of single question</returns>
         //
         // GET: /Question/Details/5
         public ActionResult Details(int id = 0)
@@ -46,9 +46,9 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Method to create new questions view(note: We use the same view for create and edit)
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns empty object</returns>
         //
         // GET: /Question/Create
         public ActionResult Create()
@@ -59,10 +59,9 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Method to edit existing questions, finds the question details
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         //
         // GET: /Question/Edit/5
         public ActionResult Edit(int id = 0)
@@ -79,10 +78,10 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Method to insert or update database for question
         /// </summary>
-        /// <param name="question"></param>
-        /// <returns></returns>
+        /// <param name="question">question object</param>
+        /// <returns>View</returns>
         //
         // POST: /Question/Edit/5
         [HttpPost]
@@ -111,10 +110,10 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Method to delete a question
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">question id</param>
+        /// <returns>View</returns>
         //
         // GET: /Question/Delete/5
         public ActionResult Delete(int id = 0)
@@ -128,10 +127,10 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete the entry from database
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">question id</param>
+        /// <returns>Index View</returns>
         //
         // POST: /Question/Delete/5
         [HttpPost, ActionName("Delete")]

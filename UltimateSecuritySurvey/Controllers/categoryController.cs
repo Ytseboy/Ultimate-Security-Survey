@@ -10,7 +10,7 @@ using UltimateSecuritySurvey.Models;
 namespace UltimateSecuritySurvey.Controllers
 {
     /// <summary>
-    /// This controller to Displays Categories and to manage them
+    /// This controller to Display Categories and to manage them
     /// </summary>
     public class CategoryController : Controller
     {
@@ -45,7 +45,7 @@ namespace UltimateSecuritySurvey.Controllers
         }
 
         /// <summary>
-        /// This method to go to the create view
+        /// This method to go to the create view(note: We use same view for the create and edit.)
         /// </summary>
         //
         // GET: /category/Create

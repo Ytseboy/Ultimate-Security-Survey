@@ -1,0 +1,28 @@
+	[DisplayName("Category Id")]
+        categoryId
+
+        [DisplayName("Question Type Id")]
+        questionTypeId
+
+        [DisplayName("Question Main")]
+        [Required(ErrorMessage="Question Main is required!")]
+        [StringLength(8000, ErrorMessage="Text maximum length is 8000 characters.")]
+        questionTextMain
+
+
+        [DisplayName("Question Extra")]
+        [StringLength(1000, ErrorMessage = "Text maximum length is 1000 characters.")]
+        questionTextExtra
+
+        [DisplayName("Base Level 2 Requirement")]
+        [Required(ErrorMessage = "Base Level 2 requirements are required!")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
+        baseLevel2RequirementText
+
+        [DisplayName("Additional info")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
+        additionalInfo
+
+        [DisplayName("Additional note")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
+        additionalNote

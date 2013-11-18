@@ -11,6 +11,7 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     
     public partial class Question
@@ -22,24 +23,36 @@ namespace UltimateSecuritySurvey.Models
             this.GenericCountermeasures = new HashSet<GenericCountermeasure>();
             this.GenericSurveys = new HashSet<GenericSurvey>();
         }
-    
+        
         public int questionId { get; set; }
+
+        [DisplayName("Category Id")]
         public int categoryId { get; set; }
+
+        [DisplayName("Question Type Id")]
         public int questionTypeId { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [DisplayName("Question Main")]
+        [Required(ErrorMessage="Question Main is required!")]
+        [StringLength(8000, ErrorMessage="Text maximum length is 8000 characters.")]
         public string questionTextMain { get; set; }
 
-        [DataType(DataType.MultilineText)]
+
+        [DisplayName("Question Extra")]
+        [StringLength(1000, ErrorMessage = "Text maximum length is 1000 characters.")]
         public string questionTextExtra { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [DisplayName("Base Level 2 Requirement")]
+        [Required(ErrorMessage = "Base Level 2 requirements are required!")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
         public string baseLevel2RequirementText { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [DisplayName("Additional info")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
         public string additionalInfo { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [DisplayName("Additional note")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
         public string additionalNote { get; set; }
     
         public virtual ICollection<AnswerOption> AnswerOptions { get; set; }

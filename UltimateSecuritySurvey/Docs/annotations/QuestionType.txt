@@ -1,0 +1,8 @@
+﻿        [DisplayName("Question Type Id")]
+        questionTypeId
+
+        [DisplayName("Question Type")]
+        questionTypeName
+
+        [DisplayName("Description")]
+        description
