@@ -1,0 +1,54 @@
+﻿@model UltimateSecuritySurvey.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Customer</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.companyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.companyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.contactFirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contactFirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.contactLastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contactLastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phone)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

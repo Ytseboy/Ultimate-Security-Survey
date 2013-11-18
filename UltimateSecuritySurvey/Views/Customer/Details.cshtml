@@ -1,0 +1,50 @@
+﻿@model UltimateSecuritySurvey.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Customer</legend>
+
+    <div class="display-label">
+        <h5> @Html.DisplayNameFor(model => model.companyName) </h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.companyName)
+    </div>
+
+    <div class="display-label">
+      <h5>   @Html.DisplayNameFor(model => model.contactFirstName) </h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contactFirstName)
+    </div>
+
+    <div class="display-label">
+       <h5>  @Html.DisplayNameFor(model => model.contactLastName)  </h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contactLastName)
+    </div>
+
+    <div class="display-label">
+       <h5>  @Html.DisplayNameFor(model => model.email) </h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+      <h5>   @Html.DisplayNameFor(model => model.phone)  </h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phone)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

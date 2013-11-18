@@ -1,0 +1,70 @@
+﻿@model UltimateSecuritySurvey.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Customer</legend>
+
+        @Html.HiddenFor(model => model.customerId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.companyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.companyName)
+            @Html.ValidationMessageFor(model => model.companyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.contactFirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.contactFirstName)
+            @Html.ValidationMessageFor(model => model.contactFirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.contactLastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.contactLastName)
+            @Html.ValidationMessageFor(model => model.contactLastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.phone)
+            @Html.ValidationMessageFor(model => model.phone)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
