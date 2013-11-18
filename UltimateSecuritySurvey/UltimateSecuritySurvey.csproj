@@ -139,6 +139,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,6 +265,7 @@
     <Content Include="Docs\annotations\Question.txt" />
     <Content Include="Docs\annotations\QuestionCategory.txt" />
     <Content Include="Docs\annotations\QuestionType.txt" />
+    <Content Include="Docs\annotations\UserAnnotations.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_01_Create.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_02_Drop.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_03_Delete.txt" />
@@ -333,6 +335,11 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

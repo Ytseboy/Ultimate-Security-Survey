@@ -47,7 +47,6 @@ namespace UltimateSecuritySurvey.Models
 
       
         [DisplayName("Customer Phone Number")]
-        [DataType(DataType.PhoneNumber)]
         [StringLength(100, ErrorMessage = "Phone number value cannot exceed 100 characters.")]
         public string phone { get; set; }
     
