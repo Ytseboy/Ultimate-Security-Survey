@@ -27,32 +27,39 @@ namespace UltimateSecuritySurvey.Models
         public int questionId { get; set; }
 
         [DisplayName("Category Id")]
+        [Required(ErrorMessage = "Category Id is required!")]
         public int categoryId { get; set; }
 
         [DisplayName("Question Type Id")]
+        [Required(ErrorMessage = "Question Type Id is required!")]
         public int questionTypeId { get; set; }
 
         [DisplayName("Question Main")]
         [Required(ErrorMessage="Question Main is required!")]
         [StringLength(8000, ErrorMessage="Text maximum length is 8000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string questionTextMain { get; set; }
 
 
         [DisplayName("Question Extra")]
         [StringLength(1000, ErrorMessage = "Text maximum length is 1000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string questionTextExtra { get; set; }
 
         [DisplayName("Base Level 2 Requirement")]
         [Required(ErrorMessage = "Base Level 2 requirements are required!")]
         [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string baseLevel2RequirementText { get; set; }
 
         [DisplayName("Additional info")]
         [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string additionalInfo { get; set; }
 
         [DisplayName("Additional note")]
         [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string additionalNote { get; set; }
     
         public virtual ICollection<AnswerOption> AnswerOptions { get; set; }
