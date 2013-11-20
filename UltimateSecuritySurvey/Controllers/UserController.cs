@@ -39,11 +39,8 @@ namespace UltimateSecuritySurvey.Controllers
 
         public ActionResult Create()
         {
-
             return View("CreateEdit", new UserAccount());
         }
-
-
 
         //
         // GET: /User/Edit/5

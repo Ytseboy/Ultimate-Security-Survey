@@ -342,8 +342,6 @@
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Question\AnswerOptionList_Partial.cshtml" />
     <Content Include="Views\Question\GenericCountermeasureList_Partial.cshtml" />
@@ -351,6 +349,7 @@
     <Content Include="Views\AnswerOption\CreateEdit.cshtml" />
     <Content Include="Views\GenericCountermeasure\Delete.cshtml" />
     <Content Include="Views\GenericCountermeasure\CreateEdit.cshtml" />
+    <Content Include="Views\User\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
