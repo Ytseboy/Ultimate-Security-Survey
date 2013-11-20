@@ -7,65 +7,56 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>UserAccount</legend>
+
+
+
+        @Html.HiddenFor(model => model.userId)
+
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.userId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.userId)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.firstName)
+         <h5>@Html.DisplayNameFor(model => model.firstName)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.firstName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.lastName)
+        <h5> @Html.DisplayNameFor(model => model.lastName)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.lastName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.email)
+        <h5> @Html.DisplayNameFor(model => model.email)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.email)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.phone)
+       <h5>  @Html.DisplayNameFor(model => model.phone)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.userName)
+       <h5>  @Html.DisplayNameFor(model => model.userName)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.userName)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.password)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.password)
-    </div>
+
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.isTeacher)
+         @Html.DisplayNameFor(model => model.isTeacher)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.isTeacher)
     </div>
-</fieldset>
+
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
