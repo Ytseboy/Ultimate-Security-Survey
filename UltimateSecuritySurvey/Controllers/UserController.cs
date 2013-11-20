@@ -39,25 +39,11 @@ namespace UltimateSecuritySurvey.Controllers
 
         public ActionResult Create()
         {
-            return View();
+
+            return View("CreateEdit", new UserAccount());
         }
 
-        //
-        // POST: /User/Create
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(UserAccount useraccount)
-        {
-            if (ModelState.IsValid)
-            {
-                db.UserAccounts.Add(useraccount);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(useraccount);
-        }
 
         //
         // GET: /User/Edit/5
@@ -69,7 +55,8 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
-            return View(useraccount);
+            
+            return View("CreateEdit", useraccount);
         }
 
         //
@@ -77,11 +64,18 @@ namespace UltimateSecuritySurvey.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(UserAccount useraccount)
+        public ActionResult CreateEdit(UserAccount useraccount)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(useraccount).State = EntityState.Modified;
+                if (useraccount.userId <= 0)
+                {
+                    db.UserAccounts.Add(useraccount);
+                }
+                else
+                {
+                    db.Entry(useraccount).State = EntityState.Modified;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

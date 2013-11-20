@@ -6,66 +6,58 @@
 
 <h2>Details</h2>
 
-<fieldset>
-    <legend>UserAccount</legend>
+
+
+
+    
+        @Html.HiddenFor(model => model.userId)
+   
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.userId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.userId)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.firstName)
+         <h5>@Html.DisplayNameFor(model => model.firstName)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.firstName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.lastName)
+         <h5>@Html.DisplayNameFor(model => model.lastName)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.lastName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.email)
+         <h5>@Html.DisplayNameFor(model => model.email)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.email)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.phone)
+         <h5>@Html.DisplayNameFor(model => model.phone)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.userName)
+         <h5>@Html.DisplayNameFor(model => model.userName)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.userName)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.password)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.password)
-    </div>
+
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.isTeacher)
+         <h5>@Html.DisplayNameFor(model => model.isTeacher)</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.isTeacher)
     </div>
-</fieldset>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new {id=Model.userId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

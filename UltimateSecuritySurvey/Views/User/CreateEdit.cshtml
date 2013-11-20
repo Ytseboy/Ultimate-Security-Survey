@@ -4,21 +4,15 @@
     ViewBag.Title = "User editor";
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreateEdit", "User")) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>UserAccount</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.userId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.userId)
-            @Html.ValidationMessageFor(model => model.userId)
-        </div>
 
+    
+            @Html.HiddenFor(model => model.userId)
+  
         <div class="editor-label">
             @Html.LabelFor(model => model.firstName)
         </div>
@@ -78,7 +72,7 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-    </fieldset>
+  
 }
 
 <div>
