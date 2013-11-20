@@ -19,7 +19,6 @@ namespace UltimateSecuritySurvey.Controllers
         /// <summary>
         /// This method Gets list of existing questions from the database with Category and Question Type
         /// </summary>
-        
         //
         // GET: /Question/
         public ActionResult Index()
@@ -62,7 +61,6 @@ namespace UltimateSecuritySurvey.Controllers
         /// <summary>
         /// Method to edit existing questions, finds the question details
         /// </summary>
-
         //
         // GET: /Question/Edit/5
         public ActionResult Edit(int id = 0)
@@ -137,20 +135,19 @@ namespace UltimateSecuritySurvey.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            //TODO: Check if genericcountermeasures will be deleted automatically.
+            //TODO: Check if GenericCountermeasures will be deleted automatically.
 
             Question question = db.Questions.Find(id);
-            bool existsInSurvey = question.GenericSurveys.Count > 0;
+            bool includedInSurvey = question.GenericSurveys.Count > 0;
 
-            if (!existsInSurvey)
+            if (!includedInSurvey)
             {
                 db.Questions.Remove(question);
                 db.SaveChanges();
-            
             }
             else
             {
-                TempData["Message"] = string.Format("Cannot delete this Question because it is included in survey {0}!!", 
+                TempData["Message"] = string.Format("Cannot delete this Question because it is included in survey '{0}'!!", 
                                         question.GenericSurveys.ToList()[0].title);
             }
 

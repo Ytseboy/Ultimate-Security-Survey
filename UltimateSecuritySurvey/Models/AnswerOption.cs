@@ -11,6 +11,8 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class AnswerOption
     {
@@ -21,6 +23,11 @@ namespace UltimateSecuritySurvey.Models
     
         public int questionId { get; set; }
         public int answerNumber { get; set; }
+
+        [Required(ErrorMessage = "Answer option text is mandatory!")]
+        [DisplayName("Answer option text")]
+        [StringLength(1000, ErrorMessage = "Answer option text cannot exceed 1000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string answerText { get; set; }
     
         public virtual Question Question { get; set; }

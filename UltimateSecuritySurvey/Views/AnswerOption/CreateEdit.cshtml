@@ -4,23 +4,19 @@
     ViewBag.Title = "Answer option editor";
 }
 
-
-
-@using (Html.BeginForm("CreateEdit", "AnswerOptions")) {
+@using (Html.BeginForm("CreateEdit", "AnswerOption")) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    
         @Html.HiddenFor(model=>model.questionId)
         @Html.HiddenFor(model=>model.answerNumber)
+
         <div class="editor-label">
             @Html.LabelFor(model=>model.Question.questionTextMain)
         </div>
         <div class="editor-field">
             @Html.DisplayFor(model=>model.Question.questionTextMain)
         </div>
-
-        
 
         <div class="editor-label">
             @Html.LabelFor(model => model.answerText)
@@ -33,11 +29,10 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-    
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Details", "Question", new { id = Model.questionId }, new { })
+    @Html.ActionLink("Back to List", "Details", "Question", new { id = Model.questionId }, null)
 </div>
 
 @section Scripts {

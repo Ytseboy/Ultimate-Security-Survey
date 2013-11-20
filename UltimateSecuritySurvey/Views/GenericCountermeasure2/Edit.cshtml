@@ -1,23 +1,32 @@
 ﻿@model UltimateSecuritySurvey.Models.GenericCountermeasure
 
 @{
-    ViewBag.Title = "Generic counter measure editor";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Generic counter measure editor</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-        @Html.HiddenFor(model => model.countermeasureId)
-        @Html.HiddenFor(model => model.questionId)
+    <fieldset>
+        <legend>GenericCountermeasure</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Question.questionTextMain)
+            @Html.LabelFor(model => model.countermeasureId)
         </div>
-        <div class="editor-field">)
-            @Html.DisplayFor(model => model.questionId)
+        <div class="editor-field">
+            @Html.EditorFor(model => model.countermeasureId)
+            @Html.ValidationMessageFor(model => model.countermeasureId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.questionId, "Question")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("questionId", String.Empty)
+            @Html.ValidationMessageFor(model => model.questionId)
         </div>
 
         <div class="editor-label">
@@ -55,6 +64,7 @@
         <p>
             <input type="submit" value="Save" />
         </p>
+    </fieldset>
 }
 
 <div>

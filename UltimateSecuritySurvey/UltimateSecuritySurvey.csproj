@@ -135,9 +135,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AnswerOptionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GenericCountermeasureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -262,6 +264,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Docs\annotations\AnswerOption.txt" />
     <Content Include="Docs\annotations\Customer.txt" />
     <Content Include="Docs\annotations\Question.txt" />
     <Content Include="Docs\annotations\QuestionCategory.txt" />
@@ -341,6 +344,12 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Question\AnswerOptionList_Partial.cshtml" />
+    <Content Include="Views\Question\GenericCountermeasureList_Partial.cshtml" />
+    <Content Include="Views\AnswerOption\Delete.cshtml" />
+    <Content Include="Views\AnswerOption\CreateEdit.cshtml" />
+    <Content Include="Views\GenericCountermeasure\Delete.cshtml" />
+    <Content Include="Views\GenericCountermeasure\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
