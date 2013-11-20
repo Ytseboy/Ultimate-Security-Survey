@@ -59,3 +59,12 @@
     @Html.ActionLink("Edit", "Edit", new { id=Model.questionId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<div>
+    <p>
+    @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, new { })
+</p>
+    @Html.Partial("ListOfAnswerOptions_Partial", Model.AnswerOptions)
+</div>
+<div>
+    @Html.Partial("GenericCounterMeasureList_Partial", Model.GenericCountermeasures)
+</div>

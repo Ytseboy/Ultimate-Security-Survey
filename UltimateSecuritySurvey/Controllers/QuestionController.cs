@@ -24,6 +24,7 @@ namespace UltimateSecuritySurvey.Controllers
         // GET: /Question/
         public ActionResult Index()
         {
+            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
             var questions = db.Questions.Include(q => q.QuestionCategory).Include(q => q.QuestionType);
             return View(questions.ToList());
         }
@@ -136,11 +137,23 @@ namespace UltimateSecuritySurvey.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            //TODO: Add logic concerning the  Generic Surveys
+            //TODO: Check if genericcountermeasures will be deleted automatically.
 
             Question question = db.Questions.Find(id);
-            db.Questions.Remove(question);
-            db.SaveChanges();
+            bool existsInSurvey = question.GenericSurveys.Count > 0;
+
+            if (!existsInSurvey)
+            {
+                db.Questions.Remove(question);
+                db.SaveChanges();
+            
+            }
+            else
+            {
+                TempData["Message"] = string.Format("Cannot delete this Question because it is included in survey {0}!!", 
+                                        question.GenericSurveys.ToList()[0].title);
+            }
+
             return RedirectToAction("Index");
         }
 

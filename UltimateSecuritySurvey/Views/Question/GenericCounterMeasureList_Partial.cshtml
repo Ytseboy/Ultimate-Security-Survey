@@ -1,0 +1,46 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.GenericCountermeasure>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateAndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.motherCountermeasure)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateAndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.motherCountermeasure)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "GenericCountermeasure", new { id=item.countermeasureId }, new { }) |
+            @Html.ActionLink("Delete", "Delete", "GenericCountermeasure", new { id = item.countermeasureId }, new { })
+        </td>
+    </tr>
+}
+
+</table>

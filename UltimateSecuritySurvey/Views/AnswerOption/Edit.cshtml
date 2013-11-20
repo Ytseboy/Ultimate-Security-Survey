@@ -1,0 +1,45 @@
+﻿@model UltimateSecuritySurvey.Models.AnswerOption
+
+@{
+    ViewBag.Title = "Answer option editor";
+}
+
+
+
+@using (Html.BeginForm("CreateEdit", "AnswerOptions")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+        @Html.HiddenFor(model=>model.questionId)
+        @Html.HiddenFor(model=>model.answerNumber)
+        <div class="editor-label">
+            @Html.LabelFor(model=>model.Question.questionTextMain)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model=>model.Question.questionTextMain)
+        </div>
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.answerText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.answerText)
+            @Html.ValidationMessageFor(model => model.answerText)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Details", "Question", new { id = Model.questionId }, new { })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

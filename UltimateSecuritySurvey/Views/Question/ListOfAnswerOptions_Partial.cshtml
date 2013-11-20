@@ -1,0 +1,26 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.AnswerOption>
+
+
+<table>
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.answerText)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.answerText)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { }) |
+            @Html.ActionLink("Delete", "Delete", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { })
+        </td>
+    </tr>
+}
+
+</table>
