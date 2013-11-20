@@ -1,20 +1,21 @@
 ﻿@model UltimateSecuritySurvey.Models.Customer
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Customer editor";
 }
 
-<h2>Create</h2>
+<h4>@ViewBag.Message</h4>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreateEdit","Customer")) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Customer</legend>
+   
+
+        @Html.HiddenFor(model => model.customerId)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.companyName)
+           <h5> @Html.LabelFor(model => model.companyName) </h5>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.companyName)
@@ -22,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.contactFirstName)
+        <h5>    @Html.LabelFor(model => model.contactFirstName) </h5>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.contactFirstName)
@@ -30,7 +31,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.contactLastName)
+        <h5>    @Html.LabelFor(model => model.contactLastName)    </h5>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.contactLastName)
@@ -38,7 +39,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.email)
+       <h5>     @Html.LabelFor(model => model.email)   </h5>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.email)
@@ -46,7 +47,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.phone)
+      <h5>      @Html.LabelFor(model => model.phone)    </h5>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.phone)
@@ -54,9 +55,9 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
-    </fieldset>
+
 }
 
 <div>

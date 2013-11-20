@@ -23,6 +23,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
             return View(db.Customers.ToList());
         }
 
@@ -46,29 +47,14 @@ namespace UltimateSecuritySurvey.Controllers
         /// This method to go to the create view
         /// </summary>
 
+
         public ActionResult Create()
         {
-            return View();
+            return View("CreateEdit", new Customer());
         }
 
-        /// <summary>
-        /// This method to go add a new customer to the database and save it
-        /// </summary>
-        /// <param name="Customer">Customer class object from textboxes</param>
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Customers.Add(customer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(customer);
-        }
+        
 
         /// <summary>
         /// This method to go to edit view, gets also the customer details from db
@@ -82,7 +68,7 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View("CreateEdit",customer);
         }
 
         /// <summary>
@@ -92,19 +78,36 @@ namespace UltimateSecuritySurvey.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Customer customer)
+        public ActionResult CreateEdit(Customer customer)
         {
-            if (ModelState.IsValid)
+            bool uniqueViolation = db.Customers.Any(x => x.email == customer.email
+                                   && x.customerId != customer.customerId);
+
+
+            if (ModelState.IsValid && !uniqueViolation)
             {
-                db.Entry(customer).State = EntityState.Modified;
+
+                //No Id => Add
+                if (customer.customerId <= 0)
+                {
+                    db.Customers.Add(customer);
+                }
+                //Is Id => Update
+                else
+                {
+                    db.Entry(customer).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Message = "Email must be unique!";
             return View(customer);
         }
 
         /// <summary>
-        /// This method to open delete view and show the customer details3
+        /// This method to open delete view and show the customer details to confirm delete
         /// </summary>
         /// <param name="Customer">Primary id of Customer</param>
 
@@ -120,6 +123,8 @@ namespace UltimateSecuritySurvey.Controllers
 
         /// <summary>
         /// This method to delete the customer from database
+        /// and also check if customersurveys exist for the customer,
+        /// if yes, then customer can't be deleted
         /// </summary>
         /// <param name="Customer">Primary id of Customer</param>
 
@@ -128,10 +133,21 @@ namespace UltimateSecuritySurvey.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
+            bool childExist = db.CustomerSurveys.Any(x => x.customerId == customer.customerId);
+
+            if (!childExist)
+            {
+                db.Customers.Remove(customer);
+                db.SaveChanges();
+            }
+            else
+            {
+                TempData["Message"] = "Cannot delete this Customer because related Customer Surveys exist!!";
+            }
+
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

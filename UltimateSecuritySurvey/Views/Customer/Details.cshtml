@@ -43,6 +43,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
+
+    <div class="display-field">
+
+        <ul>
+        @foreach(var item in Model.CustomerSurveys)
+        {
+            <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey",new{id=item.surveyId}, null)</li>
+        }
+        </ul>
+    </div>
+
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }) |

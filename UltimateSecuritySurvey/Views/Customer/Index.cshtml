@@ -5,6 +5,7 @@
 }
 
 <h2>Customers</h2>
+<h3> @ViewBag.DeleteError </h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -27,6 +28,11 @@
         <th>
             @Html.DisplayNameFor(model => model.phone)
         </th>
+        <th>
+            Amount of Customer Surveys
+
+        </th>
+
         <th></th>
     </tr>
 
@@ -46,6 +52,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.phone)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerSurveys.ToList().Count)
+
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.customerId }) |
