@@ -9,44 +9,40 @@ using UltimateSecuritySurvey.Models;
 
 namespace UltimateSecuritySurvey.Controllers
 {
+    /// <summary>
+    /// Class to manage counter measures
+    /// </summary>
     public class GenericCountermeasureController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
 
-        
-
         //
         // GET: /GenericCountermeasure/Create
-
-        public ActionResult Create()
+        /// <summary>
+        /// Create view
+        /// </summary>
+        /// <returns>Create view</returns>
+        public ActionResult Create(int id = 0)
         {
-            ViewBag.motherCountermeasure = new SelectList(db.GenericCountermeasures, "countermeasureId", "title");
-            ViewBag.questionId = new SelectList(db.Questions, "questionId", "questionTextMain");
-            return View();
-        }
+            Question parentQuestion = db.Questions.Find(id);
 
-        //
-        // POST: /GenericCountermeasure/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(GenericCountermeasure genericcountermeasure)
-        {
-            if (ModelState.IsValid)
+            if (parentQuestion == null)
             {
-                db.GenericCountermeasures.Add(genericcountermeasure);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
 
-            ViewBag.motherCountermeasure = new SelectList(db.GenericCountermeasures, "countermeasureId", "title", genericcountermeasure.motherCountermeasure);
-            ViewBag.questionId = new SelectList(db.Questions, "questionId", "questionTextMain", genericcountermeasure.questionId);
-            return View(genericcountermeasure);
+            ViewBag.motherCountermeasure = new SelectList(db.GenericCountermeasures, "countermeasureId", "title");
+            GenericCountermeasure genericCountermeasure = new GenericCountermeasure{ questionId = id, Question = parentQuestion};
+            return View("CreateEdit", genericCountermeasure);
         }
 
         //
         // GET: /GenericCountermeasure/Edit/5
-
+        /// <summary>
+        /// Edit view
+        /// </summary>
+        /// <param name="id">countermeasure id</param>
+        /// <returns>CreateEdit</returns>
         public ActionResult Edit(int id = 0)
         {
             GenericCountermeasure genericcountermeasure = db.GenericCountermeasures.Find(id);
@@ -56,30 +52,48 @@ namespace UltimateSecuritySurvey.Controllers
             }
             ViewBag.motherCountermeasure = new SelectList(db.GenericCountermeasures, "countermeasureId", "title", genericcountermeasure.motherCountermeasure);
             ViewBag.questionId = new SelectList(db.Questions, "questionId", "questionTextMain", genericcountermeasure.questionId);
-            return View(genericcountermeasure);
+            return View("CreateEdit", genericcountermeasure);
         }
 
         //
         // POST: /GenericCountermeasure/Edit/5
-
+        /// <summary>
+        /// Adds or updates entry in Generic countermeasure
+        /// </summary>
+        /// <param name="genericcountermeasure">object</param>
+        /// <returns>Question details</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(GenericCountermeasure genericcountermeasure)
+        public ActionResult CreateEdit(GenericCountermeasure genericcountermeasure)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genericcountermeasure).State = EntityState.Modified;
+                //No id => Add
+                if (genericcountermeasure.countermeasureId <= 0)
+                {
+                    db.GenericCountermeasures.Add(genericcountermeasure);
+                }
+                //Is Id => Update
+                else
+                {
+                    db.Entry(genericcountermeasure).State = EntityState.Modified;
+                }
+                
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Question", new { id = genericcountermeasure.questionId});
             }
+
             ViewBag.motherCountermeasure = new SelectList(db.GenericCountermeasures, "countermeasureId", "title", genericcountermeasure.motherCountermeasure);
-            ViewBag.questionId = new SelectList(db.Questions, "questionId", "questionTextMain", genericcountermeasure.questionId);
             return View(genericcountermeasure);
         }
 
         //
         // GET: /GenericCountermeasure/Delete/5
-
+        /// <summary>
+        /// Delete view for genericcountermeasure
+        /// </summary>
+        /// <param name="id">countermeasure id</param>
+        /// <returns>delete view</returns>
         public ActionResult Delete(int id = 0)
         {
             GenericCountermeasure genericcountermeasure = db.GenericCountermeasures.Find(id);
@@ -92,17 +106,27 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // POST: /GenericCountermeasure/Delete/5
-
+        /// <summary>
+        /// Deletes the entry from db
+        /// </summary>
+        /// <param name="id">counter measure id</param>
+        /// <returns>Question details</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            //TODO Check for child countermeasures and if used in Customer Answer
+
             GenericCountermeasure genericcountermeasure = db.GenericCountermeasures.Find(id);
             db.GenericCountermeasures.Remove(genericcountermeasure);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Question", new { id = genericcountermeasure.questionId });
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing">bool</param>
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

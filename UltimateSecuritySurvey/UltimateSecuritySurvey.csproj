@@ -266,6 +266,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Docs\annotations\AnswerOption.txt" />
     <Content Include="Docs\annotations\Customer.txt" />
+    <Content Include="Docs\annotations\GenericCounterMeasure.txt" />
     <Content Include="Docs\annotations\Question.txt" />
     <Content Include="Docs\annotations\QuestionCategory.txt" />
     <Content Include="Docs\annotations\QuestionType.txt" />
@@ -349,7 +350,7 @@
     <Content Include="Views\AnswerOption\Delete.cshtml" />
     <Content Include="Views\AnswerOption\CreateEdit.cshtml" />
     <Content Include="Views\GenericCountermeasure\Delete.cshtml" />
-    <Content Include="Views\GenericCountermeasure\Edit.cshtml" />
+    <Content Include="Views\GenericCountermeasure\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

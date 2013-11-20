@@ -11,6 +11,8 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class GenericCountermeasure
     {
@@ -23,10 +25,29 @@ namespace UltimateSecuritySurvey.Models
         }
     
         public int countermeasureId { get; set; }
+
+        [Required(ErrorMessage = "Question id is mandatory!")]
+        [DisplayName("Question id")]
         public int questionId { get; set; }
+
+        [Required(ErrorMessage = "Title is mandatory!")]
+        [DisplayName("Title")]
+        [StringLength(100, ErrorMessage = "Title value cannot exceed 100 characters.")]
         public string title { get; set; }
+
+        [Required(ErrorMessage = "Description is mandatory!")]
+        [DisplayName("Description")]
+        [StringLength(8000, ErrorMessage = "Title value cannot exceed 8000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
+
+        [Required(ErrorMessage = "Date is mandatory!")]
+        [DisplayName("Date")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime dateAndTime { get; set; }
+
+        [DisplayName("Mother countermeasure")]
         public Nullable<int> motherCountermeasure { get; set; }
     
         public virtual ICollection<CustomerAnswer> CustomerAnswers { get; set; }

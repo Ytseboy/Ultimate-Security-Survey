@@ -60,13 +60,16 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 
-<div>
+<div class="CSSTableGenerator">
     <p>
     @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, null)
     </p>
     @Html.Partial("AnswerOptionList_Partial", Model.AnswerOptions)
 </div>
 
-<div>
+<div class="CSSTableGenerator">
+    <p>
+    @Html.ActionLink("Create New", "Create", "GenericCountermeasure", new { id = Model.questionId }, null)
+    </p>
     @Html.Partial("GenericCountermeasureList_Partial", Model.GenericCountermeasures)
 </div>

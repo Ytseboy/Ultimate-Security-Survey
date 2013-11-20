@@ -5,17 +5,9 @@
 }
 
 <h2>Delete</h2>
-
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>GenericCountermeasure</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.countermeasureId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.countermeasureId)
-    </div>
+    @Html.HiddenFor(model => model.countermeasureId)
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Question.questionTextMain)
@@ -51,11 +43,11 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.GenericCountermeasure2.title)
     </div>
-</fieldset>
+
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, null)
     </p>
 }

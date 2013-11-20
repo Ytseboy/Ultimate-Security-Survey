@@ -4,9 +4,7 @@
     ViewBag.Title = "Generic counter measure editor";
 }
 
-<h2>Generic counter measure editor</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreateEdit", "GenericCountermeasure")) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -16,8 +14,8 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Question.questionTextMain)
         </div>
-        <div class="editor-field">)
-            @Html.DisplayFor(model => model.questionId)
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Question.questionTextMain)
         </div>
 
         <div class="editor-label">
@@ -58,7 +56,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, null)
 </div>
 
 @section Scripts {

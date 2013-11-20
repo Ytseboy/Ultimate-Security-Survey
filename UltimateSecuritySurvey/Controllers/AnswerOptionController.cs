@@ -25,15 +25,14 @@ namespace UltimateSecuritySurvey.Controllers
         /// <returns>CreateEdit</returns>
         public ActionResult Create(int id = 0)
         {
-            //ensures that new answerOption is related to a question
-            bool relatedQuestionExist = db.Questions.Any( x => x.questionId == id);
-            
-            if (!relatedQuestionExist)
+            Question parentQuestion = db.Questions.Find(id);
+
+            if (parentQuestion == null)
             {
                 return HttpNotFound();
             }
 
-            AnswerOption answeroption = new AnswerOption { questionId = id };
+            AnswerOption answeroption = new AnswerOption { questionId = id, Question = parentQuestion};
             return View("CreateEdit", answeroption);
         }
 
