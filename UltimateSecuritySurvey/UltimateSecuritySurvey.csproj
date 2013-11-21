@@ -206,10 +206,10 @@
     <Content Include="App_Data\SecuritySurvey_log.ldf">
       <DependentUpon>SecuritySurvey.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\skeletonCSS\base.css" />
-    <Content Include="Content\skeletonCSS\layout.css" />
-    <Content Include="Content\skeletonCSS\skeleton.css" />
-    <Content Include="Content\table.css" />
+    <Content Include="Content\css\foundation.css" />
+    <Content Include="Content\css\foundation.min.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\imgs\haaga-helia.png" />
     <Content Include="Content\themes\base\images\logo.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -309,6 +309,26 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsF\foundation.min.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.abide.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.alerts.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.clearing.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.cookie.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.dropdown.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.forms.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.interchange.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.joyride.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.magellan.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.orbit.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.placeholder.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.reveal.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.section.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.tooltips.js" />
+    <Content Include="Scripts\jsF\foundation\foundation.topbar.js" />
+    <Content Include="Scripts\jsF\vendor\custom.modernizr.js" />
+    <Content Include="Scripts\jsF\vendor\jquery.js" />
+    <Content Include="Scripts\jsF\vendor\zepto.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

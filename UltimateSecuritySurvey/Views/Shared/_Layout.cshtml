@@ -6,50 +6,83 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
 
-    @Styles.Render("~/Content/skeletonCSS/base.css")
-    @Styles.Render("~/Content/skeletonCSS/layout.css")
-    @Styles.Render("~/Content/skeletonCSS/skeleton.css")
+    @Styles.Render("~/Content/css/foundation.css")
     @Styles.Render("~/Content/table.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-
-    <div class="container">
-        <div class="sixteen columns clearfix">
-            <div class="four columns alpha">
-                <img src="@Url.Content("~/Content/themes/base/images/logo.jpg")" alt="logo" />
-            </div>
-            <div class="ten columns"><h1>Ultimate Security Survey</h1></div>
-            <div class="two columns omega"><h6>@DateTime.Now.DayOfWeek</h6></div>
-        </div>
-
-        <div class="sixteen columns">
-            <nav>
-                @Html.ActionLink("Dashboard", "Index", "Home")
-                @Html.ActionLink("Categories", "Index", "Category")
-                @Html.ActionLink("Questions", "Index", "Question")
-                @Html.ActionLink("Customers", "Index", "Customer")
-                @Html.ActionLink("Users", "Index", "User")
-                @Html.ActionLink("Surveys", "Index", "GenericSurvey")
-                @Html.ActionLink("About", "Index", "About")
+        <div class="contain-to-grid">
+            <nav class="top-bar">
+                <ul class="title-area">
+					<li class="name"><h1><a href="#">Ultimate Security Survey</a></h1></li>
+					<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+				</ul>
+                <section class="top-bar-section">
+                    <ul class="left">
+                        <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Categories", "Index", "Category")</li>
+                        <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                        <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
+                        <li>@Html.ActionLink("Users", "Index", "User")</li>
+                        <li>@Html.ActionLink("Surveys", "Index", "GenericSurvey")</li>
+                        <li>@Html.ActionLink("About", "Index", "About")</li>
+                    </ul>
+                </section>
             </nav>
         </div>
-        
-        <div class="sixteen columns clearfix">
-            @RenderBody()
+        <header>
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="large-3 columns">
+						<h1><img src="@Url.Content("~/Content/imgs/haaga-helia.png")" alt=""></h1>
+				    </div>
+                    <div class="large-9 columns">
+                        <h2>Ultimate Security Survey<br /> <small>Have you tried turning it off and on again?</small></h2>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </header>
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="large-9 columns">
+                     @RenderBody()
+				</div>
+             <div class="large-3 columns">
+					<h5>Sidebar</h5>
+					<ul class="side-nav">
+						<li><a href="#">Link 1</a></li>
+						<li><a href="#">Link 2</a></li>
+						<li><a href="#">Link 3</a></li>
+						<li><a href="#">Link 4</a></li>
+						<li><a href="#">Link 5</a></li>
+					</ul>
+				</div>
+            </div>
+            <hr />
         </div>
-
-        <div class="sixteen columns">
-
-            <footer>
-                <p>Ultimate Security Survey &copy; 2013   </p>
-            </footer>
-
-        </div>
-
-    </div><!--END of .container-->
+        <footer>
+			<div class="row">
+				<div class="large-12 columns">
+					<h5>Footer is here</h5>
+				</div>
+			</div>
+		</footer>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+    <script>
+    document.write('<script src= ~/Scripts/jsF/vendor/'
+        + ('__proto__' in {} ? 'zepto' : 'jquery')
+        + '.js><\/script>');
+    </script>
+
+  <script src="~/Scripts/jsF/foundation/foundation.js"></script>
+  <script src="~/Scripts/jsF/foundation/foundation.topbar.js"></script>
+  <!-- Other JS plugins can be included here -->
+
+  <script>
+      $(document).foundation();
+  </script>
 </body>
 </html>
