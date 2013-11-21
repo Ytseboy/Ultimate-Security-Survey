@@ -337,8 +337,6 @@
     <Content Include="Views\Question\Delete.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\Customer\Create.cshtml" />
-    <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
@@ -350,6 +348,7 @@
     <Content Include="Views\GenericCountermeasure\Delete.cshtml" />
     <Content Include="Views\GenericCountermeasure\CreateEdit.cshtml" />
     <Content Include="Views\User\CreateEdit.cshtml" />
+    <Content Include="Views\Customer\CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
