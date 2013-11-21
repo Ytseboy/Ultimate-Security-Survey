@@ -54,3 +54,12 @@
     @Html.ActionLink("Edit", "Edit", new {id=Model.userId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+        <ul>
+        @foreach(var item in Model.CustomerSurveys)
+        {
+            //Shows the surveys this user is participating
+            <li><h5>Participating in surveys:</h5></li>
+            <li>- @Html.DisplayFor(model => item.customerSurveyTitle)</li>
+        }
+        </ul>

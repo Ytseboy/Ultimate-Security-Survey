@@ -9,20 +9,29 @@ using UltimateSecuritySurvey.Models;
 
 namespace UltimateSecuritySurvey.Controllers
 {
+    /// <summary>
+    /// Controller to display and manage users
+    /// </summary>
     public class UserController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
 
-        //
-        // GET: /User/
-
+       
+        /// <summary>
+        /// Lists useraccounts on the index page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
+            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
             return View(db.UserAccounts.ToList());
         }
 
-        //
-        // GET: /User/Details/5
+        /// <summary>
+        /// Finds useraccount with the id from the database for the details page
+        /// </summary>
+        /// <param name="id">Primary id for User</param>
+        
 
         public ActionResult Details(int id = 0)
         {
@@ -34,16 +43,21 @@ namespace UltimateSecuritySurvey.Controllers
             return View(useraccount);
         }
 
-        //
-        // GET: /User/Create
+        /// <summary>
+        /// Method to go to the Create new view
+        /// </summary>
+        
 
         public ActionResult Create()
         {
             return View("CreateEdit", new UserAccount());
         }
 
-        //
-        // GET: /User/Edit/5
+        /// <summary>
+        /// Method to go to the edit view, also gets the id from the db
+        /// </summary>
+        /// <param name="useraccount">UserAccount class object</param>
+        
 
         public ActionResult Edit(int id = 0)
         {
@@ -56,13 +70,18 @@ namespace UltimateSecuritySurvey.Controllers
             return View("CreateEdit", useraccount);
         }
 
-        //
-        // POST: /User/Edit/5
+        /// <summary>
+        /// Method to edit the user and save the changes to the db
+        /// </summary>
+        /// <param name="useraccount">useraccount class object from the textboxes</param>
+        /// <returns></returns>
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateEdit(UserAccount useraccount)
         {
+            bool uniqueViolation = db.UserAccounts.Any(x => x.email == useraccount.email && x.userId != useraccount.userId);
+
             if (ModelState.IsValid)
             {
                 if (useraccount.userId <= 0)
@@ -79,8 +98,11 @@ namespace UltimateSecuritySurvey.Controllers
             return View(useraccount);
         }
 
-        //
-        // GET: /User/Delete/5
+        /// <summary>
+        /// This is the method to go the delete view, shows the details of the user he wants to delete
+        /// </summary>
+        /// <param name="useraccount"></param>
+        
 
         public ActionResult Delete(int id = 0)
         {
@@ -92,19 +114,46 @@ namespace UltimateSecuritySurvey.Controllers
             return View(useraccount);
         }
 
-        //
-        // POST: /User/Delete/5
+        /// <summary>
+        /// This method deletes the user. Checks if the user has childFK's in other tables. If it has it cannot be deleted.
+        /// </summary>
+        /// <param name="useraccount">Primary id of useraccount</param>
+        
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // TODO: Check if childs exist on UserAccount
+
             UserAccount useraccount = db.UserAccounts.Find(id);
-            db.UserAccounts.Remove(useraccount);
-            db.SaveChanges();
+            bool childCustomerSurveyExists = false;
+            bool childGenericSurveyExists = false;
+
+            if (useraccount.isTeacher)
+            {
+                childGenericSurveyExists = db.GenericSurveys.Any(z => z.supervisorUserId == useraccount.userId);
+                childCustomerSurveyExists = db.CustomerSurveys.Any(x => x.supervisorUserId == useraccount.userId);
+            }
+            else 
+            {
+                childCustomerSurveyExists = db.CustomerSurveys.Any(y => y.observerUserId == useraccount.userId);
+            }
+            if (!childCustomerSurveyExists && !childGenericSurveyExists)
+            {
+                db.UserAccounts.Remove(useraccount);
+                db.SaveChanges();
+            }
+            else 
+            {
+                TempData["Message"] = "Cannot delete because the user is participating in a survey.";
+            }
             return RedirectToAction("Index");
         }
-
+        /// <summary>
+        /// Releases all the used memory.
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
