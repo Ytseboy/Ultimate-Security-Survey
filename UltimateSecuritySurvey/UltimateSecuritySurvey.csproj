@@ -140,6 +140,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GenericCountermeasureController.cs" />
+    <Compile Include="Controllers\GenericSurveyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -267,6 +268,7 @@
     <Content Include="Docs\annotations\AnswerOption.txt" />
     <Content Include="Docs\annotations\Customer.txt" />
     <Content Include="Docs\annotations\GenericCounterMeasure.txt" />
+    <Content Include="Docs\annotations\GenericSurvey.txt" />
     <Content Include="Docs\annotations\Question.txt" />
     <Content Include="Docs\annotations\QuestionCategory.txt" />
     <Content Include="Docs\annotations\QuestionType.txt" />
@@ -349,6 +351,10 @@
     <Content Include="Views\GenericCountermeasure\CreateEdit.cshtml" />
     <Content Include="Views\User\CreateEdit.cshtml" />
     <Content Include="Views\Customer\CreateEdit.cshtml" />
+    <Content Include="Views\GenericSurvey\Index.cshtml" />
+    <Content Include="Views\GenericSurvey\Details.cshtml" />
+    <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
+    <Content Include="Views\GenericSurvey\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

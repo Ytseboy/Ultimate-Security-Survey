@@ -1,0 +1,40 @@
+﻿@model UltimateSecuritySurvey.Models.GenericSurvey
+
+@{
+    ViewBag.Title = "Survey details";
+}
+
+<h2>Details</h2>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.title)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.description)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.baseLevel)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.baseLevel)
+    </div>
+
+    <div class="display-label">
+        <h5>@Html.DisplayNameFor(model => model.UserAccount.firstName)</h5>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserAccount.firstName)
+    </div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.surveyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

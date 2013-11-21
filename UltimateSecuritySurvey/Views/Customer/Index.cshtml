@@ -55,9 +55,9 @@
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.CustomerSurveys.ToList().Count)
-
+            @Html.DisplayFor(modelItem => item.CustomerSurveys.Count)
         </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.customerId }) |
             @Html.ActionLink("Details", "Details", new { id=item.customerId }) |

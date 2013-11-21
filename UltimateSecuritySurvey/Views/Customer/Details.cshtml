@@ -6,9 +6,6 @@
 
 <h2>Details</h2>
 
-<fieldset>
-    <legend>Customer</legend>
-
     <div class="display-label">
         <h5> @Html.DisplayNameFor(model => model.companyName) </h5>
     </div>
@@ -43,18 +40,21 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
-
+    
+    <div class="display-label">
+      <h5> Assigned surveys </h5>
+    </div>
     <div class="display-field">
 
         <ul>
         @foreach(var item in Model.CustomerSurveys)
         {
-            <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey",new{id=item.surveyId}, null)</li>
+            //<li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey",new{id=item.surveyId}, null)</li>
+            <li>- @Html.DisplayFor(model => item.customerSurveyTitle)</li>
         }
         </ul>
     </div>
 
-</fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }) |
     @Html.ActionLink("Back to List", "Index")

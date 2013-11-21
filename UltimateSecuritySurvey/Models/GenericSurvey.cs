@@ -11,6 +11,8 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class GenericSurvey
     {
@@ -19,11 +21,27 @@ namespace UltimateSecuritySurvey.Models
             this.CustomerSurveys = new HashSet<CustomerSurvey>();
             this.Questions = new HashSet<Question>();
         }
-    
+        
         public int surveyId { get; set; }
+
+        [Required(ErrorMessage = "Title is mandatory!")]
+        [DisplayName("Title")]
+        [StringLength(100, ErrorMessage = "Title value cannot exceed 100 characters.")]
         public string title { get; set; }
+
+        [Required(ErrorMessage = "Description is mandatory!")]
+        [DisplayName("Description")]
+        [StringLength(8000, ErrorMessage = "Description value cannot exceed 8000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
+
+        [Required(ErrorMessage = "Base level is mandatory!")]
+        [DisplayName("Base level")]
+        [Range(2, 4, ErrorMessage = "According to KATARKI range is between 2 and 4")]
         public int baseLevel { get; set; }
+
+        [Required(ErrorMessage = "Supervisor is mandatory!")]
+        [DisplayName("Supervisor")]
         public int supervisorUserId { get; set; }
     
         public virtual ICollection<CustomerSurvey> CustomerSurveys { get; set; }

@@ -32,7 +32,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
 
             ViewBag.motherCountermeasure = new SelectList(db.GenericCountermeasures, "countermeasureId", "title");
-            GenericCountermeasure genericCountermeasure = new GenericCountermeasure{ questionId = id, Question = parentQuestion};
+            GenericCountermeasure genericCountermeasure = 
+                            new GenericCountermeasure{ questionId = id, Question = parentQuestion, dateAndTime = DateTime.Now};
             return View("CreateEdit", genericCountermeasure);
         }
 
