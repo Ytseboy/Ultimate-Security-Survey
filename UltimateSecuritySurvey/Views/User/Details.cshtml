@@ -55,11 +55,25 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 
-        <ul>
-        @foreach(var item in Model.CustomerSurveys)
+<!--Sidebar Info-->
+@{ICollection<UltimateSecuritySurvey.Models.CustomerSurvey> participation;
+    
+    //Shows the surveys this user is participating
+    if (Model.isTeacher)
+    {
+        participation = Model.CustomerSurveys1;
+        <h5>Supervisor in surveys:</h5>
+    }
+    else
+    {
+        participation = Model.CustomerSurveys;
+        <h5>Observer in surveys:</h5>
+    }
+}
+    <ul>
+        @foreach (var item in participation)
         {
-            //Shows the surveys this user is participating
-            <li><h5>Participating in surveys:</h5></li>
             <li>- @Html.DisplayFor(model => item.customerSurveyTitle)</li>
         }
-        </ul>
+    </ul>
+        
