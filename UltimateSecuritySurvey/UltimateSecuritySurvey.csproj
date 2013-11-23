@@ -209,7 +209,10 @@
     <Content Include="Content\css\foundation.css" />
     <Content Include="Content\css\foundation.min.css" />
     <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\imgs\bin.png" />
     <Content Include="Content\imgs\haaga-helia.png" />
+    <Content Include="Content\imgs\notepad.png" />
+    <Content Include="Content\imgs\pencil.png" />
     <Content Include="Content\themes\base\images\logo.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

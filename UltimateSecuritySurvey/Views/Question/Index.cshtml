@@ -50,9 +50,15 @@
             @Html.DisplayFor(modelItem => item.baseLevel2RequirementText)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.questionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.questionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.questionId })
+            @Html.ActionLink(" ","Edit",new {id = item.questionId}, 
+                    new{style = "background: url('" + Url.Content("~/Content/imgs/pencil.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
+
+            @Html.ActionLink(" ","Details",new {id = item.questionId}, 
+                    new{style = "background: url('" + Url.Content("~/Content/imgs/notepad.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
+
+            @Html.ActionLink(" ","Delete",new {id = item.questionId}, 
+                    new{style = "background: url('" + Url.Content("~/Content/imgs/bin.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"}) 
+        
         </td>
     </tr>
 }
