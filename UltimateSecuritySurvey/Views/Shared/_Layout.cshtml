@@ -13,7 +13,7 @@
         <div class="contain-to-grid">
             <nav class="top-bar">
                 <ul class="title-area">
-					<li class="name"><h1><a href="#">Ultimate Security Survey</a></h1></li>
+					<li class="name"><h1>@Html.ActionLink("Ultimate Security Survey", "Index", "Home")</h1></li>
 					<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 				</ul>
                 <section class="top-bar-section">
@@ -25,6 +25,18 @@
                         <li>@Html.ActionLink("Users", "Index", "User")</li>
                         <li>@Html.ActionLink("Surveys", "Index", "GenericSurvey")</li>
                         <li>@Html.ActionLink("About", "Index", "About")</li>
+                        <li>    
+                            @if (Request.IsAuthenticated) 
+                            {
+                                <h5>@Html.Encode(User.Identity.Name)</h5>
+                                @Html.ActionLink("Sign Out", "Logout", "Account")
+                            }
+                            else
+                            {
+                                //Makes all the pages private
+                                Response.Redirect("/Account/Login");
+                            }
+                        </li>
                     </ul>
                 </section>
             </nav>
@@ -63,7 +75,7 @@
         <footer>
 			<div class="row">
 				<div class="large-12 columns">
-					<h5>Footer is here</h5>
+					<h5>&copy; 2013</h5>
 				</div>
 			</div>
 		</footer>

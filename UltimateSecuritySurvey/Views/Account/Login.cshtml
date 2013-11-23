@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+@if (Request.IsAuthenticated)
+{
+    //If user is already logged In --> Redirect to Dashboard
+    Response.Redirect("/Home");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login - Ultimate Security Survey</title>
+</head>
+<body>
+    <h1>Ultimate Security Survey</h1>
+    
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true, "Login failed")
+    
+        <fieldset>
+            <legend>Please Log In</legend>
+
+            <div class="editor-label">
+                User name or email: teacher || marry@mail.com
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("name", "teacher")
+            </div>
+    
+            <div class="editor-label">
+                Password: 000000
+            </div>
+            <div class="editor-field">
+                @Html.Password("password", "000000")
+            </div>
+    
+            <p>
+                <input type="submit" value="Log In" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        <a href="#">Need help?</a>
+    </div>
+</body>
+</html>
