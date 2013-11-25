@@ -30,9 +30,9 @@
     @using (Html.BeginForm()) {
         @Html.ValidationSummary(true, "Login failed")
             <div class="row">
-                <div class="small-6 push-3 columns">
+                <div class="small-6 small-centered columns">
                     <fieldset>
-                        <legend>Ultimate Security Survey</legend>
+                        <legend>Login</legend>
                         <label>User name or email: teacher || marry@mail.com</label>
                         @Html.TextBox("name", "teacher")
                         <label>Password: 000000</label>
