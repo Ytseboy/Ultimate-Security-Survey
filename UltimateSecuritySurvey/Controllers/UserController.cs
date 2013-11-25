@@ -72,7 +72,8 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateEdit(UserAccount useraccount)
         {
-            bool uniqueViolation = db.UserAccounts.Any(x => x.email == useraccount.email && x.userId != useraccount.userId);
+            bool uniqueViolation = db.UserAccounts.Any(x => (x.email == useraccount.email || x.userName == useraccount.userName) 
+                                                && x.userId != useraccount.userId);
 
             if (ModelState.IsValid && !uniqueViolation)
             {
@@ -87,7 +88,7 @@ namespace UltimateSecuritySurvey.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Message = "Email must be unique";
+            ViewBag.Message = "Email And User Name must be unique";
             return View(useraccount);
         }
 
