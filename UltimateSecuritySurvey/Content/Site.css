@@ -59,3 +59,10 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+/*FORMS
+    --------------------------------------------------------------*/
+#center {
+    position: absolute;
+    width: inherit;
+}

@@ -10,14 +10,13 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-        <div class="contain-to-grid">
             <nav class="top-bar">
                 <ul class="title-area">
 					<li class="name"><h1>@Html.ActionLink("Ultimate Security Survey", "Index", "Home")</h1></li>
 					<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 				</ul>
                 <section class="top-bar-section">
-                    <ul class="left">
+                    <ul>
                         <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
                         <li>@Html.ActionLink("Categories", "Index", "Category")</li>
                         <li>@Html.ActionLink("Questions", "Index", "Question")</li>
@@ -25,22 +24,26 @@
                         <li>@Html.ActionLink("Users", "Index", "User")</li>
                         <li>@Html.ActionLink("Surveys", "Index", "GenericSurvey")</li>
                         <li>@Html.ActionLink("About", "Index", "About")</li>
-                        <li>    
-                            @if (Request.IsAuthenticated) 
+                        
+                    </ul>
+                    <ul class="right">
+                        <li class="has-dropdown">    
+                            @if (Request.IsAuthenticated)
                             {
-                                <h5>@Html.Encode(User.Identity.Name)</h5>
-                                @Html.ActionLink("Sign Out", "Logout", "Account")
+                                <a href="#">@Html.Encode(User.Identity.Name)</a>
                             }
                             else
                             {
                                 //Makes all the pages private
                                 Response.Redirect("/Account/Login");
                             }
+                            <ul class="dropdown right">
+                                <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
+                            </ul>
                         </li>
                     </ul>
                 </section>
             </nav>
-        </div>
         <header>
             <div class="row">
                 <div class="large-12 columns">

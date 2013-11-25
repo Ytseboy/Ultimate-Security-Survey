@@ -11,40 +11,48 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width" />
     <title>Login - Ultimate Security Survey</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/foundation.css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
-    <h1>Ultimate Security Survey</h1>
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>Ultimate Security Survey</h1>
+        </div>
+        <hr />
+    </div>
     
     @using (Html.BeginForm()) {
         @Html.ValidationSummary(true, "Login failed")
-    
-        <fieldset>
-            <legend>Please Log In</legend>
-
-            <div class="editor-label">
-                User name or email: teacher || marry@mail.com
+            <div class="row">
+                <div class="small-6 push-3 columns">
+                    <fieldset>
+                        <legend>Ultimate Security Survey</legend>
+                        <label>User name or email: teacher || marry@mail.com</label>
+                        @Html.TextBox("name", "teacher")
+                        <label>Password: 000000</label>
+                        @Html.Password("password", "000000")
+                       <input type="submit" value="Log In" class="small button"/>
+                    </fieldset>
+                    <a href="#">Need help?</a>
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.TextBox("name", "teacher")
-            </div>
-    
-            <div class="editor-label">
-                Password: 000000
-            </div>
-            <div class="editor-field">
-                @Html.Password("password", "000000")
-            </div>
-    
-            <p>
-                <input type="submit" value="Log In" />
-            </p>
-        </fieldset>
     }
-    
-    <div>
-        <a href="#">Need help?</a>
-    </div>
+     @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(window).resize(function() {
+        var wh = (($(window).height()-$('#center').height())/2)+'px';
+        var ww = (($(window).width()-$('#center').width())/2)+'px';
+        $('#center').css({
+            top: wh,
+            left: ww
+        });
+        }).resize();
+    </script>
 </body>
 </html>
