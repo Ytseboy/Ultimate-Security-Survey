@@ -42,6 +42,7 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DeleteError = (TempData["Message"])?? String.Empty;
             return View(question);
         }
 
@@ -135,8 +136,6 @@ namespace UltimateSecuritySurvey.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            //TODO: Check if GenericCountermeasures will be deleted automatically.
-
             Question question = db.Questions.Find(id);
             bool includedInSurvey = question.GenericSurveys.Count > 0;
 

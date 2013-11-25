@@ -116,11 +116,19 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id = 0, int number = 0)
         {
-            //TODO: what if answer option was user in Customer Answer??
-
             AnswerOption answeroption = db.AnswerOptions.Find(id, number);
-            db.AnswerOptions.Remove(answeroption);
-            db.SaveChanges();
+            bool hasCustomerAnswer = db.CustomerAnswers.Any(x => x.answerOptionQuestionId == id
+                                                        && x.answerOptionNumber == number);
+
+            if (!hasCustomerAnswer)
+            {
+                db.AnswerOptions.Remove(answeroption);
+                db.SaveChanges();
+            }
+            else
+            {
+                TempData["Message"] = "Cannot delete because the answer option was used as customer answer";
+            }
 
             return RedirectToAction("Details", "Question", new { id = id});
         }

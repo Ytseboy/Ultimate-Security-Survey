@@ -116,11 +116,21 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //TODO Check for child countermeasures and if used in Customer Answer
-
             GenericCountermeasure genericcountermeasure = db.GenericCountermeasures.Find(id);
-            db.GenericCountermeasures.Remove(genericcountermeasure);
-            db.SaveChanges();
+            bool includedInCustomerAnswer = db.CustomerAnswers.Any(x => x.countermeasureId1 == id
+                                                            || x.countermeasureId2 == id
+                                                            || x.countermeasureId3 == id);
+
+            if (!includedInCustomerAnswer)
+            {
+                db.GenericCountermeasures.Remove(genericcountermeasure);
+                db.SaveChanges();
+            }
+            else
+            {
+                TempData["Message"] = "Cannot delete counter measure because it was used in Customer Answer";
+            }
+
             return RedirectToAction("Details", "Question", new { id = genericcountermeasure.questionId });
         }
 
