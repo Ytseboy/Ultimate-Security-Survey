@@ -28,3 +28,11 @@
     position: absolute;
     width: inherit;
 }
+
+/*BLOCKS
+    -----------------------------------------*/
+.scrollable{
+    max-height: 150px; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
