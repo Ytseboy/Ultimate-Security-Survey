@@ -62,8 +62,6 @@
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+    <input type="submit" value="Delete" class="small button alert"/>
 }
+@Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})

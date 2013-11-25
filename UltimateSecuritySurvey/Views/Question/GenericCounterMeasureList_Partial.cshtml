@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<UltimateSecuritySurvey.Models.GenericCountermeasure>
 
-
 <table>
     <tr>
         <th>
@@ -33,8 +32,8 @@
             @Html.DisplayFor(modelItem => item.motherCountermeasure)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "GenericCountermeasure", new { id=item.countermeasureId }, null) |
-            @Html.ActionLink("Delete", "Delete", "GenericCountermeasure", new { id = item.countermeasureId }, null)
+            @Html.ActionLink("Edit", "Edit", "GenericCountermeasure", new { id=item.countermeasureId }, new { @class="tiny button secondary"})
+            @Html.ActionLink("Delete", "Delete", "GenericCountermeasure", new { id = item.countermeasureId }, new { @class="tiny button secondary"})
         </td>
     </tr>
 }

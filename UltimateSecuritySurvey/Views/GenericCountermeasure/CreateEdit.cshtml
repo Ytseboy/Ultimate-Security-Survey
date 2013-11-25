@@ -51,12 +51,12 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Save" class="small button success"/>
         </p>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, null)
+    @Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, new { @class="tiny button secondary"})
 </div>
 
 @section Scripts {

@@ -10,10 +10,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-
-
-    
-            @Html.HiddenFor(model => model.userId)
+        @Html.HiddenFor(model => model.userId)
   
         <div class="editor-label">
             @Html.LabelFor(model => model.firstName)
@@ -72,13 +69,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Save" class="small button success"/>
         </p>
   
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
 </div>
 
 @section Scripts {

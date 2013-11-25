@@ -49,13 +49,14 @@
         <ul>
         @foreach(var item in Model.CustomerSurveys)
         {
+            //Later to Links
             //<li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey",new{id=item.surveyId}, null)</li>
             <li>- @Html.DisplayFor(model => item.customerSurveyTitle)</li>
         }
         </ul>
     </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="button-group">
+    @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }, new { @class = "tiny button secondary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})
+</ul>

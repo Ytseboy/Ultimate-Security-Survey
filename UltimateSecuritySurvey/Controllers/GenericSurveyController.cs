@@ -24,6 +24,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <returns>Index view</returns>
         public ActionResult Index()
         {
+            ViewBag.DeleteError = (TempData["Message"]) ?? String.Empty;
             var genericsurveys = db.GenericSurveys.Include(g => g.UserAccount);
             return View(genericsurveys.ToList());
         }

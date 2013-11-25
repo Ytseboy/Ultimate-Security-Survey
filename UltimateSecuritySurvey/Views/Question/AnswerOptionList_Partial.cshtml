@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<UltimateSecuritySurvey.Models.AnswerOption>
 
-
 <table>
     <tr>
-        
         <th>
             @Html.DisplayNameFor(model => model.answerText)
         </th>
@@ -12,13 +10,12 @@
 
 @foreach (var item in Model) {
     <tr>
-        
         <td>
             @Html.DisplayFor(modelItem => item.answerText)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { }) |
-            @Html.ActionLink("Delete", "Delete", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { })
+            @Html.ActionLink("Edit", "Edit", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { @class="tiny button secondary"})
+            @Html.ActionLink("Delete", "Delete", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { @class="tiny button secondary"})
         </td>
     </tr>
 }

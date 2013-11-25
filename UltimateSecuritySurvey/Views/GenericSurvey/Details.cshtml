@@ -34,7 +34,7 @@
         @Html.DisplayFor(model => model.UserAccount.firstName)
     </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.surveyId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="button-group">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.surveyId }, new { @class = "tiny button secondary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})
+</ul>

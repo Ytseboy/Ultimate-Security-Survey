@@ -56,28 +56,28 @@
         @Html.DisplayFor(model => model.additionalNote)
     </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.questionId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
+<ul class="button-group">
+    <li>@Html.ActionLink("Edit", "Edit", new { id=Model.questionId }, new { @class = "tiny button secondary"})</li>
+    <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary" })</li>
+</ul>
 
 <fieldset>
     <legend>Answer Options</legend>
-    <div class="scrollable">
-        @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, null)
 
+    @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, new { @class="tiny button secondary"})
+    
+    <div class="scrollable">
         @Html.Partial("AnswerOptionList_Partial", Model.AnswerOptions)
     </div>
 </fieldset>
 
 
-
 <fieldset>
     <legend>Generic countermeasures</legend>
-    <div class="scrollable">
-        @Html.ActionLink("Create New", "Create", "GenericCountermeasure", new { id = Model.questionId }, null)
+    
+    @Html.ActionLink("Create New", "Create", "GenericCountermeasure", new { id = Model.questionId }, new { @class="tiny button secondary"})
 
+    <div class="scrollable">
         @Html.Partial("GenericCountermeasureList_Partial", Model.GenericCountermeasures)
     </div>
 </fieldset>

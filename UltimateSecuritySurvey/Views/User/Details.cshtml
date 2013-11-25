@@ -50,10 +50,10 @@
         @Html.DisplayFor(model => model.isTeacher)
     </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new {id=Model.userId}) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="button-group">
+    @Html.ActionLink("Edit", "Edit", new {id=Model.userId}, new { @class = "tiny button secondary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})
+</ul>
 
 <!--Sidebar Info-->
 @{ICollection<UltimateSecuritySurvey.Models.CustomerSurvey> participation;

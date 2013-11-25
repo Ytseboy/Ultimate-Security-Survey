@@ -20,7 +20,7 @@
         @Html.DisplayFor(model => model.description)
     </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.categoryId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="button-group">
+    <li>@Html.ActionLink("Edit", "Edit", new { id = Model.categoryId }, new { @class = "tiny button secondary"})</li>
+    <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary" })</li>
+</ul>
