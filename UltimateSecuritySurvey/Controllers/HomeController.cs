@@ -26,9 +26,9 @@ namespace UltimateSecuritySurvey.Controllers
             List<GenericSurvey> lastFiveSurveys = entities.GenericSurveys.OrderByDescending(x => x.surveyId).Take(5).ToList();
 
             //Get five last Customers
-            List<Customer> lastFiveCustomers = entities.Customers.OrderBy(x => x.customerId).Take(5).ToList();
+            List<Customer> lastFiveCustomers = entities.Customers.OrderByDescending(x => x.customerId).Take(5).ToList();
 
-            List<UserAccount> lastFiveUsers = entities.UserAccounts.OrderBy(x => x.userId).Take(5).ToList();
+            List<UserAccount> lastFiveUsers = entities.UserAccounts.OrderByDescending(x => x.userId).Take(5).ToList();
 
             FrontPageModel frontPageView = new FrontPageModel(lastFiveSurveys, lastFiveCustomers, lastFiveUsers);
             return View(frontPageView);
