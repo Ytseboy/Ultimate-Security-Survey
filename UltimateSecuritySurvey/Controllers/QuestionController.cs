@@ -141,6 +141,14 @@ namespace UltimateSecuritySurvey.Controllers
 
             if (!includedInSurvey)
             {
+                //Delete related Countermeasure
+                int countMeasures = question.GenericCountermeasures.Count;
+                var measuresList = question.GenericCountermeasures.ToList();
+
+                for(int i = 0; i < countMeasures; i++)
+                    db.GenericCountermeasures.Remove(measuresList[i]);
+
+                //Delete actual question
                 db.Questions.Remove(question);
                 db.SaveChanges();
             }
