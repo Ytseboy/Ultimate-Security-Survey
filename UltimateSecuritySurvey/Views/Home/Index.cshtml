@@ -19,16 +19,20 @@
     </fieldset>
 </div>
 
-<div class="large-4 columns">
-    <fieldset>
-        <legend>Customers</legend>
-        @Html.Partial("CustomerBox", Model.customers)
-    </fieldset>
-</div>
+<div class="row">
+    <div class="large-9 columns">
+        <div class="large-4 columns">
+            <fieldset>
+                <legend>Customers</legend>
+                @Html.Partial("CustomerBox", Model.customers)
+            </fieldset>
+        </div>
 
-<div class="large-4 columns">
-    <fieldset>
-        <legend>Users</legend>
-        @Html.Partial("UserBox", Model.users)
-    </fieldset>
+        <div class="large-4 large-offset-1 columns">
+            <fieldset>
+                <legend>Users</legend>
+                    @Html.Partial("UserBox", Model.users)
+            </fieldset>
+        </div>
+    </div>
 </div>
