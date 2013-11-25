@@ -349,8 +349,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\QuestionBox.cshtml" />
-    <Content Include="Views\Home\CategoryBox.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Home\InfoBox.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
@@ -380,6 +378,9 @@
     <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
     <Content Include="Views\GenericSurvey\Delete.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\SurveyBox.cshtml" />
+    <Content Include="Views\Home\CustomerBox.cshtml" />
+    <Content Include="Views\Home\UserBox.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

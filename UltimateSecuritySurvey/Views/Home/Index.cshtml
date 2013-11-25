@@ -4,24 +4,31 @@
     ViewBag.Title = "Dashboard";
 }
 
+<div class="large-9 columns">
 <h2>Dashboard</h2>
 
-<div class="sixteen columns">
-    @Html.Partial("InfoBox")
-</div>
+  @Html.Partial("InfoBox")
 
+</div>
 <hr />
-<div class="seven columns alpha">
+
+<div class="large-9 columns">
     <fieldset>
-        <legend>Questions</legend>
-        @Html.Partial("QuestionBox", Model.questions)
+        <legend>Surveys</legend>
+        @Html.Partial("SurveyBox", Model.surveys)
     </fieldset>
 </div>
 
-
-<div class="seven columns omega offset-by-two">
+<div class="large-4 columns">
     <fieldset>
-        <legend>Categories</legend>
-        @Html.Partial("CategoryBox", Model.categories)
+        <legend>Customers</legend>
+        @Html.Partial("CustomerBox", Model.customers)
+    </fieldset>
+</div>
+
+<div class="large-4 columns">
+    <fieldset>
+        <legend>Users</legend>
+        @Html.Partial("UserBox", Model.users)
     </fieldset>
 </div>

@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<UltimateSecuritySurvey.Models.GenericSurvey>
+
+
+<table>
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.baseLevel)
+        </th>
+        <th>
+            Supervisor
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.baseLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+        </td>
+    </tr>
+}
+
+</table>
+
+    @Html.ActionLink("Full List of Surveys", "Index", "GenericSurvey")

@@ -11,23 +11,31 @@ namespace UltimateSecuritySurvey.Models
     public class FrontPageModel
     {
         /// <summary>
-        /// This is the constructor for the lists
+        /// The constructor for FrontPage Model
         /// </summary>
-        /// <param name="questions">List of questions</param>
-        /// <param name="categories">List of categories</param>
-        
-        public FrontPageModel(List<Question> questions, List<QuestionCategory> categories) 
+        /// <param name="surveys">List of surveys</param>
+        /// <param name="customers">List of customers</param>
+        /// <param name="users">List of users</param>
+        public FrontPageModel(List<GenericSurvey> surveys, List<Customer> customers, List<UserAccount> users) 
         {
-            this.questions = questions;
-            this.categories = categories;
+            this.surveys = surveys;
+            this.customers = customers;
+            this.users = users;
         }
+
         /// <summary>
-        /// Get Set for Questions list
+        /// Get set for Generic Survey List
         /// </summary>
-        public List<Question> questions { get; set; }
+        public List<GenericSurvey> surveys { get; set; }
+
         /// <summary>
-        /// Get Set for Categories list
+        /// Get set for Customer List
         /// </summary>
-        public List<QuestionCategory> categories { get; set; }
+        public List<Customer> customers { get; set; }
+
+        /// <summary>
+        /// Get set for User List
+        /// </summary>
+        public List<UserAccount> users { get; set; }
     }
 }

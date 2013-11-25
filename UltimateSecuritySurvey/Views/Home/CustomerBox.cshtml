@@ -1,0 +1,34 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.Customer>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactLastName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactLastName)
+        </td>
+    </tr>
+}
+
+</table>
+
+    @Html.ActionLink("Full list of Customers", "Index", "Customer")
+

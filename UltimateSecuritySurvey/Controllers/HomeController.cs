@@ -17,26 +17,20 @@ namespace UltimateSecuritySurvey.Controllers
         /// <summary>
         /// This is our Index method
         /// </summary>
-        /// <returns>It returns five questions and five categories, both in descending order</returns>
+        /// <returns>It returns five surveys, customers and users, all in descending order</returns>
         //
         // GET: /Home/
         public ActionResult Index()
-        {
-            //Get five last questions in a list using linq
-            List<Question> lastFiveQuestions = entities.Questions.OrderByDescending(x => x.questionId).Take(5).ToList();
-            
-            //OLD VERSION
-            //int questionCount = (DescendingQuestions.Count >= 5) ? 5 : DescendingQuestions.Count;
-            //var lastFiveQuestions = DescendingQuestions.GetRange(0, questionCount);
+        {            
+            //Get five last Generic surveys
+            List<GenericSurvey> lastFiveSurveys = entities.GenericSurveys.OrderByDescending(x => x.surveyId).Take(5).ToList();
 
-            //Get five last categories in a list
-            List<QuestionCategory> lastFiveCategories = entities.QuestionCategories.OrderByDescending(y => y.categoryId).Take(5).ToList();
-            
-            //OLD VERSION
-            //int categoryCount = (DescendingCategories.Count >= 5) ? 5 : DescendingCategories.Count;
-            //var lastFiveCategories = DescendingCategories.GetRange(0, categoryCount);
+            //Get five last Customers
+            List<Customer> lastFiveCustomers = entities.Customers.OrderBy(x => x.customerId).Take(5).ToList();
 
-            FrontPageModel frontPageView = new FrontPageModel(lastFiveQuestions, lastFiveCategories);
+            List<UserAccount> lastFiveUsers = entities.UserAccounts.OrderBy(x => x.userId).Take(5).ToList();
+
+            FrontPageModel frontPageView = new FrontPageModel(lastFiveSurveys, lastFiveCustomers, lastFiveUsers);
             return View(frontPageView);
         }
     }
