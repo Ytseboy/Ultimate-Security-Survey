@@ -1,0 +1,446 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UltimateSecuritySurvey</name>
+    </assembly>
+    <members>
+        <member name="T:UltimateSecuritySurvey.Controllers.AboutController">
+            <summary>
+            This controller doesn't perform any task
+            I simply returns a View where user can read
+            About application
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AboutController.Index">
+            <summary>
+            About application
+            </summary>
+            <returns>Index view</returns>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.AccountController">
+            <summary>
+            To control Log In / Log out
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AccountController.Login">
+            <summary>
+            Redirects user to LogIn form
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AccountController.Login(System.String,System.String)">
+            <summary>
+            Handles attempt to log in
+            </summary>
+            <param name="loginData">User name + password</param>
+            <returns>Dashboar View</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AccountController.Logout">
+            <summary>
+            To logOut, redirects user to Login form
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.AnswerOptionController">
+            <summary>
+            Class to Create/Edit/Delete Answer options for questions
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AnswerOptionController.Create(System.Int32)">
+            <summary>
+            returns create view
+            </summary>
+            <param name="id">question id</param>
+            <returns>CreateEdit</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AnswerOptionController.Edit(System.Int32,System.Int32)">
+            <summary>
+            Edit view
+            </summary>
+            <param name="id">question id</param>
+            <param name="number">answer option number</param>
+            <returns>CreateEdit</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AnswerOptionController.CreateEdit(UltimateSecuritySurvey.Models.AnswerOption)">
+            <summary>
+            To Add or Update Answer Options
+            </summary>
+            <param name="answeroption">new or modified object</param>
+            <returns>Question Details</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AnswerOptionController.Delete(System.Int32,System.Int32)">
+            <summary>
+            Goes to Delete view
+            </summary>
+            <param name="id">question id</param>
+            <param name="number">answer number</param>
+            <returns>Delete view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AnswerOptionController.DeleteConfirmed(System.Int32,System.Int32)">
+            <summary>
+            Deletes an item from db
+            </summary>
+            <param name="id">question id</param>
+            <param name="number">answer number</param>
+            <returns>Question Details</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.AnswerOptionController.Dispose(System.Boolean)">
+            <summary>
+            Disposes the entities
+            </summary>
+            <param name="disposing">bool</param>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.CategoryController">
+            <summary>
+            This controller to Display Categories and to manage them
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.Index">
+            <summary>
+            This method to list the existing categories.
+            Here is also a view bag to display delete errors
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.Details(System.Int32)">
+            <summary>
+            This method finds one category and shows it individually with details.
+            </summary>
+            <param name="id">Primary of Question Category</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.Create">
+            <summary>
+            This method to go to the create view(note: We use same view for the create and edit.)
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.Edit(System.Int32)">
+            <summary>
+            This method to edit view, finds the category details
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.CreateEdit(UltimateSecuritySurvey.Models.QuestionCategory)">
+            <summary>
+            This method to create/edit the category details
+            </summary>
+            <param name="questioncategory">category object</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.Delete(System.Int32)">
+            <summary>
+            This method to show chosen category details and confirm delete
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CategoryController.DeleteConfirmed(System.Int32)">
+            <summary>
+            This method to delete the existing category
+            </summary>
+            <param name="id">The primary key of the category</param>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.CustomerController">
+            <summary>
+            This controller to Display Customers and to manage them, CRUD
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.Index">
+            <summary>
+            This method to list the customers on the index page
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.Details(System.Int32)">
+            <summary>
+            This method to find a customer with id from the database
+            </summary>
+            <param name="id">Primary id of Customer</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.Create">
+            <summary>
+            This method to go to the create view
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.Edit(System.Int32)">
+            <summary>
+            This method to go to edit view, gets also the customer details from db
+            </summary>
+            <param name="Customer">Customer class object</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.CreateEdit(UltimateSecuritySurvey.Models.Customer)">
+            <summary>
+            This method to edit the customer and save changes
+            </summary>
+            <param name="Customer">Customer class object from textboxes</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.Delete(System.Int32)">
+            <summary>
+            This method to open delete view and show the customer details to confirm delete
+            </summary>
+            <param name="Customer">Primary id of Customer</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.CustomerController.DeleteConfirmed(System.Int32)">
+            <summary>
+            This method to delete the customer from database
+            and also check if customersurveys exist for the customer,
+            if yes, then customer can't be deleted
+            </summary>
+            <param name="Customer">Primary id of Customer</param>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.ErrorController">
+            <summary>
+            This Controller contains actions for possible errors
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.ErrorController.PageNotFound">
+            <summary>
+            404 code error
+            </summary>
+            <returns>404 custom view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.ErrorController.AccessDenied">
+            <summary>
+            In case Student will try to look inside of Teacher only pages
+            </summary>
+            <returns>custom error view</returns>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.GenericCountermeasureController">
+            <summary>
+            Class to manage counter measures
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericCountermeasureController.Create(System.Int32)">
+            <summary>
+            Create view
+            </summary>
+            <returns>Create view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericCountermeasureController.Edit(System.Int32)">
+            <summary>
+            Edit view
+            </summary>
+            <param name="id">countermeasure id</param>
+            <returns>CreateEdit</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericCountermeasureController.CreateEdit(UltimateSecuritySurvey.Models.GenericCountermeasure)">
+            <summary>
+            Adds or updates entry in Generic countermeasure
+            </summary>
+            <param name="genericcountermeasure">object</param>
+            <returns>Question details</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericCountermeasureController.Delete(System.Int32)">
+            <summary>
+            Delete view for genericcountermeasure
+            </summary>
+            <param name="id">countermeasure id</param>
+            <returns>delete view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericCountermeasureController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Deletes the entry from db
+            </summary>
+            <param name="id">counter measure id</param>
+            <returns>Question details</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericCountermeasureController.Dispose(System.Boolean)">
+            <summary>
+            Dispose
+            </summary>
+            <param name="disposing">bool</param>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.GenericSurveyController">
+            <summary>
+            Page to manage surveys
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.Index">
+            <summary>
+            List of surveys
+            </summary>
+            <returns>Index view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.Details(System.Int32)">
+            <summary>
+            Details view
+            </summary>
+            <param name="id">survey id</param>
+            <returns>Details view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.Create">
+            <summary>
+            Create view
+            </summary>
+            <returns>CreateEdit</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.Edit(System.Int32)">
+            <summary>
+            Edit view
+            </summary>
+            <param name="id">generic survey id</param>
+            <returns>CreateEdit</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.CreateEdit(UltimateSecuritySurvey.Models.GenericSurvey)">
+            <summary>
+            To add or update entry in db
+            </summary>
+            <param name="genericsurvey">object</param>
+            <returns>Index view</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.Delete(System.Int32)">
+            <summary>
+            Delete view
+            </summary>
+            <param name="id">survey id</param>
+            <returns></returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Post delete to delete entry
+            </summary>
+            <param name="id">survey id</param>
+            <returns></returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.GenericSurveyController.Dispose(System.Boolean)">
+            <summary>
+            Method to reveal resources
+            </summary>
+            <param name="disposing">bool</param>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.HomeController">
+            <summary>
+            This controller is for the front page
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.HomeController.Index">
+            <summary>
+            This is our Index method
+            </summary>
+            <returns>It returns five surveys, customers and users, all in descending order</returns>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.QuestionController">
+            <summary>
+            This is the controller for Question page and managing questions
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.Index">
+            <summary>
+            This method Gets list of existing questions from the database with Category and Question Type
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.Details(System.Int32)">
+            <summary>
+            This method finds one question and shows it in more detailed view
+            </summary>
+            <param name="id">Primary of Question</param>
+            <returns>View of single question</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.Create">
+            <summary>
+            Method to create new questions view(note: We use the same view for create and edit)
+            </summary>
+            <returns>Returns empty object</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.Edit(System.Int32)">
+            <summary>
+            Method to edit existing questions, finds the question details
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.CreateEdit(UltimateSecuritySurvey.Models.Question)">
+            <summary>
+            Method to insert or update database for question
+            </summary>
+            <param name="question">question object</param>
+            <returns>View</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.Delete(System.Int32)">
+            <summary>
+            Method to delete a question
+            </summary>
+            <param name="id">question id</param>
+            <returns>View</returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.QuestionController.DeleteConfirmed(System.Int32)">
+            <summary>
+            Delete the entry from database
+            </summary>
+            <param name="id">question id</param>
+            <returns>Index View</returns>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Controllers.UserController">
+            <summary>
+            Controller to display and manage users
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.Index">
+            <summary>
+            Lists useraccounts on the index page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.Details(System.Int32)">
+            <summary>
+            Finds useraccount with the id from the database for the details page
+            </summary>
+            <param name="id">Primary id for User</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.Create">
+            <summary>
+            Method to go to the Create new view
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.Edit(System.Int32)">
+            <summary>
+            Method to go to the edit view, also gets the id from the db
+            </summary>
+            <param name="useraccount">UserAccount class object</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.CreateEdit(UltimateSecuritySurvey.Models.UserAccount)">
+            <summary>
+            Method to edit the user and save the changes to the db
+            </summary>
+            <param name="useraccount">useraccount class object from the textboxes</param>
+            <returns></returns>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            This is the method to go the delete view, shows the details of the user he wants to delete
+            </summary>
+            <param name="useraccount"></param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.DeleteConfirmed(System.Int32)">
+            <summary>
+            This method deletes the user. Checks if the user has childFK's in other tables. If it has it cannot be deleted.
+            </summary>
+            <param name="useraccount">Primary id of useraccount</param>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Controllers.UserController.Dispose(System.Boolean)">
+            <summary>
+            Releases all the used memory.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:UltimateSecuritySurvey.Models.FrontPageModel">
+            <summary>
+            This is our front page model for the question list and the category list
+            </summary>
+        </member>
+        <member name="M:UltimateSecuritySurvey.Models.FrontPageModel.#ctor(System.Collections.Generic.List{UltimateSecuritySurvey.Models.GenericSurvey},System.Collections.Generic.List{UltimateSecuritySurvey.Models.Customer},System.Collections.Generic.List{UltimateSecuritySurvey.Models.UserAccount})">
+            <summary>
+            The constructor for FrontPage Model
+            </summary>
+            <param name="surveys">List of surveys</param>
+            <param name="customers">List of customers</param>
+            <param name="users">List of users</param>
+        </member>
+        <member name="P:UltimateSecuritySurvey.Models.FrontPageModel.surveys">
+            <summary>
+            Get set for Generic Survey List
+            </summary>
+        </member>
+        <member name="P:UltimateSecuritySurvey.Models.FrontPageModel.customers">
+            <summary>
+            Get set for Customer List
+            </summary>
+        </member>
+        <member name="P:UltimateSecuritySurvey.Models.FrontPageModel.users">
+            <summary>
+            Get set for User List
+            </summary>
+        </member>
+    </members>
+</doc>
