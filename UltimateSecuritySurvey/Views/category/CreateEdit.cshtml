@@ -11,30 +11,28 @@
 
         @Html.HiddenFor(model => model.categoryId)
 
-        <div class="editor-label">
-            <h5>@Html.LabelFor(model => model.categoryName)</h5>
-        </div>
-        <div class="editor-field">
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.categoryName)
+
             @Html.EditorFor(model => model.categoryName)
             @Html.ValidationMessageFor(model => model.categoryName)
         </div>
+    </div>
+    <div class="row">
+        <div class="large-9 columns">
+            @Html.LabelFor(model => model.description)
 
-        <div class="editor-label">
-            <h5>@Html.LabelFor(model => model.description)</h5>
-        </div>
-        <div class="editor-field">
             @Html.EditorFor(model => model.description)
             @Html.ValidationMessageFor(model => model.description)
         </div>
-
-        <p>
-            <input type="submit" value="Save" class="small button success"/>
-        </p>
+    </div>
+    
+    <input type="submit" value="Save" class="small button success"/>
 }
 
-<div>
     @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

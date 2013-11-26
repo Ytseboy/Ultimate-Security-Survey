@@ -11,53 +11,53 @@
         @Html.HiddenFor(model => model.countermeasureId)
         @Html.HiddenFor(model => model.questionId)
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-9 columns">
             @Html.LabelFor(model => model.Question.questionTextMain)
+            <p>@Html.DisplayFor(model => model.Question.questionTextMain)</p>
         </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Question.questionTextMain)
-        </div>
-
-        <div class="editor-label">
+    </div>
+    
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.title)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.title)
             @Html.ValidationMessageFor(model => model.title)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-9 columns">
             @Html.LabelFor(model => model.description)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.description)
             @Html.ValidationMessageFor(model => model.description)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-4 columns">
             @Html.LabelFor(model => model.dateAndTime)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.dateAndTime)
             @Html.ValidationMessageFor(model => model.dateAndTime)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.motherCountermeasure, "GenericCountermeasure2")
-        </div>
-        <div class="editor-field">
+
             @Html.DropDownList("motherCountermeasure", String.Empty)
             @Html.ValidationMessageFor(model => model.motherCountermeasure)
         </div>
+    </div>
 
-        <p>
-            <input type="submit" value="Save" class="small button success"/>
-        </p>
+    <input type="submit" value="Save" class="small button success"/>
 }
 
-<div>
     @Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, new { @class="tiny button secondary"})
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -41,10 +41,10 @@ namespace UltimateSecuritySurvey.Models
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
 
-        [Required(ErrorMessage = "Date is mandatory!")]
+        [Required(ErrorMessage = "Date is mandatory! [dd.MM.yyyy]")]
         [DisplayName("Date")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public System.DateTime dateAndTime { get; set; }
 
         [DisplayName("Mother countermeasure")]

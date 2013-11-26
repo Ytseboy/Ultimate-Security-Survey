@@ -9,70 +9,75 @@
 
         @Html.HiddenFor(model => model.questionId)
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.categoryId, "QuestionCategory")
-        </div>
-        <div class="editor-field">
+
             @Html.DropDownList("categoryId", String.Empty)
             @Html.ValidationMessageFor(model => model.categoryId)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.questionTypeId, "QuestionType")
-        </div>
-        <div class="editor-field">
+
             @Html.DropDownList("questionTypeId", String.Empty)
             @Html.ValidationMessageFor(model => model.questionTypeId)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-9 columns">
             @Html.LabelFor(model => model.questionTextMain)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.questionTextMain)
             @Html.ValidationMessageFor(model => model.questionTextMain)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-9 columns">
             @Html.LabelFor(model => model.questionTextExtra)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.questionTextExtra)
             @Html.ValidationMessageFor(model => model.questionTextExtra)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-9 columns">
             @Html.LabelFor(model => model.baseLevel2RequirementText)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.baseLevel2RequirementText)
             @Html.ValidationMessageFor(model => model.baseLevel2RequirementText)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.additionalInfo)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.additionalInfo)
             @Html.ValidationMessageFor(model => model.additionalInfo)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.additionalNote)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.additionalNote)
             @Html.ValidationMessageFor(model => model.additionalNote)
         </div>
+    </div>
 
-        <p>
-            <input type="submit" value="Save" class="small button success"/>
-        </p>
+    <input type="submit" value="Save" class="small button success"/>
+
 }
 
-<div>
     @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -9,46 +9,47 @@
 
         @Html.HiddenFor( model => model.surveyId)
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-6 columns">
             @Html.LabelFor(model => model.title)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.title)
             @Html.ValidationMessageFor(model => model.title)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-9 columns">
             @Html.LabelFor(model => model.description)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.description)
             @Html.ValidationMessageFor(model => model.description)
         </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-2 columns">
             @Html.LabelFor(model => model.baseLevel)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.baseLevel)
             @Html.ValidationMessageFor(model => model.baseLevel)
         </div>
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.supervisorUserId, "UserAccount")
-        </div>
-        <div class="editor-field">
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.supervisorUserId, "Supervisor")
+
             @Html.DropDownList("supervisorUserId", String.Empty)
             @Html.ValidationMessageFor(model => model.supervisorUserId)
         </div>
+    </div>
 
-        <p>
-            <input type="submit" value="Save" class="small button success"/>
-        </p>
+    <input type="submit" value="Save" class="small button success"/>
 }
 
-<div>
     @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

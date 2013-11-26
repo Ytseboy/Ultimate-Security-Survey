@@ -12,55 +12,55 @@
 
         @Html.HiddenFor(model => model.customerId)
 
-        <div class="editor-label">
-           <h5> @Html.LabelFor(model => model.companyName) </h5>
-        </div>
-        <div class="editor-field">
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.companyName)
+
             @Html.EditorFor(model => model.companyName)
             @Html.ValidationMessageFor(model => model.companyName)
         </div>
+    </div>
 
-        <div class="editor-label">
-        <h5>    @Html.LabelFor(model => model.contactFirstName) </h5>
-        </div>
-        <div class="editor-field">
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.contactFirstName)
+
             @Html.EditorFor(model => model.contactFirstName)
             @Html.ValidationMessageFor(model => model.contactFirstName)
         </div>
+    </div>
 
-        <div class="editor-label">
-        <h5>    @Html.LabelFor(model => model.contactLastName)    </h5>
-        </div>
-        <div class="editor-field">
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.contactLastName)
+
             @Html.EditorFor(model => model.contactLastName)
             @Html.ValidationMessageFor(model => model.contactLastName)
         </div>
+    </div>
 
-        <div class="editor-label">
-       <h5>     @Html.LabelFor(model => model.email)   </h5>
-        </div>
-        <div class="editor-field">
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.email)
+
             @Html.EditorFor(model => model.email)
             @Html.ValidationMessageFor(model => model.email)
         </div>
-
-        <div class="editor-label">
-      <h5>      @Html.LabelFor(model => model.phone)    </h5>
-        </div>
-        <div class="editor-field">
+    </div>
+    
+    <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.phone)
+        
             @Html.EditorFor(model => model.phone)
             @Html.ValidationMessageFor(model => model.phone)
         </div>
+    </div>
 
-        <p>
-            <input type="submit" value="Save" class="small button success"/>
-        </p>
-
+    <input type="submit" value="Save" class="small button success"/>
 }
 
-<div>
     @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
