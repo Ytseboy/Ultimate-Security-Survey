@@ -22,7 +22,12 @@
 <body>
     <div class="row">
         <div class="large-12 columns">
-            <h1>Ultimate Security Survey</h1>
+            <div class="large-3 columns">
+			    <h1><img src="@Url.Content("~/Content/imgs/haaga-helia.png")" alt=""></h1>
+		    </div>
+            <div class="large-9 columns">
+                <h1>Ultimate Security Survey</h1>
+            </div>
         </div>
         <hr />
     </div>
@@ -31,14 +36,13 @@
         @Html.ValidationSummary(true, "Login failed")
             <div class="row">
                 <div class="small-6 small-centered columns">
-                    <fieldset>
-                        <legend>Login</legend>
+                    <div class="panel">
                         <label>User name or email: teacher || marry@mail.com</label>
                         @Html.TextBox("name", "teacher")
                         <label>Password: 000000</label>
                         @Html.Password("password", "000000")
                        <input type="submit" value="Log In" class="small button"/>
-                    </fieldset>
+                    </div>
                     <a href="#">Need help?</a>
                 </div>
             </div>
