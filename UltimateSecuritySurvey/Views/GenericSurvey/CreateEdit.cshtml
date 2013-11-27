@@ -44,6 +44,34 @@
             @Html.ValidationMessageFor(model => model.supervisorUserId)
         </div>
     </div>
+    
+    <div class="row">
+        <div class="large-12 columns scrollable">
+            <table>
+                <tr>
+                    @{
+                        int cnt = 0;
+                        List<UltimateSecuritySurvey.Models.GenericSurveyQuestion> questions = ViewBag.questions;
+
+                        foreach (var question in questions)
+                        {
+                            if (cnt++ % 3 == 0)
+                            {
+                                @:<tr></tr>
+                            }
+                            @:<td>
+                                <input type="checkbox"
+                                       name="selectedQuestions"
+                                       value="@question.QuestionId"
+                                       @(Html.Raw(question.Assigned ? "checked=\"checked\"" : "")) />
+                                @question.QuestionId  @question.QuestionText
+                           @:</td>
+                        }
+                  @:</tr>
+                    }
+            </table>
+        </div>
+    </div>
 
     <input type="submit" value="Save" class="small button success"/>
 }

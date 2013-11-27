@@ -54,8 +54,10 @@ namespace UltimateSecuritySurvey.Controllers
         /// <returns>CreateEdit</returns>
         public ActionResult Create()
         {
+            var genericsurvey = new GenericSurvey();
+            PopulateAssignedData(genericsurvey);
             ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName");
-            return View("CreateEdit", new GenericSurvey());
+            return View("CreateEdit", genericsurvey);
         }
 
         //
@@ -67,13 +69,28 @@ namespace UltimateSecuritySurvey.Controllers
         /// <returns>CreateEdit</returns>
         public ActionResult Edit(int id = 0)
         {
-            GenericSurvey genericsurvey = db.GenericSurveys.Find(id);
+            GenericSurvey genericsurvey = db.GenericSurveys.Include(i => i.Questions).Single(i => i.surveyId == id);
             if (genericsurvey == null)
             {
                 return HttpNotFound();
             }
+            PopulateAssignedData(genericsurvey);
             ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", genericsurvey.supervisorUserId);
             return View("CreateEdit", genericsurvey);
+        }
+
+        private void PopulateAssignedData(GenericSurvey survey)
+        {
+            var allquestions = db.Questions;
+            var surveyQuestions = new HashSet<int>(survey.Questions.Select(i => i.questionId));
+            var viewModel = allquestions.Select(question => new GenericSurveyQuestion
+            {
+                Assigned = surveyQuestions.Contains(question.questionId),
+                QuestionId = question.questionId,
+                QuestionText = question.questionTextMain
+            }).ToList();
+
+            ViewBag.questions = viewModel;
         }
 
         //
@@ -84,26 +101,67 @@ namespace UltimateSecuritySurvey.Controllers
         /// <param name="genericsurvey">object</param>
         /// <returns>Index view</returns>
         [HttpPost]
-        public ActionResult CreateEdit(GenericSurvey genericsurvey)
+        public ActionResult CreateEdit(GenericSurvey genericsurvey, string[] selectedQuestions)
         {
             if (ModelState.IsValid)
             {
+
                 //If No Id => Add
                 if (genericsurvey.surveyId <= 0)
                 {
+                    UpdateSurveyQuestion(selectedQuestions, genericsurvey);
                     db.GenericSurveys.Add(genericsurvey);
                 }
                 //If IS Id => Update
                 else
                 {
-                    db.Entry(genericsurvey).State = EntityState.Modified;
+                    var surveyToUpdate = db.GenericSurveys
+                        .Include(i => i.Questions)
+                        .Where(i => i.surveyId == genericsurvey.surveyId)
+                        .Single();
+
+                    UpdateSurveyQuestion(selectedQuestions, surveyToUpdate);
+
+                    db.Entry(surveyToUpdate).State = EntityState.Modified;
+
+                    PopulateAssignedData(surveyToUpdate);
                 }
-                
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", genericsurvey.supervisorUserId);
+            
             return View(genericsurvey);
+        }
+
+        public void UpdateSurveyQuestion(string[] selectedQuestions, GenericSurvey surveyToUpdate)
+        {
+            if (selectedQuestions == null)
+            {
+                surveyToUpdate.Questions = new List<Question>();
+                return;
+            }
+
+            var selectedQuestionsHS = new HashSet<string>(selectedQuestions);
+            var surveyQuestions = new HashSet<int>(surveyToUpdate.Questions.Select(i => i.questionId));
+            foreach (var question in db.Questions)
+            {
+                if (selectedQuestionsHS.Contains(question.questionId.ToString()))
+                {
+                    if (!surveyQuestions.Contains(question.questionId))
+                    {
+                        surveyToUpdate.Questions.Add(question);
+                    }
+                }
+                else
+                {
+                    if (surveyQuestions.Contains(question.questionId))
+                    {
+                        surveyToUpdate.Questions.Remove(question);
+                    }
+                }
+            }
         }
 
         //
@@ -133,11 +191,16 @@ namespace UltimateSecuritySurvey.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            GenericSurvey genericsurvey = db.GenericSurveys.Find(id);
+            GenericSurvey genericsurvey = db.GenericSurveys
+                .Include(i => i.Questions)
+                .Where(i => i.surveyId == id)
+                .Single();
+
             bool childExist = db.CustomerSurveys.Any(x => x.surveyId == id);
 
             if (!childExist)
             {
+                genericsurvey.Questions = null;
                 db.GenericSurveys.Remove(genericsurvey);
                 db.SaveChanges();
             }

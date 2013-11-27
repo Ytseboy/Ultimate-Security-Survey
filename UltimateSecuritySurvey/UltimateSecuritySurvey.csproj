@@ -170,6 +170,7 @@
     <Compile Include="Models\GenericSurvey.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GenericSurveyQuestion.cs" />
     <Compile Include="Models\ObserverStatu.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
