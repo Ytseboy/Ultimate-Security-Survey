@@ -49,9 +49,15 @@
             @Html.DisplayFor(modelItem => item.Questions.Count)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.surveyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.surveyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.surveyId })
+            @Html.ActionLink(" ","Edit",new {id = item.surveyId}, 
+                    new{title="Edit", style = "background: url('" + Url.Content("~/Content/imgs/pencil.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
+
+            @Html.ActionLink(" ","Details",new {id = item.surveyId}, 
+                    new{title="Details", style = "background: url('" + Url.Content("~/Content/imgs/notepad.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
+
+            @Html.ActionLink(" ","Delete",new {id = item.surveyId}, 
+                    new{title="Delete", style = "background: url('" + Url.Content("~/Content/imgs/bin.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"}) 
+        
         </td>
     </tr>
 }
