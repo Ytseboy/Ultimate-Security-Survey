@@ -117,7 +117,7 @@ namespace UltimateSecuritySurvey.Controllers
         public ActionResult DeleteConfirmed(int id = 0, int number = 0)
         {
             AnswerOption answeroption = db.AnswerOptions.Find(id, number);
-            bool hasCustomerAnswer = db.CustomerAnswers.Any(x => x.answerOptionQuestionId == id
+            bool hasCustomerAnswer = db.CustomerAnswers.Any(x => x.questionId == id
                                                         && x.answerOptionNumber == number);
 
             if (!hasCustomerAnswer)

@@ -11,23 +11,36 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class CustomerAnswer
     {
         public int surveyId { get; set; }
-        public int customerId { get; set; }
-        public System.DateTime startDate { get; set; }
         public int questionId { get; set; }
-        public int answerStatusValue { get; set; }
-        public Nullable<int> answerOptionQuestionId { get; set; }
         public Nullable<int> answerOptionNumber { get; set; }
+
+        [Required(ErrorMessage = "Answer text is mandatory!")]
+        [DisplayName("Answer text")]
+        [StringLength(500, ErrorMessage = "Answer text value cannot exceed 500 characters.")]
+        [DataType(DataType.MultilineText)]
         public string answerText { get; set; }
-        public int observerStatusValue { get; set; }
+
+        public Nullable<int> answerStatusValue { get; set; }
+        public Nullable<int> observerStatusValue { get; set; }
         public Nullable<int> countermeasureId1 { get; set; }
         public Nullable<int> countermeasureId2 { get; set; }
         public Nullable<int> countermeasureId3 { get; set; }
+
+        [DisplayName("Observer comment")]
+        [StringLength(1000, ErrorMessage = "Observer Comment value cannot exceed 1000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string observerComment { get; set; }
         public Nullable<System.DateTime> observerCommentDateAndTime { get; set; }
+
+        [DisplayName("Supervisor comment")]
+        [StringLength(1000, ErrorMessage = "Supervisor Comment value cannot exceed 1000 characters.")]
+        [DataType(DataType.MultilineText)]
         public string supervisorComment { get; set; }
         public Nullable<System.DateTime> supervisorCommentDateAndTime { get; set; }
     

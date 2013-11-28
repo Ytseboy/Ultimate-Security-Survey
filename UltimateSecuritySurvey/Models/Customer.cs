@@ -14,7 +14,6 @@ namespace UltimateSecuritySurvey.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     
-    
     public partial class Customer
     {
         public Customer()
@@ -45,8 +44,8 @@ namespace UltimateSecuritySurvey.Models
         [StringLength(100, ErrorMessage = "Email cannot exceed 100 characters.")]
         public string email { get; set; }
 
-      
         [DisplayName("Customer Phone Number")]
+        [DataType(DataType.PhoneNumber)]
         [StringLength(100, ErrorMessage = "Phone number value cannot exceed 100 characters.")]
         public string phone { get; set; }
     

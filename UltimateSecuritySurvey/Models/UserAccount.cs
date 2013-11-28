@@ -26,8 +26,8 @@ namespace UltimateSecuritySurvey.Models
         public int userId { get; set; }
 
         [DisplayName("First Name")]
-        [Required(ErrorMessage="First name is required.")]
-        [StringLength(100, ErrorMessage="Maximum length of 100 characters.")]
+        [Required(ErrorMessage = "First name is required.")]
+        [StringLength(100, ErrorMessage = "Maximum length of 100 characters.")]
         public string firstName { get; set; }
 
         [DisplayName("Last Name")]

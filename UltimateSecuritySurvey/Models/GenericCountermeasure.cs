@@ -25,9 +25,6 @@ namespace UltimateSecuritySurvey.Models
         }
     
         public int countermeasureId { get; set; }
-
-        [Required(ErrorMessage = "Question id is mandatory!")]
-        [DisplayName("Question id")]
         public int questionId { get; set; }
 
         [Required(ErrorMessage = "Title is mandatory!")]
@@ -37,11 +34,11 @@ namespace UltimateSecuritySurvey.Models
 
         [Required(ErrorMessage = "Description is mandatory!")]
         [DisplayName("Description")]
-        [StringLength(8000, ErrorMessage = "Title value cannot exceed 8000 characters.")]
+        [StringLength(1000, ErrorMessage = "Title value cannot exceed 1000 characters.")]
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
 
-        [Required(ErrorMessage = "Date is mandatory! [dd.MM.yyyy]")]
+        [Required(ErrorMessage = "Date is mandatory!")]
         [DisplayName("Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]

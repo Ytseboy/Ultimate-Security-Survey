@@ -21,7 +21,7 @@ namespace UltimateSecuritySurvey.Models
             this.CustomerSurveys = new HashSet<CustomerSurvey>();
             this.Questions = new HashSet<Question>();
         }
-        
+    
         public int surveyId { get; set; }
 
         [Required(ErrorMessage = "Title is mandatory!")]

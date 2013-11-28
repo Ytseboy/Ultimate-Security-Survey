@@ -11,6 +11,7 @@ namespace UltimateSecuritySurvey.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class AnswerStatu
     {
@@ -20,6 +21,8 @@ namespace UltimateSecuritySurvey.Models
         }
     
         public int statusValue { get; set; }
+
+        [DisplayName("Answer status")]
         public string description { get; set; }
     
         public virtual ICollection<CustomerAnswer> CustomerAnswers { get; set; }

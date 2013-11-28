@@ -1,0 +1,4 @@
+﻿        public int statusValue { get; set; }
+
+        [DisplayName("Answer status")]
+        public string description { get; set; }

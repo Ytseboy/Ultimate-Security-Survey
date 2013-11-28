@@ -20,8 +20,7 @@ namespace UltimateSecuritySurvey.Models
         {
             this.Questions = new HashSet<Question>();
         }
-
-        [DisplayName("Category Id")]
+    
         public int categoryId { get; set; }
 
         [Required(ErrorMessage = "Category name is mandatory!")]

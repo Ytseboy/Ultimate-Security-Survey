@@ -23,7 +23,7 @@ namespace UltimateSecuritySurvey.Models
             this.GenericCountermeasures = new HashSet<GenericCountermeasure>();
             this.GenericSurveys = new HashSet<GenericSurvey>();
         }
-        
+    
         public int questionId { get; set; }
 
         [DisplayName("Category Id")]
@@ -35,11 +35,10 @@ namespace UltimateSecuritySurvey.Models
         public int questionTypeId { get; set; }
 
         [DisplayName("Question Main")]
-        [Required(ErrorMessage="Question Main is required!")]
-        [StringLength(8000, ErrorMessage="Text maximum length is 8000 characters.")]
+        [Required(ErrorMessage = "Question Main is required!")]
+        [StringLength(8000, ErrorMessage = "Text maximum length is 8000 characters.")]
         [DataType(DataType.MultilineText)]
         public string questionTextMain { get; set; }
-
 
         [DisplayName("Question Extra")]
         [StringLength(1000, ErrorMessage = "Text maximum length is 1000 characters.")]

@@ -130,42 +130,36 @@
         <EntityType Name="CustomerAnswer">
           <Key>
             <PropertyRef Name="surveyId" />
-            <PropertyRef Name="customerId" />
-            <PropertyRef Name="startDate" />
             <PropertyRef Name="questionId" />
           </Key>
           <Property Name="surveyId" Type="int" Nullable="false" />
-          <Property Name="customerId" Type="int" Nullable="false" />
-          <Property Name="startDate" Type="date" Nullable="false" />
           <Property Name="questionId" Type="int" Nullable="false" />
-          <Property Name="answerStatusValue" Type="int" Nullable="false" />
-          <Property Name="answerOptionQuestionId" Type="int" />
           <Property Name="answerOptionNumber" Type="int" />
-          <Property Name="answerText" Type="varchar(max)" Nullable="false" />
-          <Property Name="observerStatusValue" Type="int" Nullable="false" />
+          <Property Name="answerText" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="answerStatusValue" Type="int" />
+          <Property Name="observerStatusValue" Type="int" />
           <Property Name="countermeasureId1" Type="int" />
           <Property Name="countermeasureId2" Type="int" />
           <Property Name="countermeasureId3" Type="int" />
-          <Property Name="observerComment" Type="varchar(max)" />
+          <Property Name="observerComment" Type="varchar" MaxLength="1000" />
           <Property Name="observerCommentDateAndTime" Type="datetime" />
-          <Property Name="supervisorComment" Type="varchar(max)" />
+          <Property Name="supervisorComment" Type="varchar" MaxLength="1000" />
           <Property Name="supervisorCommentDateAndTime" Type="datetime" />
         </EntityType>
         <EntityType Name="CustomerSurvey">
           <Key>
             <PropertyRef Name="surveyId" />
-            <PropertyRef Name="customerId" />
-            <PropertyRef Name="startDate" />
           </Key>
-          <Property Name="surveyId" Type="int" Nullable="false" />
-          <Property Name="customerId" Type="int" Nullable="false" />
-          <Property Name="startDate" Type="date" Nullable="false" />
-          <Property Name="startComment" Type="varchar(max)" Nullable="false" />
+          <Property Name="surveyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="customerSurveyTitle" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="baseSurveyId" Type="int" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="startComment" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="observerUserId" Type="int" Nullable="false" />
           <Property Name="supervisorUserId" Type="int" Nullable="false" />
-          <Property Name="endDate" Type="date" />
-          <Property Name="endComment" Type="varchar(max)" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="endComment" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="GenericCountermeasure">
           <Key>
@@ -174,7 +168,7 @@
           <Property Name="countermeasureId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="questionId" Type="int" Nullable="false" />
           <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="dateAndTime" Type="datetime" Nullable="false" />
           <Property Name="motherCountermeasure" Type="int" />
         </EntityType>
@@ -266,13 +260,13 @@
               <PropertyRef Name="answerNumber" />
             </Principal>
             <Dependent Role="CustomerAnswer">
-              <PropertyRef Name="answerOptionQuestionId" />
+              <PropertyRef Name="questionId" />
               <PropertyRef Name="answerOptionNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerAnswer_ToAnswerStatus">
-          <End Role="AnswerStatus" Type="SecuritySurveyModel.Store.AnswerStatus" Multiplicity="1" />
+          <End Role="AnswerStatus" Type="SecuritySurveyModel.Store.AnswerStatus" Multiplicity="0..1" />
           <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnswerStatus">
@@ -289,13 +283,9 @@
           <ReferentialConstraint>
             <Principal Role="CustomerSurvey">
               <PropertyRef Name="surveyId" />
-              <PropertyRef Name="customerId" />
-              <PropertyRef Name="startDate" />
             </Principal>
             <Dependent Role="CustomerAnswer">
               <PropertyRef Name="surveyId" />
-              <PropertyRef Name="customerId" />
-              <PropertyRef Name="startDate" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,7 +326,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerAnswer_ToObserverStatus">
-          <End Role="ObserverStatus" Type="SecuritySurveyModel.Store.ObserverStatus" Multiplicity="1" />
+          <End Role="ObserverStatus" Type="SecuritySurveyModel.Store.ObserverStatus" Multiplicity="0..1" />
           <End Role="CustomerAnswer" Type="SecuritySurveyModel.Store.CustomerAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ObserverStatus">
@@ -379,7 +369,7 @@
               <PropertyRef Name="surveyId" />
             </Principal>
             <Dependent Role="CustomerSurvey">
-              <PropertyRef Name="surveyId" />
+              <PropertyRef Name="baseSurveyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -630,25 +620,20 @@
         <EntityType Name="CustomerAnswer">
           <Key>
             <PropertyRef Name="surveyId" />
-            <PropertyRef Name="customerId" />
-            <PropertyRef Name="startDate" />
             <PropertyRef Name="questionId" />
           </Key>
           <Property Name="surveyId" Type="Int32" Nullable="false" />
-          <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="questionId" Type="Int32" Nullable="false" />
-          <Property Name="answerStatusValue" Type="Int32" Nullable="false" />
-          <Property Name="answerOptionQuestionId" Type="Int32" />
           <Property Name="answerOptionNumber" Type="Int32" />
-          <Property Name="answerText" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="observerStatusValue" Type="Int32" Nullable="false" />
+          <Property Name="answerText" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="answerStatusValue" Type="Int32" />
+          <Property Name="observerStatusValue" Type="Int32" />
           <Property Name="countermeasureId1" Type="Int32" />
           <Property Name="countermeasureId2" Type="Int32" />
           <Property Name="countermeasureId3" Type="Int32" />
-          <Property Name="observerComment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="observerComment" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="observerCommentDateAndTime" Type="DateTime" Precision="3" />
-          <Property Name="supervisorComment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="supervisorComment" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="supervisorCommentDateAndTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AnswerOption" Relationship="SecuritySurveyModel.FK_CustomerAnswer_ToAnswerOption" FromRole="CustomerAnswer" ToRole="AnswerOption" />
           <NavigationProperty Name="AnswerStatu" Relationship="SecuritySurveyModel.FK_CustomerAnswer_ToAnswerStatus" FromRole="CustomerAnswer" ToRole="AnswerStatus" />
@@ -662,18 +647,17 @@
         <EntityType Name="CustomerSurvey">
           <Key>
             <PropertyRef Name="surveyId" />
-            <PropertyRef Name="customerId" />
-            <PropertyRef Name="startDate" />
           </Key>
-          <Property Name="surveyId" Type="Int32" Nullable="false" />
-          <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="startComment" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="surveyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customerSurveyTitle" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="baseSurveyId" Type="Int32" Nullable="false" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="startComment" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="observerUserId" Type="Int32" Nullable="false" />
           <Property Name="supervisorUserId" Type="Int32" Nullable="false" />
-          <Property Name="endDate" Type="DateTime" Precision="0" />
-          <Property Name="endComment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="endComment" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Customer" Relationship="SecuritySurveyModel.FK_CustomerSurvey_ToCustomer" FromRole="CustomerSurvey" ToRole="Customer" />
           <NavigationProperty Name="CustomerAnswers" Relationship="SecuritySurveyModel.FK_CustomerAnswer_ToCustomerSurvey" FromRole="CustomerSurvey" ToRole="CustomerAnswer" />
           <NavigationProperty Name="GenericSurvey" Relationship="SecuritySurveyModel.FK_CustomerSurvey_ToGenericSurvey" FromRole="CustomerSurvey" ToRole="GenericSurvey" />
@@ -687,7 +671,7 @@
           <Property Name="countermeasureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="questionId" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="dateAndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="motherCountermeasure" Type="Int32" />
           <NavigationProperty Name="CustomerAnswers" Relationship="SecuritySurveyModel.FK_CustomerAnswer_ToGenericCountermeasure_1" FromRole="GenericCountermeasure" ToRole="CustomerAnswer" />
@@ -792,13 +776,13 @@
               <PropertyRef Name="answerNumber" />
             </Principal>
             <Dependent Role="CustomerAnswer">
-              <PropertyRef Name="answerOptionQuestionId" />
+              <PropertyRef Name="questionId" />
               <PropertyRef Name="answerOptionNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerAnswer_ToAnswerStatus">
-          <End Role="AnswerStatus" Type="SecuritySurveyModel.AnswerStatu" Multiplicity="1" />
+          <End Role="AnswerStatus" Type="SecuritySurveyModel.AnswerStatu" Multiplicity="0..1" />
           <End Role="CustomerAnswer" Type="SecuritySurveyModel.CustomerAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnswerStatus">
@@ -827,13 +811,9 @@
           <ReferentialConstraint>
             <Principal Role="CustomerSurvey">
               <PropertyRef Name="surveyId" />
-              <PropertyRef Name="customerId" />
-              <PropertyRef Name="startDate" />
             </Principal>
             <Dependent Role="CustomerAnswer">
               <PropertyRef Name="surveyId" />
-              <PropertyRef Name="customerId" />
-              <PropertyRef Name="startDate" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -874,7 +854,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerAnswer_ToObserverStatus">
-          <End Role="ObserverStatus" Type="SecuritySurveyModel.ObserverStatu" Multiplicity="1" />
+          <End Role="ObserverStatus" Type="SecuritySurveyModel.ObserverStatu" Multiplicity="0..1" />
           <End Role="CustomerAnswer" Type="SecuritySurveyModel.CustomerAnswer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ObserverStatus">
@@ -905,7 +885,7 @@
               <PropertyRef Name="surveyId" />
             </Principal>
             <Dependent Role="CustomerSurvey">
-              <PropertyRef Name="surveyId" />
+              <PropertyRef Name="baseSurveyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1036,13 +1016,10 @@
             <EntityTypeMapping TypeName="SecuritySurveyModel.CustomerAnswer">
               <MappingFragment StoreEntitySet="CustomerAnswer">
                 <ScalarProperty Name="surveyId" ColumnName="surveyId" />
-                <ScalarProperty Name="customerId" ColumnName="customerId" />
-                <ScalarProperty Name="startDate" ColumnName="startDate" />
                 <ScalarProperty Name="questionId" ColumnName="questionId" />
-                <ScalarProperty Name="answerStatusValue" ColumnName="answerStatusValue" />
-                <ScalarProperty Name="answerOptionQuestionId" ColumnName="answerOptionQuestionId" />
                 <ScalarProperty Name="answerOptionNumber" ColumnName="answerOptionNumber" />
                 <ScalarProperty Name="answerText" ColumnName="answerText" />
+                <ScalarProperty Name="answerStatusValue" ColumnName="answerStatusValue" />
                 <ScalarProperty Name="observerStatusValue" ColumnName="observerStatusValue" />
                 <ScalarProperty Name="countermeasureId1" ColumnName="countermeasureId1" />
                 <ScalarProperty Name="countermeasureId2" ColumnName="countermeasureId2" />
@@ -1058,10 +1035,11 @@
             <EntityTypeMapping TypeName="SecuritySurveyModel.CustomerSurvey">
               <MappingFragment StoreEntitySet="CustomerSurvey">
                 <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+                <ScalarProperty Name="customerSurveyTitle" ColumnName="customerSurveyTitle" />
+                <ScalarProperty Name="baseSurveyId" ColumnName="baseSurveyId" />
                 <ScalarProperty Name="customerId" ColumnName="customerId" />
                 <ScalarProperty Name="startDate" ColumnName="startDate" />
                 <ScalarProperty Name="startComment" ColumnName="startComment" />
-                <ScalarProperty Name="customerSurveyTitle" ColumnName="customerSurveyTitle" />
                 <ScalarProperty Name="observerUserId" ColumnName="observerUserId" />
                 <ScalarProperty Name="supervisorUserId" ColumnName="supervisorUserId" />
                 <ScalarProperty Name="endDate" ColumnName="endDate" />

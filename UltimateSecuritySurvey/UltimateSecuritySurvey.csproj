@@ -139,7 +139,6 @@
     <Compile Include="Controllers\AnswerOptionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\CustomerSurveyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GenericCountermeasureController.cs" />
     <Compile Include="Controllers\GenericSurveyController.cs" />
@@ -273,7 +272,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Docs\annotations\AnswerOption.txt" />
+    <Content Include="Docs\annotations\AnswerStatus.txt" />
     <Content Include="Docs\annotations\Customer.txt" />
+    <Content Include="Docs\annotations\CustomerAnswer.txt" />
     <Content Include="Docs\annotations\GenericCounterMeasure.txt" />
     <Content Include="Docs\annotations\GenericSurvey.txt" />
     <Content Include="Docs\annotations\Question.txt" />
@@ -377,18 +378,14 @@
     <Content Include="Views\GenericCountermeasure\CreateEdit.cshtml" />
     <Content Include="Views\User\CreateEdit.cshtml" />
     <Content Include="Views\Customer\CreateEdit.cshtml" />
-    <Content Include="Views\GenericSurvey\Index.cshtml" />
-    <Content Include="Views\GenericSurvey\Details.cshtml" />
-    <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
-    <Content Include="Views\GenericSurvey\Delete.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\SurveyBox.cshtml" />
     <Content Include="Views\Home\CustomerBox.cshtml" />
     <Content Include="Views\Home\UserBox.cshtml" />
-    <Content Include="Views\CustomerSurvey\Index.cshtml" />
-    <Content Include="Views\CustomerSurvey\Details.cshtml" />
-    <Content Include="Views\CustomerSurvey\CreateEdit.cshtml" />
-    <Content Include="Views\CustomerSurvey\Delete.cshtml" />
+    <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
+    <Content Include="Views\GenericSurvey\Delete.cshtml" />
+    <Content Include="Views\GenericSurvey\Details.cshtml" />
+    <Content Include="Views\GenericSurvey\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

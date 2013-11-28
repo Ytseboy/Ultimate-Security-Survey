@@ -21,14 +21,20 @@ namespace UltimateSecuritySurvey.Models
             this.CustomerAnswers = new HashSet<CustomerAnswer>();
         }
 
+        public int surveyId { get; set; }
+
+        [Required(ErrorMessage = "Customer Survey Title is mandatory!")]
+        [DisplayName("Customer Survey Title")]
+        [StringLength(100, ErrorMessage = "Customer Survey Title value cannot exceed 100 characters.")]
+        public string customerSurveyTitle { get; set; }
+
         [Required(ErrorMessage = "Base Generic Survey is mandatory!")]
         [DisplayName("Base Generic Survey")]
-        public int surveyId { get; set; }
+        public int baseSurveyId { get; set; }
 
         [Required(ErrorMessage = "Customer Company is mandatory!")]
         [DisplayName("Customer Company")]
         public int customerId { get; set; }
-
 
         [Required(ErrorMessage = "Start date is mandatory!")]
         [DisplayName("Start Date")]
@@ -38,14 +44,9 @@ namespace UltimateSecuritySurvey.Models
 
         [Required(ErrorMessage = "Start Comment is mandatory!")]
         [DisplayName("Start Comment")]
-        [StringLength(8000, ErrorMessage = "Start Comment value cannot exceed 8000 characters.")]
+        [StringLength(1000, ErrorMessage = "Start Comment value cannot exceed 1000 characters.")]
         [DataType(DataType.MultilineText)]
         public string startComment { get; set; }
-
-        [Required(ErrorMessage = "Customer Survey Title is mandatory!")]
-        [DisplayName("Customer Survey Title")]
-        [StringLength(100, ErrorMessage = "Customer Survey Title value cannot exceed 100 characters.")]
-        public string customerSurveyTitle { get; set; }
 
         [Required(ErrorMessage = "Observer User is mandatory!")]
         [DisplayName("Observer User")]

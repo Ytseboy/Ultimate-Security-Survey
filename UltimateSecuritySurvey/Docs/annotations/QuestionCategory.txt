@@ -1,6 +1,4 @@
-﻿[DisplayName("Category Id")]
-
-categoryId 
+﻿categoryId 
 
 [Required(ErrorMessage="Category name is mandatory!")]
 [DisplayName("Category Name")]
