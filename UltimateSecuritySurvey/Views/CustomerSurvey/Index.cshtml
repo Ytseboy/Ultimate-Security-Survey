@@ -1,0 +1,82 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerSurvey>
+
+@{
+    ViewBag.Title = "Customer Surveys";
+}
+
+<h2>Generic Surveys</h2>
+ <h3>@ViewBag.DeleteError</h3>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
+</p>
+<table>
+    <tr>
+        <th>
+              @Html.DisplayNameFor(model => model.customerSurveyTitle)
+           
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.companyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+       
+        <th>
+             Base Generic Survey 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAccount.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAccount1.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+             @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+     
+        <td>
+             @Html.DisplayFor(modelItem => item.GenericSurvey.title)
+          
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount1.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        
+        <td>
+           
+            @Html.ActionLink(" ", "Edit", new { id = item.surveyId, customer = item.customerId, startDate = item.startDate },
+            new { title = "Edit", style = "background: url('" + Url.Content("~/Content/imgs/pencil.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;" })
+
+            @Html.ActionLink(" ", "Details", new {id = item.surveyId, customer = item.customerId, startDate = item.startDate   },
+             new{title="Details", style = "background: url('" + Url.Content("~/Content/imgs/notepad.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
+
+            @Html.ActionLink(" ", "Delete", new {id = item.surveyId, customer = item.customerId, startDate = item.startDate   },
+            new{title="Delete", style = "background: url('" + Url.Content("~/Content/imgs/bin.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"}) 
+
+        </td>
+    </tr>
+}
+
+</table>

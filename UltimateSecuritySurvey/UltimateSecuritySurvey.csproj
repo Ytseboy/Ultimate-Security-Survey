@@ -139,6 +139,7 @@
     <Compile Include="Controllers\AnswerOptionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomerSurveyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GenericCountermeasureController.cs" />
     <Compile Include="Controllers\GenericSurveyController.cs" />
@@ -278,6 +279,7 @@
     <Content Include="Docs\annotations\Question.txt" />
     <Content Include="Docs\annotations\QuestionCategory.txt" />
     <Content Include="Docs\annotations\QuestionType.txt" />
+    <Content Include="Docs\annotations\CustomerSurvey.txt" />
     <Content Include="Docs\annotations\UserAnnotations.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_01_Create.txt" />
     <Content Include="Docs\basicStoredProcedures\sp_02_Drop.txt" />
@@ -383,6 +385,10 @@
     <Content Include="Views\Home\SurveyBox.cshtml" />
     <Content Include="Views\Home\CustomerBox.cshtml" />
     <Content Include="Views\Home\UserBox.cshtml" />
+    <Content Include="Views\CustomerSurvey\Index.cshtml" />
+    <Content Include="Views\CustomerSurvey\Details.cshtml" />
+    <Content Include="Views\CustomerSurvey\CreateEdit.cshtml" />
+    <Content Include="Views\CustomerSurvey\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

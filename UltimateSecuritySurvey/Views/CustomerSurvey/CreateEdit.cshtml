@@ -1,0 +1,106 @@
+﻿@model UltimateSecuritySurvey.Models.CustomerSurvey
+
+@{
+    ViewBag.Title = "Customer Survey Editor";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("CreateEdit", "CustomerSurvey")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+  
+
+        <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.surveyId, "GenericSurvey")
+            @Html.DropDownList("surveyId", String.Empty)
+            @Html.ValidationMessageFor(model => model.surveyId)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.customerId, "Customer")
+
+            @Html.DropDownList("customerId", String.Empty)
+            @Html.ValidationMessageFor(model => model.customerId)
+        </div>
+            </div>
+
+        <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.startDate)
+        
+            @Html.EditorFor(model => model.startDate)
+            @Html.ValidationMessageFor(model => model.startDate)
+        </div>
+            </div>
+
+       <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.startComment)
+       
+            @Html.EditorFor(model => model.startComment)
+            @Html.ValidationMessageFor(model => model.startComment)
+        </div>
+           </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.customerSurveyTitle)
+       
+            @Html.EditorFor(model => model.customerSurveyTitle)
+            @Html.ValidationMessageFor(model => model.customerSurveyTitle)
+        </div>
+          </div>
+
+       <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.observerUserId, "UserAccount")
+       
+            @Html.DropDownList("observerUserId", String.Empty)
+            @Html.ValidationMessageFor(model => model.observerUserId)
+        </div>
+           </div>
+
+       <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.supervisorUserId, "UserAccount1")
+       
+            @Html.DropDownList("supervisorUserId", String.Empty)
+            @Html.ValidationMessageFor(model => model.supervisorUserId)
+        </div>
+           </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.endDate)
+        
+            @Html.EditorFor(model => model.endDate)
+            @Html.ValidationMessageFor(model => model.endDate)
+        </div>
+          </div>
+
+     <div class="row">
+        <div class="large-6 columns">
+            @Html.LabelFor(model => model.endComment)
+        
+            @Html.EditorFor(model => model.endComment)
+            @Html.ValidationMessageFor(model => model.endComment)
+        </div>
+         </div>
+
+        <p>
+            <input type="submit" value="Save" class="small button success"/>
+        </p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index" ,null, new { @class="tiny button secondary"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
