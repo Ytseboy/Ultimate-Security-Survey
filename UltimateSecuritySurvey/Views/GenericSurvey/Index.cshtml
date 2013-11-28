@@ -9,6 +9,7 @@
 
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
+    @Html.ActionLink("Customer surveys", "Index", "CustomerSurvey", null, new { @class="tiny button"})
 </p>
 
 <table>
@@ -49,15 +50,11 @@
             @Html.DisplayFor(modelItem => item.Questions.Count)
         </td>
         <td>
-            @Html.ActionLink(" ","Edit",new {id = item.surveyId}, 
-                    new{title="Edit", style = "background: url('" + Url.Content("~/Content/imgs/pencil.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
-
-            @Html.ActionLink(" ","Details",new {id = item.surveyId}, 
-                    new{title="Details", style = "background: url('" + Url.Content("~/Content/imgs/notepad.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"})
-
-            @Html.ActionLink(" ","Delete",new {id = item.surveyId}, 
-                    new{title="Delete", style = "background: url('" + Url.Content("~/Content/imgs/bin.png") + "') no-repeat center right; display:inline-block; height:24px; width:28px;"}) 
-        
+            <div class="iconHolder">
+                @Html.ActionLink(" ","Edit",new {id = item.surveyId}, new{ title = "Edit", @class = "icon-edit" })
+                @Html.ActionLink(" ","Details",new {id = item.surveyId}, new{title="Details", @class = "icon-details" })
+                @Html.ActionLink(" ","Delete",new {id = item.surveyId}, new{title="Delete", @class = "icon-delete" }) 
+            </div>        
         </td>
     </tr>
 }

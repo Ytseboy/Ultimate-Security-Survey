@@ -66,7 +66,7 @@
 
     @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, new { @class="tiny button secondary"})
     
-    <div class="scrollable">
+    <div class=".scrollable-small">
         @Html.Partial("AnswerOptionList_Partial", Model.AnswerOptions)
     </div>
 </fieldset>
@@ -77,7 +77,7 @@
     
     @Html.ActionLink("Create New", "Create", "GenericCountermeasure", new { id = Model.questionId }, new { @class="tiny button secondary"})
 
-    <div class="scrollable">
+    <div class=".scrollable-small">
         @Html.Partial("GenericCountermeasureList_Partial", Model.GenericCountermeasures)
     </div>
 </fieldset>

@@ -23,8 +23,8 @@ namespace UltimateSecuritySurvey.Models
 
         public int surveyId { get; set; }
 
-        [Required(ErrorMessage = "Customer Survey Title is mandatory!")]
-        [DisplayName("Customer Survey Title")]
+        [Required(ErrorMessage = "Title is mandatory!")]
+        [DisplayName("Title")]
         [StringLength(100, ErrorMessage = "Customer Survey Title value cannot exceed 100 characters.")]
         public string customerSurveyTitle { get; set; }
 

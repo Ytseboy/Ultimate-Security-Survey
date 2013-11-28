@@ -1,0 +1,84 @@
+﻿@model UltimateSecuritySurvey.Models.CustomerSurvey
+
+@{
+    ViewBag.Title = "Delete survey";
+}
+
+<h2>Delete</h2>
+<h3>Are you sure you want to delete this?</h3>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.surveyId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.surveyId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.customerSurveyTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.customerSurveyTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GenericSurvey.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GenericSurvey.title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Customer.companyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Customer.companyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.startDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.startDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.startComment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.startComment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserAccount.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserAccount.firstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserAccount1.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserAccount1.firstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.endDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.endDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.endComment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.endComment)
+    </div>
+
+@using (Html.BeginForm()) {
+        <input type="submit" value="Delete" class="small button alert"/>
+        
+}
+    @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})

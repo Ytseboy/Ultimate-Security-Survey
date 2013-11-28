@@ -31,8 +31,43 @@
 
 /*BLOCKS
     -----------------------------------------*/
-.scrollable{
-    max-height: 150px; 
+.scrollable-small, .scrollable-medium, .scrollable-large{
     overflow-y: auto; 
     overflow-x: hidden;
+}
+
+.scrollable-small{
+    max-height: 200px; 
+
+}
+
+.scrollable-medium{
+    max-height: 500px; 
+}
+
+.scrollable-large{
+    max-height: 1200px;
+}
+
+/*ICONS AND IMAGES*/
+.iconHolder{
+    width: 100px;
+}
+
+.icon-edit, .icon-details, .icon-delete{
+    display:inline-block; 
+    height:24px; 
+    width:28px;
+}
+
+.icon-edit{
+    background: url('imgs/pencil.png') no-repeat center right; 
+}
+
+.icon-details{
+    background: url('imgs/notepad.png') no-repeat center right; 
+}
+
+.icon-delete{
+    background: url('imgs/bin.png') no-repeat center right; 
 }

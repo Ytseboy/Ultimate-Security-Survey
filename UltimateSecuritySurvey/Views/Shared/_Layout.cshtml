@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@if (!Request.IsAuthenticated)
+{
+    //Makes all the pages private
+    Response.Redirect("/Account/Login");
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -25,22 +31,16 @@
                         <li>@Html.ActionLink("Questions", "Index", "Question")</li>
                         <li>@Html.ActionLink("Users", "Index", "User")</li>
                         <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
-                        <li>@Html.ActionLink("Surveys", "Index", "GenericSurvey")</li>
+                        <li>@Html.ActionLink("Surveys", "Index", "CustomerSurvey")</li>
                         <li>@Html.ActionLink("About", "Index", "About")</li>
                         
                     </ul>
                     <ul class="right">
                         <li class="divider"></li>
                         <li class="has-dropdown">    
-                            @if (Request.IsAuthenticated)
-                            {
-                                <a href="#">@Html.Encode(User.Identity.Name)</a>
-                            }
-                            else
-                            {
-                                //Makes all the pages private
-                                Response.Redirect("/Account/Login");
-                            }
+                            
+                            <a href="#">@Html.Encode(User.Identity.Name)</a>
+                            
                             <ul class="dropdown right">
                                 <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
                             </ul>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerSurvey>
+
+@{
+    ViewBag.Title = "Customer Surveys";
+}
+
+<h2>Customer Surveys</h2>
+<h3> @ViewBag.DeleteError </h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
+    @Html.ActionLink("Generic surveys", "Index", "GenericSurvey", null, new { @class="tiny button"})
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.customerSurveyTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.companyName)
+        </th>
+        <th>
+            Base survey
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            Observer
+        </th>
+        <th>
+            Supervisor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenericSurvey.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount1.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            <div class="iconHolder">
+                @Html.ActionLink("Edit", "Edit", new { id = item.surveyId }, new{ title = "Edit", @class = "icon-edit" })
+                @Html.ActionLink("Details", "Details", new { id = item.surveyId }, new{title="Details", @class = "icon-details" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.surveyId }, new{title="Delete", @class = "icon-delete" })
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
