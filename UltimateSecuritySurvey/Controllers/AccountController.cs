@@ -39,10 +39,8 @@ namespace UltimateSecuritySurvey.Controllers
                 FormsAuthentication.SetAuthCookie(userAccount.userName, true);
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                ModelState.AddModelError("", "User Name OR password is incorrect");
-            }
+
+            ViewBag.Error = "User Name OR password is incorrect";
             return View(new { name = name, password = password});
         }
 

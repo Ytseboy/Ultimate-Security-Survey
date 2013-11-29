@@ -24,7 +24,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <returns>Index view</returns>
         public ActionResult Index()
         {
-            ViewBag.DeleteError = (TempData["Message"]) ?? String.Empty;
+            ViewBag.Error = TempData["Message"];
             var genericsurveys = db.GenericSurveys.Include(g => g.UserAccount);
             return View(genericsurveys.ToList());
         }
@@ -205,7 +205,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                TempData["Message"] = "Cannot delete, because this survey was used as a Customer survey";
+                TempData["Message"] = String.Format("Cannot delete '{0}' because this survey was used as a Customer survey",
+                                                        genericsurvey.title);
             }
 
             return RedirectToAction("Index");

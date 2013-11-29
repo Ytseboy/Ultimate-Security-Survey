@@ -4,8 +4,6 @@
     ViewBag.Title = "Customer survey editor";
 }
 
-<h4>@ViewBag.Message</h4>
-
 @using (Html.BeginForm("CreateEdit", "CustomerSurvey"))
 {
     @Html.ValidationSummary(true)

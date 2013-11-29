@@ -21,7 +21,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
+            ViewBag.Error = TempData["Message"];
             return View(db.Customers.ToList());
         }
 
@@ -58,6 +58,7 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
+
             return View("CreateEdit",customer);
         }
 
@@ -89,7 +90,7 @@ namespace UltimateSecuritySurvey.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Message = "Email must be unique!";
+            ViewBag.Warning = "Email must be unique!";
             return View(customer);
         }
 
@@ -127,7 +128,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                TempData["Message"] = "Cannot delete this Customer because related Customer Surveys exist!!";
+                TempData["Message"] = String.Format("Cannot delete '{0}' because related Customer Surveys exist!!",
+                                                    customer.companyName);
             }
 
             return RedirectToAction("Index");

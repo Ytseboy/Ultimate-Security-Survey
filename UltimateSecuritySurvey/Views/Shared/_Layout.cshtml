@@ -3,20 +3,18 @@
     //Makes all the pages private
     Response.Redirect("/Account/Login");
 }
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Content/imgs/favicon.ico")">
     <title>@ViewBag.Title</title>
 
-    @Styles.Render("~/Content/css/foundation.css")
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/foundation.css", 
+                   "~/Content/Site.css")
+
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="icon" 
-      type="image/png" 
-      href="../../Content/imgs/favicon.ico">
 </head>
 <body>
             <nav class="top-bar">
@@ -64,9 +62,25 @@
         <div class="row">
             <div class="large-12 columns">
                 <div class="large-9 columns">
-                     @RenderBody()
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div data-alert="" class="alert-box alert">
+                            @ViewBag.Error
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    }
+                    @if (ViewBag.Warning != null)
+                    {
+                        <div data-alert="" class="alert-box secondary">
+                            @ViewBag.Warning
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    }
+
+                    @RenderBody()
 				</div>
-             <div class="large-3 columns">
+                <div class="large-3 columns">
 					<h5>Sidebar</h5>
 					<ul class="side-nav">
 						<li><a href="#">Link 1</a></li>
@@ -75,7 +89,7 @@
 						<li><a href="#">Link 4</a></li>
 						<li><a href="#">Link 5</a></li>
 					</ul>
-				</div>
+			    </div>
             </div>
             <hr />
         </div>
@@ -95,12 +109,13 @@
         + '.js><\/script>');
     </script>
 
-  <script src="~/Scripts/jsF/foundation/foundation.js"></script>
-  <script src="~/Scripts/jsF/foundation/foundation.topbar.js"></script>
-  <!-- Other JS plugins can be included here -->
+    @Scripts.Render("~/Scripts/jsF/foundation/foundation.js", 
+                    "~/Scripts/jsF/foundation/foundation.topbar.js",
+                    "~/Scripts/jsF/foundation/foundation.alerts.js")
+    <!-- Other JS plugins can be included here -->
 
-  <script>
-      $(document).foundation();
-  </script>
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 </html>

@@ -128,7 +128,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                TempData["Message"] = "Cannot delete counter measure because it was used in Customer Answer";
+                TempData["Message"] = String.Format("Cannot delete counter measure '{0}' because it was used in Customer Answer",
+                                                            genericcountermeasure.title);
             }
 
             return RedirectToAction("Details", "Question", new { id = genericcountermeasure.questionId });

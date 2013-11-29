@@ -24,7 +24,7 @@ namespace UltimateSecuritySurvey.Controllers
         // GET: /Category/
         public ActionResult Index()
         {
-            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
+            ViewBag.Error = TempData["Message"];
             return View(db.QuestionCategories.ToList());
         }
 
@@ -98,7 +98,7 @@ namespace UltimateSecuritySurvey.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Message = "Name must be unique!";
+            ViewBag.Warning = "Name must be unique!";
             return View(questioncategory);
         }
 
@@ -136,7 +136,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                TempData["Message"] = "Cannot delete this Category because related questions exist!!";
+                TempData["Message"] = String.Format("Cannot delete '{0}' category because related questions exist!!",
+                                                        questioncategory.categoryName);
             }
 
             return RedirectToAction("Index");

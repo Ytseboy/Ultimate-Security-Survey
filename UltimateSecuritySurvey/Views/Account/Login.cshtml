@@ -14,8 +14,8 @@
 
     <meta name="viewport" content="width=device-width" />
     <title>Login - Ultimate Security Survey</title>
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/css/foundation.css")
+    @Styles.Render("~/Content/Site.css",
+                   "~/Content/css/foundation.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
@@ -33,9 +33,18 @@
     </div>
     
     @using (Html.BeginForm()) {
-        @Html.ValidationSummary(true, "Login failed")
+        @Html.ValidationSummary(true)
             <div class="row">
                 <div class="small-6 small-centered columns">
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div data-alert="" class="alert-box alert">
+                            @ViewBag.Error
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    }
+
                     <div class="panel">
                         <label>User name or email: teacher || marry@mail.com</label>
                         @Html.TextBox("name", "teacher")
@@ -47,16 +56,8 @@
                 </div>
             </div>
     }
-     @Scripts.Render("~/bundles/jquery")
-    <script>
-        $(window).resize(function() {
-        var wh = (($(window).height()-$('#center').height())/2)+'px';
-        var ww = (($(window).width()-$('#center').width())/2)+'px';
-        $('#center').css({
-            top: wh,
-            left: ww
-        });
-        }).resize();
-    </script>
+
+    @Scripts.Render("~/bundles/jquery",
+                    "~/Scripts/jsF/foundation/foundation.alerts.js")
 </body>
 </html>

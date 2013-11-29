@@ -127,7 +127,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                TempData["Message"] = "Cannot delete because the answer option was used as customer answer";
+                TempData["Message"] = String.Format("Cannot delete because the answer option '{0}' was used as customer answer",
+                                                        answeroption.answerText);
             }
 
             return RedirectToAction("Details", "Question", new { id = id});

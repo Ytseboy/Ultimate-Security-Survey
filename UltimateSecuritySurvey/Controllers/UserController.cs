@@ -22,7 +22,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
+            ViewBag.Error = TempData["Message"];
             return View(db.UserAccounts.ToList());
         }
 
@@ -88,7 +88,7 @@ namespace UltimateSecuritySurvey.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Message = "Email And User Name must be unique";
+            ViewBag.Warning = "Email And User Name must be unique";
             return View(useraccount);
         }
 
@@ -135,7 +135,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else 
             {
-                TempData["Message"] = "Cannot delete because the user is participating in a survey.";
+                TempData["Message"] = String.Format("Cannot delete '{0}' because the user is participating in a survey.",
+                                                        useraccount.userName);
             }
             return RedirectToAction("Index");
         }

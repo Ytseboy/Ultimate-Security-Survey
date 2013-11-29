@@ -23,7 +23,7 @@ namespace UltimateSecuritySurvey.Controllers
         // GET: /Question/
         public ActionResult Index()
         {
-            ViewBag.DeleteError = (TempData["Message"]) ?? string.Empty;
+            ViewBag.Error = TempData["Message"];
             var questions = db.Questions.Include(q => q.QuestionCategory).Include(q => q.QuestionType);
             return View(questions.ToList());
         }
@@ -42,7 +42,7 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DeleteError = (TempData["Message"])?? String.Empty;
+            ViewBag.Error = TempData["Message"];
             return View(question);
         }
 
@@ -154,8 +154,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                TempData["Message"] = string.Format("Cannot delete this Question because it is included in survey '{0}'!!", 
-                                        question.GenericSurveys.ToList()[0].title);
+                TempData["Message"] = String.Format("Cannot delete question '{0}' because it is included in survey!!", 
+                                                    question.questionTextMain);
             }
 
             return RedirectToAction("Index");
