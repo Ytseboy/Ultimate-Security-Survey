@@ -2,37 +2,44 @@
 
 @{
     ViewBag.Title = "Dashboard";
+    ViewBag.PageHeader = "Dashboard";
+    ViewBag.SidebarHeader = "Stats";
 }
 
-<div class="large-9 columns">
-<h2>Dashboard</h2>
+@Html.Partial("InfoBox")
 
-  @Html.Partial("InfoBox")
+@section Sidebar{
+    <ul class="no-bullet">
+        <li>Customer Surveys - @Model.customerSurveys.Count</li>
+        <li>Users - @Model.users.Count</li>
+        <li>Customers - @Model.customers.Count</li>    
+    </ul>  
+}
 
-</div>
-<hr />
+@section BottomSection{
+    <hr />
+    <div class="row">
+        <div class="large-12 columns">
+            <fieldset>
+                <legend>Surveys</legend>
+                @Html.Partial("SurveyBox", Model.genericSurveys)
+            </fieldset>
+        </div>
+    </div>
 
-<div class="large-9 columns">
-    <fieldset>
-        <legend>Surveys</legend>
-        @Html.Partial("SurveyBox", Model.surveys)
-    </fieldset>
-</div>
-
-<div class="row">
-    <div class="large-9 columns">
-        <div class="large-4 columns">
+    <div class="row">
+        <div class="large-5 columns">
             <fieldset>
                 <legend>Customers</legend>
                 @Html.Partial("CustomerBox", Model.customers)
             </fieldset>
         </div>
 
-        <div class="large-4 large-offset-1 columns">
+        <div class="large-5 large-offset-2 columns">
             <fieldset>
                 <legend>Users</legend>
                     @Html.Partial("UserBox", Model.users)
             </fieldset>
         </div>
     </div>
-</div>
+}

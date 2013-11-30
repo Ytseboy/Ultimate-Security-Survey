@@ -2,14 +2,14 @@
 
 @{
     ViewBag.Title = "Categories";
+    ViewBag.PageHeader = "Categories";
+    ViewBag.SidebarHeader = "Action";
 }
 
-<h2>Categories</h2>
-
-<p>
+@section Sidebar{
     @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
-</p>
-
+}
+    
 <table>
     <tr>
         <th>
@@ -40,6 +40,5 @@
         </td>
     </tr>
 }
-
 </table>
 

@@ -1,10 +1,8 @@
 ﻿
 @model IEnumerable<UltimateSecuritySurvey.Models.GenericSurvey>
 
-
 <table>
     <tr>
-
         <th>
             @Html.DisplayNameFor(model => model.title)
         </th>
@@ -32,11 +30,11 @@
             @Html.DisplayFor(modelItem => item.baseLevel)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+            @Html.DisplayFor(modelItem => item.UserAccount.firstName)
+            @Html.DisplayFor(modelItem => item.UserAccount.lastName)
         </td>
     </tr>
 }
-
 </table>
 
     @Html.ActionLink("Full List of Surveys", "Index", "GenericSurvey")

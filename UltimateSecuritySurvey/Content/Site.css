@@ -31,7 +31,7 @@
 
 /*BLOCKS
     -----------------------------------------*/
-.scrollable-small, .scrollable-medium, .scrollable-large{
+.scrollable-small, .scrollable-large{
     overflow-y: auto; 
     overflow-x: hidden;
 }

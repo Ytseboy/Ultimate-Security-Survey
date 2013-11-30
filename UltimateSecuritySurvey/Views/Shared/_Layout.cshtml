@@ -13,56 +13,58 @@
 
     @Styles.Render("~/Content/css/foundation.css", 
                    "~/Content/Site.css")
-
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-            <nav class="top-bar">
-                <ul class="title-area">
-					<li class="name"><h1>@Html.ActionLink("Ultimate Security Survey", "Index", "Home")</h1></li>
-					<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-				</ul>
-                <section class="top-bar-section">
-                    <ul>
-                        <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Categories", "Index", "Category")</li>
-                        <li>@Html.ActionLink("Questions", "Index", "Question")</li>
-                        <li>@Html.ActionLink("Users", "Index", "User")</li>
-                        <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
-                        <li>@Html.ActionLink("Surveys", "Index", "CustomerSurvey")</li>
-                        <li>@Html.ActionLink("About", "Index", "About")</li>
-                        
-                    </ul>
-                    <ul class="right">
-                        <li class="divider"></li>
-                        <li class="has-dropdown">    
+    <nav class="top-bar">
+        <ul class="title-area">
+			<li class="name"><h1>@Html.ActionLink("Ultimate Security Survey", "Index", "Home")</h1></li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
+        <section class="top-bar-section">
+            <ul>
+                <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                <li>@Html.ActionLink("Categories", "Index", "Category")</li>
+                <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                <li>@Html.ActionLink("Users", "Index", "User")</li>
+                <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
+                <li>@Html.ActionLink("Surveys", "Index", "CustomerSurvey")</li>
+                <li>@Html.ActionLink("About", "Index", "About")</li>                     
+            </ul>
+            <ul class="right">
+                <li class="divider"></li>
+                <li class="has-dropdown">    
                             
-                            <a href="#">@Html.Encode(User.Identity.Name)</a>
+                    <a href="#">@Html.Encode(User.Identity.Name)</a>
                             
-                            <ul class="dropdown right">
-                                <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
-                            </ul>
-                        </li>
+                    <ul class="dropdown right">
+                        <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
                     </ul>
-                </section>
-            </nav>
-        <header>
-            <div class="row">
-                <div class="large-12 columns">
-                    <div class="large-3 columns">
-						<h1><img src="@Url.Content("~/Content/imgs/haaga-helia.png")" alt=""></h1>
-				    </div>
-                    <div class="large-9 columns">
-                        <h2>Ultimate Security Survey<br /> <small>Have you tried turning it off and on again?</small></h2>
-                    </div>
-                </div>
-                <hr />
-            </div>
-        </header>
+                </li>
+            </ul>
+        </section>
+    </nav>
+    <header>
         <div class="row">
             <div class="large-12 columns">
+                <div class="large-3 columns">
+					<h1><img src="@Url.Content("~/Content/imgs/haaga-helia.png")" alt="HH logo"></h1>
+				</div>
                 <div class="large-9 columns">
+                    <h2>Ultimate Security Survey<br /> <small>Have you tried turning it off and on again?</small></h2>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </header>
+    <div class="row"><!--BodyRow-->
+        <div class="large-12 columns">
 
+            <h2>@ViewBag.PageHeader</h2>
+                
+            <div class="row"><!--Content+SidebarRow-->
+                <div class="large-9 columns">
+                    
                     @if (ViewBag.Error != null)
                     {
                         <div data-alert="" class="alert-box alert">
@@ -81,25 +83,38 @@
                     @RenderBody()
 				</div>
                 <div class="large-3 columns">
-					<h5>Sidebar</h5>
-					<ul class="side-nav">
+					<h5>@ViewBag.SidebarHeader</h5>
+
+                    <div class="scrollable-medium">
+                        @RenderSection("Sidebar", required: false)
+                    </div>
+
+					@*<ul class="side-nav">
 						<li><a href="#">Link 1</a></li>
 						<li><a href="#">Link 2</a></li>
 						<li><a href="#">Link 3</a></li>
-						<li><a href="#">Link 4</a></li>
-						<li><a href="#">Link 5</a></li>
-					</ul>
+					</ul>*@
+
 			    </div>
-            </div>
-            <hr />
-        </div>
-        <footer>
-			<div class="row">
-				<div class="large-12 columns">
-					<h5>&copy; 2013</h5>
-				</div>
+            </div><!--END Content+SidebarRow-->
+            <div class="row"><!--BottomSectionRow-->
+                <div class="large-12 columns">
+                    @RenderSection("BottomSection", required: false)
+                </div>           
+            </div><!--END BottomSectionRow-->           
+        </div> 
+        <hr />                           
+    </div><!--END BodyRow-->
+
+    
+
+    <footer>
+		<div class="row">
+			<div class="large-12 columns">
+				<h5>&copy; 2013</h5>
 			</div>
-		</footer>
+		</div>
+	</footer>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
@@ -119,8 +134,7 @@
         $(document).foundation();
     </script>
 
-    <div id="deleteModal" class="reveal-modal">
-        
+    <div id="deleteModal" class="reveal-modal"><!--DialogBox-->   
     </div>
 </body>
 </html>
