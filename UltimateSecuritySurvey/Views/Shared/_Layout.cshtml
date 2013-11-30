@@ -111,11 +111,16 @@
 
     @Scripts.Render("~/Scripts/jsF/foundation/foundation.js", 
                     "~/Scripts/jsF/foundation/foundation.topbar.js",
-                    "~/Scripts/jsF/foundation/foundation.alerts.js")
+                    "~/Scripts/jsF/foundation/foundation.alerts.js",
+                    "~/Scripts/jsF/foundation/foundation.reveal.js")
     <!-- Other JS plugins can be included here -->
 
     <script>
         $(document).foundation();
     </script>
+
+    <div id="deleteModal" class="reveal-modal">
+        
+    </div>
 </body>
 </html>

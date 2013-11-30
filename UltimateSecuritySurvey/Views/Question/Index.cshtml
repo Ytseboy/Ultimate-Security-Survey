@@ -16,9 +16,6 @@
             @Html.DisplayNameFor(model => model.QuestionCategory.categoryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuestionType.questionTypeName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.questionTextMain)
         </th>
         <th>
@@ -36,9 +33,6 @@
             @Html.DisplayFor(modelItem => item.QuestionCategory.categoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.QuestionType.questionTypeName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.questionTextMain)
         </td>
         <td>
@@ -49,9 +43,9 @@
         </td>
         <td>
             <div class="iconHolder">
-                @Html.ActionLink(" ","Edit",new {id = item.questionId}, new{ title = "Edit", @class = "icon-edit" })
-                @Html.ActionLink(" ","Details",new {id = item.questionId}, new{title="Details", @class = "icon-details" })
-                @Html.ActionLink(" ","Delete",new {id = item.questionId}, new{title="Delete", @class = "icon-delete" }) 
+                @Html.ActionLink(" ","Edit",new {id = item.questionId}, new { title = "Edit", @class = "icon-edit" })
+                @Html.ActionLink(" ","Details",new {id = item.questionId}, new { title="Details", @class = "icon-details" })
+                @Html.ActionLink(" ","Delete",new {id = item.questionId}, new { title="Delete", @class = "icon-delete" }) 
             </div>
         </td>
     </tr>

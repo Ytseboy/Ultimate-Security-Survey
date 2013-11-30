@@ -4,29 +4,4 @@
     ViewBag.Title = "Delete category";
 }
 
-<h2>Delete</h2>
-<h3>Are you sure you want to delete this?</h3>
-
-<fieldset>
-    <legend>QuestionCategory</legend>
-
-    @Html.HiddenFor(model => model.categoryId)
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.categoryName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.categoryName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.description)
-    </div>
-</fieldset>
-@using (Html.BeginForm()) {
-        <input type="submit" value="Delete" class="small button alert"/>
-}
-@Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
+@Html.Partial("DeletePartial")

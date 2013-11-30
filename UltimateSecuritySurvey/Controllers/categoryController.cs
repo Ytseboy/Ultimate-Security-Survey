@@ -111,9 +111,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             QuestionCategory questioncategory = db.QuestionCategories.Find(id);
             if (questioncategory == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())           
+                return PartialView("DeletePartial", questioncategory);
+
             return View(questioncategory);
         }
 
