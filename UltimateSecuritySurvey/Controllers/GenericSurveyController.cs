@@ -174,9 +174,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             GenericSurvey genericsurvey = db.GenericSurveys.Find(id);
             if (genericsurvey == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView(genericsurvey);
+
             return View(genericsurvey);
         }
 

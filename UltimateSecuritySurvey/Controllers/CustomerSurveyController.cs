@@ -102,9 +102,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             CustomerSurvey customersurvey = db.CustomerSurveys.Find(id);
             if (customersurvey == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView();
+
             return View(customersurvey);
         }
 

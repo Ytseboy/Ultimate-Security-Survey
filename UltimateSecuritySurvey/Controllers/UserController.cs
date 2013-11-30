@@ -100,9 +100,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             UserAccount useraccount = db.UserAccounts.Find(id);
             if (useraccount == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView(useraccount);
+
             return View(useraccount);
         }
 

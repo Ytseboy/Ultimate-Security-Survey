@@ -120,9 +120,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             Question question = db.Questions.Find(id);
             if (question == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView(question);
+
             return View(question);
         }
 

@@ -32,8 +32,11 @@
             @Html.DisplayFor(modelItem => item.motherCountermeasure)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "GenericCountermeasure", new { id=item.countermeasureId }, new { @class="tiny button secondary"})
-            @Html.ActionLink("Delete", "Delete", "GenericCountermeasure", new { id = item.countermeasureId }, new { @class="tiny button secondary"})
+            @Html.ActionLink("Edit", "Edit", "GenericCountermeasure", new { id=item.countermeasureId }, 
+                                                                        new { @class="tiny button secondary"})
+
+            <a href="@Url.Action("Delete", "GenericCountermeasure", new { id = item.countermeasureId })" 
+                class="tiny button secondary" title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true">Delete</a>
         </td>
     </tr>
 }

@@ -114,7 +114,7 @@ namespace UltimateSecuritySurvey.Controllers
                 return HttpNotFound();
 
             if (Request.IsAjaxRequest())           
-                return PartialView("DeletePartial", questioncategory);
+                return PartialView(questioncategory);
 
             return View(questioncategory);
         }

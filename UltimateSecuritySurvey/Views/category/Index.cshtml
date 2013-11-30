@@ -33,7 +33,6 @@
             <div class="iconHolder">
                 @Html.ActionLink(" ","Edit",new {id = item.categoryId}, new{ title = "Edit", @class = "icon-edit" })
                 @Html.ActionLink(" ","Details",new {id = item.categoryId}, new{title="Details", @class = "icon-details" })
-                @*@Html.ActionLink(" ","Delete",new {id = item.categoryId}, new{title="Delete", @class = "icon-delete"})*@ 
 
                 <a href="@Url.Action("Delete", new {id = item.categoryId})" class="icon-delete"
                         title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>

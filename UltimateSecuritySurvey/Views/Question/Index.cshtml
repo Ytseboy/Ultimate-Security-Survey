@@ -45,7 +45,9 @@
             <div class="iconHolder">
                 @Html.ActionLink(" ","Edit",new {id = item.questionId}, new { title = "Edit", @class = "icon-edit" })
                 @Html.ActionLink(" ","Details",new {id = item.questionId}, new { title="Details", @class = "icon-details" })
-                @Html.ActionLink(" ","Delete",new {id = item.questionId}, new { title="Delete", @class = "icon-delete" }) 
+
+                <a href="@Url.Action("Delete", new {id = item.questionId})" class="icon-delete"
+                        title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
             </div>
         </td>
     </tr>

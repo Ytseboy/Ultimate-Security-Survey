@@ -14,8 +14,11 @@
             @Html.DisplayFor(modelItem => item.answerText)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { @class="tiny button secondary"})
-            @Html.ActionLink("Delete", "Delete", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, new { @class="tiny button secondary"})
+            @Html.ActionLink("Edit", "Edit", "AnswerOption", new { id=item.questionId, number = item.answerNumber }, 
+                                                                new { @class="tiny button secondary"})
+
+            <a href="@Url.Action("Delete", "AnswerOption", new { id=item.questionId, number = item.answerNumber })" 
+                class="tiny button secondary" title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true">Delete</a>
         </td>
     </tr>
 }

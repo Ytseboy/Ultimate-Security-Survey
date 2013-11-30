@@ -99,9 +99,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             GenericCountermeasure genericcountermeasure = db.GenericCountermeasures.Find(id);
             if (genericcountermeasure == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView(genericcountermeasure);
+
             return View(genericcountermeasure);
         }
 

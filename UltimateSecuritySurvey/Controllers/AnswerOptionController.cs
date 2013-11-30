@@ -98,9 +98,11 @@ namespace UltimateSecuritySurvey.Controllers
         {
             AnswerOption answeroption = db.AnswerOptions.Find(id, number);
             if (answeroption == null)
-            {
                 return HttpNotFound();
-            }
+
+            if (Request.IsAjaxRequest())
+                return PartialView(answeroption);
+
             return View(answeroption);
         }
 

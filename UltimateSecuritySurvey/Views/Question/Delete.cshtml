@@ -4,8 +4,12 @@
     ViewBag.Title = "Delete question";
 }
 
-<h2>Delete</h2>
+@if (IsAjax)
+{
+    <a class="close-reveal-modal">&#215;</a>
+}
 
+<h2>Delete</h2>
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
     <legend>Question</legend>

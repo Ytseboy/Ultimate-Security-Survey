@@ -391,7 +391,6 @@
     <Content Include="Views\CustomerSurvey\Details.cshtml" />
     <Content Include="Views\CustomerSurvey\CreateEdit.cshtml" />
     <Content Include="Views\CustomerSurvey\Delete.cshtml" />
-    <Content Include="Views\Category\DeletePartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
