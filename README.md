@@ -1,4 +1,4 @@
-﻿<img src="/UltimateSecuritySurvey/Content/imgs/haaga-helia.png" style="width:200px;"/>
+﻿<img src="haaga-helia-small-logo.PNG"/>
 <h2>Ultimate Security Survey</h2>
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
