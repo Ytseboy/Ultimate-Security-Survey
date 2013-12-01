@@ -1,5 +1,5 @@
-﻿<img src="haaga-helia-small-logo.PNG"/>
-<h2>Ultimate Security Survey</h2>
+﻿<img src="/haaga-helia-small-logo.png"/>
+<h1>Ultimate Security Survey</h1>
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
 Helsinki, Finland.
