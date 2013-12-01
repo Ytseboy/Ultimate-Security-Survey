@@ -6,6 +6,9 @@ Helsinki, Finland.
 
 <a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">
 	Sprinto webpage &rarr;</a>
+	
+<a href="https://github.com/Ytseboy/Ultimate-Security-Survey/tree/beta_build/Documentation#documentation---ultimate-security-survey" target="_blank">
+	Documentation &rarr;</a>
 
 ==========================
 
