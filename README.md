@@ -1,19 +1,15 @@
-﻿Ultimate Security Survey
-=============
+﻿<img src="/UltimateSecuritySurvey/Content/imgs/haaga-helia.png" />
+<h2>Ultimate Security Survey</h2>
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
-Helsinki, Finland
+Helsinki, Finland.
 
 <a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">
 	Sprinto webpage &rarr;</a>
 
-<a target="_blank"
-	href="https://docs.google.com/document/d/1SoRNnCHlEvq8GPFz-BMzROFjMddURASglIgJYtHs3XQ/edit?usp=sharing">
-	Desingn Specifications &rarr;</a>
-
 ==========================
 
-<h5>Any preliminary changes to the TestBranch first before moving it on to the Master branch<h5>
+<h5>USS screenshot here later<h5>
 
 <h4>About</h4>
 
@@ -35,5 +31,21 @@ When the student has done the analyses for each question the student
 creates a Survey report for the company. The supervising teacher
 validates the report before it is sent for the company.
 
->>>>>>> 0338255364fe13849a1e752bddf0f3ebbb0847e9
+======================
 
+<h4>TEAM</h4>
+
+<h4>TECHNOLOGY COLOPHON</h4>
+
+<h5>Contributing</h5>
+<ol>
+    <li>Fork it (git clone git://github.com/Ytseboy/Ultimate-Security-Survey.git)</li>
+    <li>Create your feature branch (git checkout -b my-new-feature)</li>
+    <li>Make new cool improvement</li>
+    <li>Commit your changes (git commit -am 'Add some feature')</li>
+    <li>Push to the branch (git push origin my-new-feature)</li>
+    <li>Create new pull request</li>
+</ol>
+
+<hr />
+<h4>License</h4>
