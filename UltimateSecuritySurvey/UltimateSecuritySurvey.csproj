@@ -212,6 +212,11 @@
     <Content Include="Content\css\foundation.css" />
     <Content Include="Content\css\foundation.min.css" />
     <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\imgs\ava\1.jpg" />
+    <Content Include="Content\imgs\ava\2.jpg" />
+    <Content Include="Content\imgs\ava\3.jpg" />
+    <Content Include="Content\imgs\ava\4.jpg" />
+    <Content Include="Content\imgs\ava\5.jpg" />
     <Content Include="Content\imgs\bin.png" />
     <Content Include="Content\imgs\favicon.ico" />
     <Content Include="Content\imgs\haaga-helia.png" />
@@ -391,6 +396,8 @@
     <Content Include="Views\CustomerSurvey\Details.cshtml" />
     <Content Include="Views\CustomerSurvey\CreateEdit.cshtml" />
     <Content Include="Views\CustomerSurvey\Delete.cshtml" />
+    <Content Include="Views\Account\MyProfile.cshtml" />
+    <Content Include="Views\Account\SurveyListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

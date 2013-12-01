@@ -1,0 +1,64 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerSurvey>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.customerSurveyTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.companyName)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startComment)
+        </th>
+        <th>
+            Observer
+        </th>
+        <th>
+            Supervisor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endComment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount1.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endComment)
+        </td>
+        <td>
+            @Html.ActionLink(" ","Details", "CustomerSurveys", new {id = item.surveyId}, new { title="Details", @class = "icon-details" })
+        </td>
+    </tr>
+}
+
+</table>

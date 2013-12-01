@@ -2,9 +2,9 @@
 
 @{
     ViewBag.Title = "Customer details";
+    ViewBag.PageHeader = "Customer details";
+    ViewBag.SidebarHeader = "Assigned surveys";
 }
-
-<h2>Details</h2>
 
     <div class="display-label">
         <h5>@Html.DisplayNameFor(model => model.companyName) </h5>
@@ -44,19 +44,19 @@
     <div class="display-label">
       <h5> Assigned surveys </h5>
     </div>
-    <div class="display-field">
-
-        <ul>
-        @foreach(var item in Model.CustomerSurveys)
-        {
-            //Later to Links
-            //<li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey",new{id=item.surveyId}, null)</li>
-            <li>- @Html.DisplayFor(model => item.customerSurveyTitle)</li>
-        }
-        </ul>
-    </div>
 
 <ul class="button-group">
     @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }, new { @class = "tiny button secondary"})
     @Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})
 </ul>
+
+@section Sidebar{
+    <ul class="side-nav">
+    @foreach(var item in Model.CustomerSurveys)
+    {
+
+        <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", new{id=item.surveyId}, null)</li>
+    }
+    </ul>
+}
+    

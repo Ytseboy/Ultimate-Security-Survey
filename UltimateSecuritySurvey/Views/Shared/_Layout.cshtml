@@ -38,7 +38,8 @@
                     <a href="#">@Html.Encode(User.Identity.Name)</a>
                             
                     <ul class="dropdown right">
-                        <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("My profile", "MyProfile", "Account")</li>
+                        <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>                      
                     </ul>
                 </li>
             </ul>
@@ -59,12 +60,11 @@
     </header>
     <div class="row"><!--BodyRow-->
         <div class="large-12 columns">
-
-            <h2>@ViewBag.PageHeader</h2>
-                
+  
             <div class="row"><!--Content+SidebarRow-->
                 <div class="large-9 columns">
-                    
+                    <h3>@ViewBag.PageHeader</h3>
+
                     @if (ViewBag.Error != null)
                     {
                         <div data-alert="" class="alert-box alert">
@@ -89,11 +89,11 @@
                         @RenderSection("Sidebar", required: false)
                     </div>
 
-					@*<ul class="side-nav">
+					<ul class="side-nav">
 						<li><a href="#">Link 1</a></li>
 						<li><a href="#">Link 2</a></li>
 						<li><a href="#">Link 3</a></li>
-					</ul>*@
+					</ul>
 
 			    </div>
             </div><!--END Content+SidebarRow-->
@@ -103,16 +103,13 @@
                 </div>           
             </div><!--END BottomSectionRow-->           
         </div> 
-        <hr />                           
+                                   
     </div><!--END BodyRow-->
 
-    
-
-    <footer>
-		<div class="row">
-			<div class="large-12 columns">
-				<h5>&copy; 2013</h5>
-			</div>
+    <footer class="row">
+        <hr />
+		<div class="large-12 columns">
+			<h5>&copy; 2013</h5>
 		</div>
 	</footer>
 

@@ -53,5 +53,33 @@ namespace UltimateSecuritySurvey.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
         }
+
+        /// <summary>
+        /// To display surveys in date order this person is responsible
+        /// </summary>
+        /// <returns>My profile view</returns>
+        public ActionResult MyProfile()
+        {
+            //Role & Login check --> delete when we have ok solution
+            if (!Request.IsAuthenticated)
+                return HttpNotFound();
+
+            UserAccount user = db.UserAccounts.First(x => x.userName == User.Identity.Name);
+            ViewBag.UserRole = user.isTeacher ? "Supervisor" : "Observer";
+
+            //List of surveys (Newest first)
+            IQueryable<CustomerSurvey> surveys = user.isTeacher ?
+                        db.CustomerSurveys.Where(x => x.supervisorUserId == user.userId) :
+                        db.CustomerSurveys.Where(x => x.observerUserId == user.userId);
+
+            ViewBag.Surveys = surveys.OrderByDescending(z => z.startDate).ThenByDescending(w => w.endDate).ToList();
+
+            //Avatar =)))
+            Random rnd = new Random();
+            int next = rnd.Next(1, 6);
+            ViewBag.AvaUrl = String.Format("~/Content/imgs/ava/{0}.jpg", next);
+
+            return View(user);
+        }
     }
 }
