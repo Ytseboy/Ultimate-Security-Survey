@@ -12,13 +12,14 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// Controller to handle customers surveys
     /// </summary>
+    [Authorize]
     public class CustomerSurveyController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
 
         //
         // GET: /CustomerSurvey/
-
+        [Authorize(Roles = "Teacher, Student")]
         public ActionResult Index()
         {
             var customersurveys = db.CustomerSurveys.Include(c => c.Customer).Include(c => c.GenericSurvey).Include(c => c.UserAccount).Include(c => c.UserAccount1);
@@ -27,7 +28,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // GET: /CustomerSurvey/Details/5
-
+        [Authorize(Roles = "Teacher, Student")]
         public ActionResult Details(int id = 0)
         {
             CustomerSurvey customersurvey = db.CustomerSurveys.Find(id);
@@ -40,7 +41,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // GET: /CustomerSurvey/Create
-
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName");
@@ -52,7 +53,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // GET: /CustomerSurvey/Edit/5
-
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int id = 0)
         {
             CustomerSurvey customersurvey = db.CustomerSurveys.Find(id);
@@ -69,7 +70,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // POST: /CustomerSurvey/Edit/5
-
+        [Authorize(Roles = "Teacher")]
         [HttpPost]
         public ActionResult CreateEdit(CustomerSurvey customersurvey)
         {
@@ -98,6 +99,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // GET: /CustomerSurvey/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int id = 0)
         {
             CustomerSurvey customersurvey = db.CustomerSurveys.Find(id);
@@ -112,6 +114,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         //
         // POST: /CustomerSurvey/Delete/5
+        [Authorize(Roles = "Teacher")]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {

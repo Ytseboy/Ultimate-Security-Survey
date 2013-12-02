@@ -11,6 +11,7 @@ namespace UltimateSecuritySurvey.Controllers
     /// I simply returns a View where user can read
     /// About application
     /// </summary>
+    [Authorize]
     public class AboutController : Controller
     {
         /// <summary>

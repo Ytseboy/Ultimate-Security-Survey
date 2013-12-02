@@ -3,33 +3,32 @@
 @{
     ViewBag.Title = "My Profile";
     ViewBag.PageHeader = Model.userName;
-    ViewBag.SidebarHeader = "Sidebar";
+    ViewBag.SidebarHeader = "Profile";
 }
-    
-<div class="row">
-    <div class="large-2 columns">
-        <img src="@Url.Content(ViewBag.AvaUrl)" alt="Ava" />
-    </div>
-    <div class="large-10 columns">
-        <h6>Name</h6>
-        <p>
-            @Html.DisplayFor(model => model.firstName)
-            @Html.DisplayFor(model => model.lastName)
-        </p>
-
-        <h6>Role</h6>
-
-        <p>@ViewBag.UserRole</p>
-    </div>
-</div>
 
 <div class="row">
-    <div class="large-12 columns">
-        <h4>Assigned Surveys</h4>
+    <div class="large-11 columns panel">
+        <h5>Assigned Surveys</h5>
         @Html.Partial("SurveyListPartial", (IEnumerable<UltimateSecuritySurvey.Models.CustomerSurvey>)ViewBag.Surveys)
     </div>
 </div>
 
-@Html.ActionLink("Back to Dashboard", "Index", "Home", null, new { @class = "tiny button secondary" })
+@section Sidebar{
+    <img src="@Url.Content(ViewBag.AvaUrl)" alt="Ava" />
+
+    <h6>Name</h6>
+    <p>
+        @Html.DisplayFor(model => model.firstName)
+        @Html.DisplayFor(model => model.lastName)
+    </p>
+
+    <h6>Role</h6>
+
+    <p>@ViewBag.UserRole</p>
+
+    @Html.ActionLink("Back to Dashboard", "Index", "Home")
+}
+
+
 
 

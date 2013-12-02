@@ -12,6 +12,8 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// This is the controller for Question page and managing questions
     /// </summary>
+    [Authorize]
+    [Authorize(Roles="Teacher")]
     public class QuestionController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();

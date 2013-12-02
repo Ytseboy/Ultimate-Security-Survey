@@ -12,6 +12,8 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// Class to Create/Edit/Delete Answer options for questions
     /// </summary>
+    [Authorize]
+    [Authorize(Roles="Teacher")]
     public class AnswerOptionController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();

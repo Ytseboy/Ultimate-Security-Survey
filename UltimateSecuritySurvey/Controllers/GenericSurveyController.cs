@@ -12,6 +12,8 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// Page to manage surveys
     /// </summary>
+    [Authorize]
+    [Authorize(Roles = "Teacher")]
     public class GenericSurveyController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();

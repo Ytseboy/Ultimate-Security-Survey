@@ -10,6 +10,7 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// This controller is for the front page
     /// </summary>
+    [Authorize]
     public class HomeController : Controller
     {
         SecuritySurveyEntities entities = new SecuritySurveyEntities();

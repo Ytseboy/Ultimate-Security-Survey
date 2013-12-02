@@ -12,6 +12,8 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// This controller to Display Categories and to manage them
     /// </summary>
+    [Authorize]
+    [Authorize(Roles = "Teacher")]
     public class CategoryController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
@@ -21,7 +23,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// Here is also a view bag to display delete errors
         /// </summary>
         //
-        // GET: /Category/
+        // GET: /Category/              
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Message"];

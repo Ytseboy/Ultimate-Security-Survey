@@ -12,9 +12,6 @@
             @Html.DisplayNameFor(model => model.startDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.startComment)
-        </th>
-        <th>
             Observer
         </th>
         <th>
@@ -22,9 +19,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.endDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.endComment)
         </th>
         <th></th>
     </tr>
@@ -41,9 +35,6 @@
             @Html.DisplayFor(modelItem => item.startDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.startComment)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.UserAccount.userName)
         </td>
         <td>
@@ -51,9 +42,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.endDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.endComment)
         </td>
         <td>
             @Html.ActionLink(" ","Details", "CustomerSurvey", new {id = item.surveyId}, new { title="Details", @class = "icon-details" })
