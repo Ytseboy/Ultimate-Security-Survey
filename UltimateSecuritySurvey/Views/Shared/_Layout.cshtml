@@ -60,11 +60,11 @@
     </header>
     <div class="row"><!--BodyRow-->
         <div class="large-12 columns">
-  
+            <h3>@ViewBag.PageHeader</h3>
+
             <div class="row"><!--Content+SidebarRow-->
                 <div class="large-9 columns">
-                    <h3>@ViewBag.PageHeader</h3>
-
+ 
                     @if (ViewBag.Error != null)
                     {
                         <div data-alert="" class="alert-box alert">
@@ -82,36 +82,47 @@
 
                     @RenderBody()
 				</div>
-                <div class="large-3 columns">
-					<h5>@ViewBag.SidebarHeader</h5>
 
-                    <div class="scrollable-medium">
+                @if (ViewBag.SidebarHeader != null)
+                {
+                    <div class="large-3 columns panel scrollable-medium">
+					    <h5>@ViewBag.SidebarHeader</h5>
+
                         @RenderSection("Sidebar", required: false)
-                    </div>
-
-					<ul class="side-nav">
-						<li><a href="#">Link 1</a></li>
-						<li><a href="#">Link 2</a></li>
-						<li><a href="#">Link 3</a></li>
-					</ul>
-
-			    </div>
-            </div><!--END Content+SidebarRow-->
-            <div class="row"><!--BottomSectionRow-->
-                <div class="large-12 columns">
-                    @RenderSection("BottomSection", required: false)
-                </div>           
-            </div><!--END BottomSectionRow-->           
+			        </div>
+                }
+                
+            </div><!--END Content+SidebarRow-->           
         </div> 
                                    
     </div><!--END BodyRow-->
 
-    <footer class="row">
-        <hr />
-		<div class="large-12 columns">
-			<h5>&copy; 2013</h5>
-		</div>
-	</footer>
+<footer>
+    <div class="row">
+        <hr>
+        <div class="large-12 columns">
+          <div class="row">
+            <div class="large-5 columns">
+              <p><img src="http://placehold.it/50x50&amp;text=logo"></p>
+              <p>Name </p>
+              <p>&copy; Copyright | <a href="#">Privacy Policy</a></p>
+            </div>
+            <div class="large-2 columns">
+              <p><a href="#">Github</a></p>
+            </div>
+            <div class="large-2 columns">
+              <p><img align="absmiddle" src="http://placehold.it/25x25"> Twitter</p>
+              <p><img align="absmiddle" src="http://placehold.it/25x25"> Facebook</p>
+              <p><img align="absmiddle" src="http://placehold.it/25x25"> Email</p>
+            </div>
+            <div class="large-3 columns">
+              <p>Newsletter:</p>
+              <p><input type="text" value="Email Address"><input type="submit" class="button radius right"></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
@@ -131,7 +142,7 @@
         $(document).foundation();
     </script>
 
-    <div id="deleteModal" class="reveal-modal"><!--DialogBox-->   
+    <div id="deleteModal" class="reveal-modal tiny"><!--DialogBox-->   
     </div>
 </body>
 </html>

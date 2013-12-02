@@ -7,31 +7,35 @@
 @if (IsAjax)
 {
     <a class="close-reveal-modal">&#215;</a>
+    ViewBag.PageHeader = "Delete";
+}
+else
+{
+    <h3>Delete</h3>
 }
 
-<h3>Delete</h3>
 <h4>Are you sure you want to delete this?</h4>
-
-<fieldset>
-    <legend>QuestionCategory</legend>
 
     @Html.HiddenFor(model => model.categoryId)
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.categoryName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.categoryName)
-    </div>
+    <h5>@Html.DisplayNameFor(model => model.categoryName)</h5>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.description)
-    </div>
-</fieldset>
+    <p>@Html.DisplayFor(model => model.categoryName)</p>
+
+    <h5>@Html.DisplayNameFor(model => model.description)</h5>
+    <p>@Html.DisplayFor(model => model.description)</p>
+    
+
+
 @using (Html.BeginForm()) {
-        <input type="submit" value="Delete" class="small button alert"/>
+    <div class="row">
+        <div class="large-3 columns">
+            <input type="submit" value="Delete" class="small button alert"/>
+        </div>
+        <div class="large-9 columns">
+            @Html.ActionLink("Back to List", "Index", null, new { @class="small button"})
+        </div>
+    </div>
+        
 }
-@Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
+

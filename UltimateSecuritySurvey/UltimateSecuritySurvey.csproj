@@ -361,7 +361,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
-    <Content Include="Views\Home\InfoBox.cshtml" />
+    <Content Include="Views\About\InfoBox.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\CreateEdit.cshtml" />

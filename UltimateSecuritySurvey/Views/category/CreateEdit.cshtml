@@ -26,10 +26,18 @@
         </div>
     </div>
     
-    <input type="submit" value="Save" class="small button success"/>
+    <div class="row">
+        <div class="large-4 columns">
+            <input type="submit" value="Save" class="small round button success" />
+        </div>
+        <div class="large-5 columns">
+            @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
+        </div>
+    </div>
+    
 }
 
-    @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary"})
+    
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -3,24 +3,15 @@
 @{
     ViewBag.Title = "Category details";
     ViewBag.PageHeader = "Category details";
-    ViewBag.SidebarHeader = "Sidebar";
 }
 
-    <div class="display-label">
-      <h5>@Html.DisplayNameFor(model => model.categoryName) </h5>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.categoryName)
-    </div>
+    <h5>@Html.DisplayNameFor(model => model.categoryName) </h5>
+    <p>@Html.DisplayFor(model => model.categoryName)</p>
 
-    <div class="display-label">
-       <h5> @Html.DisplayNameFor(model => model.description) </h5>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.description)
-    </div>
+    <h5> @Html.DisplayNameFor(model => model.description) </h5>
+    <p>@Html.DisplayFor(model => model.description)</p>
 
-<ul class="button-group">
+<ul class="button-group round">
     <li>@Html.ActionLink("Edit", "Edit", new { id = Model.categoryId }, new { @class = "tiny button secondary"})</li>
     <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary" })</li>
 </ul>

@@ -6,7 +6,24 @@
     ViewBag.SidebarHeader = "Stats";
 }
 
-@Html.Partial("InfoBox")
+    <div class="row">
+        <div class="large-11 columns panel">
+            <h6>Generic Surveys</h6>
+            @Html.Partial("SurveyBox", Model.genericSurveys)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-5 columns panel">
+            <h6>Customers</h6>
+                @Html.Partial("CustomerBox", Model.customers)
+        </div>
+
+        <div class="large-5 pull-1 columns panel">
+            <h6>Users</h6>
+                    @Html.Partial("UserBox", Model.users)
+        </div>
+    </div>
 
 @section Sidebar{
     <ul class="no-bullet">
@@ -16,30 +33,6 @@
     </ul>  
 }
 
-@section BottomSection{
-    <hr />
-    <div class="row">
-        <div class="large-12 columns">
-            <fieldset>
-                <legend>Surveys</legend>
-                @Html.Partial("SurveyBox", Model.genericSurveys)
-            </fieldset>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="large-5 columns">
-            <fieldset>
-                <legend>Customers</legend>
-                @Html.Partial("CustomerBox", Model.customers)
-            </fieldset>
-        </div>
 
-        <div class="large-5 large-offset-2 columns">
-            <fieldset>
-                <legend>Users</legend>
-                    @Html.Partial("UserBox", Model.users)
-            </fieldset>
-        </div>
-    </div>
-}
+
