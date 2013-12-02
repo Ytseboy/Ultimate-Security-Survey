@@ -11,7 +11,7 @@ This folder contains all the related documentation
 </ul>
 
 <h5>Sprint 3 progress (28.11 - 12.12)</h5>
-0% status: Starting
+31% status: On-Time =)
 
 <h5>Sprint 3 Goal</h5>
 Finish the project
