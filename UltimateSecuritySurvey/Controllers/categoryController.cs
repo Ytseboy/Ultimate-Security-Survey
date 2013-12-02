@@ -12,6 +12,7 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// This controller to Display Categories and to manage them
     /// </summary>
+    [Authorize]
     public class CategoryController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();

@@ -12,6 +12,7 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// Class to manage counter measures
     /// </summary>
+    [Authorize]
     public class GenericCountermeasureController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();

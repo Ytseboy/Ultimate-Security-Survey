@@ -12,6 +12,7 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// Controller to display and manage users
     /// </summary>
+    [Authorize]
     public class UserController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();

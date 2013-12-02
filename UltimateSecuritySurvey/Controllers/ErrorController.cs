@@ -9,6 +9,7 @@ namespace UltimateSecuritySurvey.Controllers
     /// <summary>
     /// This Controller contains actions for possible errors
     /// </summary>
+    [Authorize]
     public class ErrorController : Controller
     {
         /// <summary>

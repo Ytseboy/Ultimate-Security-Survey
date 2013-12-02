@@ -19,6 +19,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// Redirects user to LogIn form
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -29,6 +30,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// </summary>
         /// <param name="loginData">User name + password</param>
         /// <returns>Dashboar View</returns>
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(string name, string password)
         {
@@ -48,6 +50,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// To logOut, redirects user to Login form
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
@@ -58,12 +61,9 @@ namespace UltimateSecuritySurvey.Controllers
         /// To display surveys in date order this person is responsible
         /// </summary>
         /// <returns>My profile view</returns>
+        [Authorize]
         public ActionResult MyProfile()
         {
-            //Role & Login check --> delete when we have ok solution
-            if (!Request.IsAuthenticated)
-                return HttpNotFound();
-
             UserAccount user = db.UserAccounts.First(x => x.userName == User.Identity.Name);
             ViewBag.UserRole = user.isTeacher ? "Supervisor" : "Observer";
 
