@@ -21,6 +21,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// Lists useraccounts on the index page
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Teacher, Student")]
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Message"];
@@ -31,6 +32,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// Finds useraccount with the id from the database for the details page
         /// </summary>
         /// <param name="id">Primary id for User</param>
+        [Authorize(Roles = "Teacher, Student")]
         public ActionResult Details(int id = 0)
         {
             UserAccount useraccount = db.UserAccounts.Find(id);
@@ -44,6 +46,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <summary>
         /// Method to go to the Create new view
         /// </summary>
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             return View("CreateEdit", new UserAccount());
@@ -53,6 +56,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// Method to go to the edit view, also gets the id from the db
         /// </summary>
         /// <param name="useraccount">UserAccount class object</param>
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int id = 0)
         {
             UserAccount useraccount = db.UserAccounts.Find(id);
@@ -69,6 +73,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// </summary>
         /// <param name="useraccount">useraccount class object from the textboxes</param>
         /// <returns></returns>
+        [Authorize(Roles = "Teacher")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateEdit(UserAccount useraccount)
@@ -97,6 +102,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// This is the method to go the delete view, shows the details of the user he wants to delete
         /// </summary>
         /// <param name="useraccount"></param>
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int id = 0)
         {
             UserAccount useraccount = db.UserAccounts.Find(id);
@@ -113,6 +119,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// This method deletes the user. Checks if the user has childFK's in other tables. If it has it cannot be deleted.
         /// </summary>
         /// <param name="useraccount">Primary id of useraccount</param>
+        [Authorize(Roles = "Teacher")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

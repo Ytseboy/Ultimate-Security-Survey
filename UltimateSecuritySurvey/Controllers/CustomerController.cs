@@ -20,6 +20,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <summary>
         /// This method to list the customers on the index page
         /// </summary>
+        [Authorize(Roles="Teacher, Student")]
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Message"];
@@ -30,6 +31,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// This method to find a customer with id from the database
         /// </summary>
         /// <param name="id">Primary id of Customer</param>
+        [Authorize(Roles = "Teacher, Student")]
         public ActionResult Details(int id = 0)
         {
             Customer customer = db.Customers.Find(id);
@@ -43,6 +45,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// <summary>
         /// This method to go to the create view
         /// </summary>
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             return View("CreateEdit", new Customer());
@@ -52,6 +55,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// This method to go to edit view, gets also the customer details from db
         /// </summary>
         /// <param name="Customer">Customer class object</param>
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int id = 0)
         {
             Customer customer = db.Customers.Find(id);
@@ -67,6 +71,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// This method to edit the customer and save changes
         /// </summary>
         /// <param name="Customer">Customer class object from textboxes</param>
+        [Authorize(Roles = "Teacher")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateEdit(Customer customer)
@@ -99,6 +104,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// This method to open delete view and show the customer details to confirm delete
         /// </summary>
         /// <param name="Customer">Primary id of Customer</param>
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int id = 0)
         {
             Customer customer = db.Customers.Find(id);
@@ -117,6 +123,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// if yes, then customer can't be deleted
         /// </summary>
         /// <param name="Customer">Primary id of Customer</param>
+        [Authorize(Roles = "Teacher")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -21,16 +21,5 @@ namespace UltimateSecuritySurvey.Controllers
         {
             return View();
         }
-
-        /// <summary>
-        /// In case Student will try to look inside of Teacher only pages
-        /// </summary>
-        /// <returns>custom error view</returns>
-        [HttpPost]
-        public ActionResult AccessDenied()
-        {
-            return View();
-        }
-
     }
 }
