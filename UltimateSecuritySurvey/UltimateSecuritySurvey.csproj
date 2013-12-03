@@ -387,7 +387,6 @@
     <Content Include="Views\User\CreateEdit.cshtml" />
     <Content Include="Views\Customer\CreateEdit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Home\SurveyBox.cshtml" />
     <Content Include="Views\Home\CustomerBox.cshtml" />
     <Content Include="Views\Home\UserBox.cshtml" />
     <Content Include="Views\GenericSurvey\CreateEdit.cshtml" />
@@ -400,6 +399,7 @@
     <Content Include="Views\CustomerSurvey\Delete.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
     <Content Include="Views\Account\SurveyListPartial.cshtml" />
+    <Content Include="Views\Home\SurveyBox.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -6,7 +6,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Content/imgs/favicon.ico")">
     <title>@ViewBag.Title</title>
 
-    @Styles.Render("~/Content/css/foundation.css", 
+    @Styles.Render("~/Content/css/foundation.css",
                    "~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,12 +19,17 @@
         <section class="top-bar-section">
             <ul>
                 <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
+            @if (User.IsInRole("Teacher"))
+            {   
+                //Different menus                                
                 <li>@Html.ActionLink("Categories", "Index", "Category")</li>
-                <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                <li>@Html.ActionLink("Questions", "Index", "Question")</li>                                 
+            }
                 <li>@Html.ActionLink("Users", "Index", "User")</li>
                 <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                 <li>@Html.ActionLink("Surveys", "Index", "CustomerSurvey")</li>
-                <li>@Html.ActionLink("About", "Index", "About")</li>                     
+                <li>@Html.ActionLink("About", "Index", "About")</li> 
+
             </ul>
             <ul class="right">
                 <li class="divider"></li>
@@ -127,7 +132,7 @@
         + '.js><\/script>');
     </script>
 
-    @Scripts.Render("~/Scripts/jsF/foundation/foundation.js", 
+    @Scripts.Render("~/Scripts/jsF/foundation/foundation.js",
                     "~/Scripts/jsF/foundation/foundation.topbar.js",
                     "~/Scripts/jsF/foundation/foundation.alerts.js",
                     "~/Scripts/jsF/foundation/foundation.reveal.js")

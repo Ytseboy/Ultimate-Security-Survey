@@ -16,21 +16,14 @@ namespace UltimateSecuritySurvey.Models
         /// <param name="surveys">List of surveys</param>
         /// <param name="customers">List of customers</param>
         /// <param name="users">List of users</param>
-        public FrontPageModel(List<CustomerSurvey> customerSurveys, List<GenericSurvey> genericSurveys, 
-                              List<Customer> customers, List<UserAccount> users) 
+        public FrontPageModel(List<CustomerSurvey> customerSurveys, List<Customer> customers, List<UserAccount> users) 
         {
             this.customerSurveys = customerSurveys;
-            this.genericSurveys = genericSurveys;
             this.customers = customers;
             this.users = users;
         }
 
         public List<CustomerSurvey> customerSurveys { get; set; }
-
-        /// <summary>
-        /// Get set for Generic Survey List
-        /// </summary>
-        public List<GenericSurvey> genericSurveys { get; set; }
 
         /// <summary>
         /// Get set for Customer List

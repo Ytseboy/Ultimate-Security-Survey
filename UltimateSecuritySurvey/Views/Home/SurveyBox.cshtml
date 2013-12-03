@@ -1,40 +1,49 @@
-﻿
-@model IEnumerable<UltimateSecuritySurvey.Models.GenericSurvey>
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerSurvey>
 
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayNameFor(model => model.customerSurveyTitle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            Company
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.baseLevel)
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            Observer
         </th>
         <th>
             Supervisor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
         </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-
         <td>
-            @Html.DisplayFor(modelItem => item.title)
+            @Html.DisplayFor(modelItem => item.customerSurveyTitle)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.description)
+            @Html.DisplayFor(modelItem => item.Customer.companyName)
+        </td>      
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.baseLevel)
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserAccount.firstName)
-            @Html.DisplayFor(modelItem => item.UserAccount.lastName)
+            @Html.DisplayFor(modelItem => item.UserAccount1.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
         </td>
     </tr>
 }
 </table>
 
-    @Html.ActionLink("Full List of Surveys", "Index", "GenericSurvey")
+@Html.ActionLink("Full list of Surveys", "Index", "CustomerSurvey")

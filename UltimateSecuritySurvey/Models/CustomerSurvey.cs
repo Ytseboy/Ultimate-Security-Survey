@@ -32,8 +32,8 @@ namespace UltimateSecuritySurvey.Models
         [DisplayName("Base Generic Survey")]
         public int baseSurveyId { get; set; }
 
-        [Required(ErrorMessage = "Customer Company is mandatory!")]
-        [DisplayName("Customer Company")]
+        [Required(ErrorMessage = "Company is mandatory!")]
+        [DisplayName("Company")]
         public int customerId { get; set; }
 
         [Required(ErrorMessage = "Start date is mandatory!")]
