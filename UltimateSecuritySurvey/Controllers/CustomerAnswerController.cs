@@ -27,10 +27,13 @@ namespace UltimateSecuritySurvey.Controllers
 
             //Teacher see only created by student answers
             answerList = customerSurvey.CustomerAnswers.ToList();
+            //Additional Info to Display
             ViewBag.SurveyTitle = customerSurvey.customerSurveyTitle;
+            ViewBag.QuestionsAmount = customerSurvey.GenericSurvey.Questions.Count;
+            ViewBag.QuestionsAnswered = customerSurvey.CustomerAnswers.Count;
             return View("IndexTeacher", answerList);
 
-            //LATER TO DO = STUDENT See all the questions included in generic survey     
+            //LATER TO DO = STUDENT See all the questions included in generic survey
         }
 
         //
@@ -85,6 +88,30 @@ namespace UltimateSecuritySurvey.Controllers
                 return RedirectToAction("Index");
             }
             return View(customeranswer);
+        }
+
+        //Teacher Validation GET
+        [Authorize(Roles="Teacher")]
+        public ActionResult Validate(int id = 0, int number = 0)
+        {
+            CustomerAnswer answer = db.CustomerAnswers.Find(id, number);
+            if (answer == null)
+                return HttpNotFound();
+
+            if (Request.IsAjaxRequest())
+                return PartialView(answer);
+
+            return View(answer);
+        }
+
+        //Teacher Validation POST
+        [Authorize(Roles = "Teacher")]
+        [HttpPost]
+        public ActionResult Validate(CustomerAnswer answer)
+        {
+            // TO DO later
+
+            return View(answer);
         }
 
         protected override void Dispose(bool disposing)

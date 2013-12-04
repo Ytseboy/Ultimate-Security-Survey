@@ -3,62 +3,35 @@
 @{
     ViewBag.Title = "Index";
     ViewBag.PageHeader = ViewBag.SurveyTitle;
+    ViewBag.SidebarHeader = "Status";
+    int questionNumber = 1;
 }
-
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.questionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Question.questionTextMain)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.answerStatusValue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.observerStatusValue)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.questionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Question.questionTextMain)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.answerStatusValue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observerStatusValue)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.surveyId, number= item.questionId })
-        </td>
-    </tr>
-}
-
-</table>
-
 
 <div class="section-container accordion" data-section="accordion">
-  <section class="active">
-    <p class="title" data-section-title><a href="#">Section 1</a></p>
-    <div class="content" data-section-content>
-      <p>Content of section 1.</p>
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#">Section 2</a></p>
-    <div class="content" data-section-content>
-      <p>Content of section 2.</p>
-    </div>
-  </section>
+    @foreach(var item in Model)
+    {
+        <section>
+            <p class="title" data-section-title>
+                <a href="@Url.Action("Validate", new {id = item.surveyId, number = item.questionId })" 
+                    class="icon-delete" data-reveal-id="@item.questionId" data-reveal-ajax="true">
+
+                    @(questionNumber++) - @item.Question.questionTextMain <br />
+                        @Html.DisplayNameFor(model => model.answerStatusValue) - @Html.DisplayFor(modelItem => item.answerStatusValue)
+                        | @Html.DisplayNameFor(model => model.observerStatusValue) - @Html.DisplayFor(modelItem => item.observerStatusValue)
+
+                </a>
+            </p>
+            <div class="content" data-section-content id="@item.questionId">
+                <p>Content of section 1.</p>
+            </div>
+        </section>
+    } 
 </div>
+
+@section Sidebar{
+    Answered questions <br />
+    @ViewBag.QuestionsAnswered / @ViewBag.QuestionsAmount
+}
 
 @section scripts{
     @Scripts.Render("~/Scripts/jsF/foundation/foundation.section.js")

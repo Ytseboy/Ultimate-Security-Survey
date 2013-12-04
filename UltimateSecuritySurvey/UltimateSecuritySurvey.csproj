@@ -696,6 +696,7 @@
     <Content Include="Views\CustomerAnswer\IndexTeacher.cshtml" />
     <Content Include="Views\CustomerAnswer\Create.cshtml" />
     <Content Include="Views\CustomerAnswer\Edit.cshtml" />
+    <Content Include="Views\CustomerAnswer\Validate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
