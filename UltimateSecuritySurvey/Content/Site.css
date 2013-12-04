@@ -71,3 +71,8 @@
 .icon-delete{
     background: url('imgs/bin.png') no-repeat center right; 
 }
+
+/*Tables*/
+.Test {
+    width: 28%
+}

@@ -103,29 +103,29 @@
         <div class="large-12 columns">
           <div class="row">
             <div class="large-5 columns">
-              <p><img src="http://placehold.it/50x50&amp;text=logo"></p>
-              <p>Name </p>
+              <p>Daniel Freitas, Topi Asikainen, Antti Marsio, Alexander Shkunov<b>(SCRUMO MASTERO!)</b></p>
               <p>&copy; Copyright | <a href="#">Privacy Policy</a></p>
             </div>
-            <div class="large-2 columns">
-              <p><a href="#">Github</a></p>
+            <div class="large-5 columns">
+              <p>
+                  <img src="http://icons.iconarchive.com/icons/danleech/simple/512/github-icon.png" style="width: 30px;" />
+                  <a href="https://github.com/Ytseboy/Ultimate-Security-Survey" >Github</a>
+              </p>
+              <p>
+                  <img src="@Url.Content("~/Content/imgs/haaga-helia.png")" style="width: 30px;" alt="HH logo">
+                  <a href="http://www.haaga-helia.fi">Haaga-Helia</a>
+              </p>
             </div>
-            <div class="large-2 columns">
-              <p><img align="absmiddle" src="http://placehold.it/25x25"> Twitter</p>
-              <p><img align="absmiddle" src="http://placehold.it/25x25"> Facebook</p>
-              <p><img align="absmiddle" src="http://placehold.it/25x25"> Email</p>
-            </div>
-            <div class="large-3 columns">
+@*            <div class="large-3 columns">
               <p>Newsletter:</p>
               <p><input type="text" value="Email Address"><input type="submit" class="button radius right"></p>
-            </div>
+            </div>*@
           </div>
         </div>
     </div>
   </footer>
 
     @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
     <script>
     document.write('<script src= ~/Scripts/jsF/vendor/'
         + ('__proto__' in {} ? 'zepto' : 'jquery')
@@ -137,6 +137,8 @@
                     "~/Scripts/jsF/foundation/foundation.alerts.js",
                     "~/Scripts/jsF/foundation/foundation.reveal.js")
     <!-- Other JS plugins can be included here -->
+
+    @RenderSection("scripts", required: false)
 
     <script>
         $(document).foundation();
