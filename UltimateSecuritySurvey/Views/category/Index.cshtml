@@ -31,10 +31,10 @@
         </td>
         <td>
             <div class="iconHolder">
-                @Html.ActionLink(" ","Edit",new {id = item.categoryId}, new{ title = "Edit", @class = "icon-edit" })
-                @Html.ActionLink(" ","Details",new {id = item.categoryId}, new{title="Details", @class = "icon-details" })
+                @Html.ActionLink(" ","Edit",new {id = item.categoryId}, new{ title = "Edit", @class = "step fi-pencil size-24 black" })
+                @Html.ActionLink(" ","Details",new {id = item.categoryId}, new{title="Details", @class = "fi-page size-24 black" })
 
-                <a href="@Url.Action("Delete", new {id = item.categoryId})" class="icon-delete"
+                <a href="@Url.Action("Delete", new {id = item.categoryId})" class="fi-trash size-24 black"
                         title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
             </div>
         </td>

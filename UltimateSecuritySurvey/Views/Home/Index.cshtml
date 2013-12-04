@@ -9,28 +9,32 @@
     <div class="row">
         <div class="large-11 columns panel">
             <h6>Generic Surveys</h6>
-            @Html.Partial("SurveyBox", Model.genericSurveys)
+            @Html.Partial("SurveyBox", Model.customerSurveys)
         </div>
     </div>
 
     <div class="row">
         <div class="large-5 columns panel">
             <h6>Customers</h6>
-                @Html.Partial("CustomerBox", Model.customers)
+            @Html.Partial("CustomerBox", Model.customers)
         </div>
 
         <div class="large-5 pull-1 columns panel">
             <h6>Users</h6>
-                    @Html.Partial("UserBox", Model.users)
+            @Html.Partial("UserBox", Model.users)
         </div>
     </div>
 
 @section Sidebar{
-    <ul class="no-bullet">
-        <li>Customer Surveys - @Model.customerSurveys.Count</li>
-        <li>Users - @Model.users.Count</li>
-        <li>Customers - @Model.customers.Count</li>    
-    </ul>  
+    <table>
+        @foreach (var item in ViewBag.Stats as Dictionary<string, int>)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <th>@item.Value</th>
+            </tr> 
+        }  
+    </table>  
 }
 
 

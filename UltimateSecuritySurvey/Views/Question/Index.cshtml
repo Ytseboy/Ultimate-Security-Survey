@@ -9,10 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
 </p>
-<div class="scrollable-large">
-<table>
+<table id="myTable">
     <tr>
-        <th>
+        <th class="Test">
             @Html.DisplayNameFor(model => model.QuestionCategory.categoryName)
         </th>
         <th>
@@ -37,10 +36,11 @@
         </td>
         <td>
             <div class="iconHolder">
-                @Html.ActionLink(" ","Edit",new {id = item.questionId}, new { title = "Edit", @class = "icon-edit" })
-                @Html.ActionLink(" ","Details",new {id = item.questionId}, new { title="Details", @class = "icon-details" })
+               @Html.ActionLink(" ","Edit",new {id = item.questionId}, new { title = "Edit", @class = "step fi-pencil size-24 black"})
+                
+                @Html.ActionLink(" ","Details",new {id = item.questionId}, new { title="Details", @class = "fi-page size-24 black" })
 
-                <a href="@Url.Action("Delete", new {id = item.questionId})" class="icon-delete"
+                <a href="@Url.Action("Delete", new {id = item.questionId})" class="fi-trash size-24 black"
                         title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
             </div>
         </td>
@@ -48,4 +48,12 @@
 }
 
 </table>
-</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jsF/tableFilter.js")
+
+    <script>
+        $('#myTable').ddTableFilter();
+    </script>
+    }
+
