@@ -51,7 +51,7 @@
 
 /*ICONS AND IMAGES*/
 .iconHolder{
-    width: 100px;
+    width: 62px;
 }
 
 .icon-edit, .icon-details, .icon-delete{
@@ -72,7 +72,31 @@
     background: url('imgs/bin.png') no-repeat center right; 
 }
 
+.size-12 { font-size: 12px; }
+      
+.size-14 { font-size: 14px; }
+      
+.size-16 { font-size: 16px; }
+      
+.size-18 { font-size: 18px; }
+      
+.size-21 { font-size: 21px; }
+      
+.size-24 { font-size: 24px; }
+      
+.size-36 { font-size: 36px; }
+      
+.size-48 { font-size: 48px; }
+      
+.size-60 { font-size: 60px; }
+      
+.size-72 { font-size: 72px; }
+
 /*Tables*/
 .Test {
     width: 28%
+}
+
+.black {
+    color: #444444;
 }

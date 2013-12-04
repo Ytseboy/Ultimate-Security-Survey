@@ -50,10 +50,10 @@
         </td>
         <td>
             <div class="iconHolder">
-                @Html.ActionLink(" ","Edit",new {id = item.surveyId}, new{ title = "Edit", @class = "icon-edit" })
-                @Html.ActionLink(" ","Details",new {id = item.surveyId}, new{title="Details", @class = "icon-details" })
+                @Html.ActionLink(" ","Edit",new {id = item.surveyId}, new{ title = "Edit", @class = "step fi-pencil size-24 black" })
+                @Html.ActionLink(" ","Details",new {id = item.surveyId}, new{title="Details", @class = "fi-page size-24 black" })
 
-                <a href="@Url.Action("Delete", new {id = item.surveyId})" class="icon-delete"
+                <a href="@Url.Action("Delete", new {id = item.surveyId})" class="fi-trash size-24 black"
                         title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
             </div>        
         </td>
