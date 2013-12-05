@@ -26,7 +26,9 @@
     </div>
 
 @section Sidebar{
-    <table>
+<div class="panel scrollable-medium">
+    <h5>Related: </h5>
+        <table>
         @foreach (var item in ViewBag.Stats as Dictionary<string, int>)
         {
             <tr>
@@ -35,6 +37,7 @@
             </tr> 
         }  
     </table>  
+</div>
 }
 
 

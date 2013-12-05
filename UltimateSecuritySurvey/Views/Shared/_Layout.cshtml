@@ -82,16 +82,11 @@
 
                     @RenderBody()
 				</div>
+                <div class="large-3 columns">
 
-                @if (ViewBag.SidebarHeader != null)
-                {
-                    <div class="large-3 columns panel scrollable-medium">
-					    <h5>@ViewBag.SidebarHeader</h5>
+                    @RenderSection("Sidebar", required: false)
+			    </div>
 
-                        @RenderSection("Sidebar", required: false)
-			        </div>
-                }
-                
             </div><!--END Content+SidebarRow-->           
         </div> 
                                    

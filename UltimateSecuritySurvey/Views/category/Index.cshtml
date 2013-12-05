@@ -7,13 +7,16 @@
 }
 
 @section Sidebar{
-    @Html.ActionLink("Add New Category", "Create")
+   <div class="panel scrollable-medium">
+     <h5>Related: </h5>
+     @Html.ActionLink("Add New Category", "Create")
+    </div>
 }
-    
+
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.categoryName)
+            All Categories
         </th>
         <th>
             @Html.DisplayNameFor(model => model.description)

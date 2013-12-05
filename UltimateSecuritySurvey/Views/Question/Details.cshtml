@@ -60,23 +60,27 @@
     <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary" })</li>
 </ul>
 
-<fieldset>
-    <legend>Answer Options</legend>
+<div class="section-container accordion" data-section="accordion">
+    <section class="active">
+        <p class="title" data-section-title><a href="#">Answer Options</a></p>
+        <div class="content" data-section-content>
+            <p>
+                     @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, new { @class="tiny button secondary"})
+                     @Html.Partial("AnswerOptionList_Partial", Model.AnswerOptions)
+            </p>
+        </div>
+    </section>
+    <section>
+        <p class="title" data-section-title><a href="#">Generic countermeasures</a></p>
+        <div class="content" data-section-content>
+                <p>
+                    @Html.ActionLink("Create New", "Create", "GenericCountermeasure", new { id = Model.questionId }, new { @class="tiny button secondary"})
+                    @Html.Partial("GenericCountermeasureList_Partial", Model.GenericCountermeasures)
+                </p>
+        </div>
+    </section>
+</div>
 
-    @Html.ActionLink("Create New", "Create", "AnswerOption", new { id = Model.questionId }, new { @class="tiny button secondary"})
-    
-    <div class=".scrollable-small">
-        @Html.Partial("AnswerOptionList_Partial", Model.AnswerOptions)
-    </div>
-</fieldset>
-
-
-<fieldset>
-    <legend>Generic countermeasures</legend>
-    
-    @Html.ActionLink("Create New", "Create", "GenericCountermeasure", new { id = Model.questionId }, new { @class="tiny button secondary"})
-
-    <div class=".scrollable-small">
-        @Html.Partial("GenericCountermeasureList_Partial", Model.GenericCountermeasures)
-    </div>
-</fieldset>
+@section scripts{
+    @Scripts.Render("~/Scripts/jsF/foundation/foundation.section.js")
+}

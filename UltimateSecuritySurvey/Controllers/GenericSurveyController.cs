@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -123,7 +124,7 @@ namespace UltimateSecuritySurvey.Controllers
 
                     UpdateSurveyQuestion(selectedQuestions, surveyToUpdate);
 
-                    db.Entry(surveyToUpdate).State = EntityState.Modified;
+                    db.Entry(surveyToUpdate).CurrentValues.SetValues(genericsurvey);
 
                     PopulateAssignedData(surveyToUpdate);
                 }
