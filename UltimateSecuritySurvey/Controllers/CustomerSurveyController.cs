@@ -22,8 +22,11 @@ namespace UltimateSecuritySurvey.Controllers
         [Authorize(Roles = "Teacher, Student")]
         public ActionResult Index()
         {
-            var customersurveys = db.CustomerSurveys.Include(c => c.Customer).Include(c => c.GenericSurvey).Include(c => c.UserAccount).Include(c => c.UserAccount1);
-            return View(customersurveys.ToList());
+            ViewBag.Error = TempData["Message"];
+            var customersurveys = db.CustomerSurveys.Include(c => c.Customer).Include(c => c.GenericSurvey)
+                        .Include(c => c.UserAccount).Include(c => c.UserAccount1).ToList();
+
+            return View(customersurveys);
         }
 
         //
@@ -36,6 +39,10 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Average = customersurvey.CustomerAnswers.Average(x => x.observerStatusValue);
+
+            ViewBag.QuestionsAmount = customersurvey.GenericSurvey.Questions.Count;
+            ViewBag.QuestionsAnswered = customersurvey.CustomerAnswers.Count;
             return View(customersurvey);
         }
 
@@ -107,7 +114,7 @@ namespace UltimateSecuritySurvey.Controllers
                 return HttpNotFound();
 
             if (Request.IsAjaxRequest())
-                return PartialView();
+                return PartialView(customersurvey);
 
             return View(customersurvey);
         }
@@ -119,8 +126,17 @@ namespace UltimateSecuritySurvey.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CustomerSurvey customersurvey = db.CustomerSurveys.Find(id);
-            db.CustomerSurveys.Remove(customersurvey);
-            db.SaveChanges();
+            bool credentials = customersurvey.UserAccount1.userName == User.Identity.Name;
+            if (credentials)
+            {
+                db.CustomerSurveys.Remove(customersurvey);
+                db.SaveChanges();
+            }
+            else 
+            {
+                TempData["Message"] = "Only the supervising teacher may delete this survey.";
+            }
+
             return RedirectToAction("Index");
         }
 
