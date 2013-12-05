@@ -23,6 +23,7 @@ namespace UltimateSecuritySurvey.Controllers
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Message"];
+
             var customersurveys = db.CustomerSurveys.Include(c => c.Customer).Include(c => c.GenericSurvey)
                         .Include(c => c.UserAccount).Include(c => c.UserAccount1).ToList();
 

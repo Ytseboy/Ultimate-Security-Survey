@@ -26,7 +26,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+            @Html.ActionLink(item.customerSurveyTitle, "Index", "SurveyReport", 
+                            new { id = item.surveyId }, new { title = "Survey Report" })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.companyName)
@@ -44,7 +45,8 @@
             @Html.DisplayFor(modelItem => item.endDate)
         </td>
         <td>
-            @Html.ActionLink(" ","Details", "CustomerSurvey", new {id = item.surveyId}, new { title="Details", @class = "icon-details" })
+            @Html.ActionLink(" ", "Details", new { id = item.surveyId }, 
+                        new{ title="Details", @class = "fi-page size-24 black" }) 
         </td>
     </tr>
 }

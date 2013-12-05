@@ -619,6 +619,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jsF\foundation.min.js" />
+    <Content Include="Scripts\jsF\fSectionMod.js" />
     <Content Include="Scripts\jsF\foundation\foundation.abide.js" />
     <Content Include="Scripts\jsF\foundation\foundation.alerts.js" />
     <Content Include="Scripts\jsF\foundation\foundation.clearing.js" />

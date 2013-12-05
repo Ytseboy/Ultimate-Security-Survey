@@ -23,14 +23,34 @@ namespace UltimateSecuritySurvey.Controllers
             if (customerSurvey == null)
                 return HttpNotFound();
 
+            //Only participating users can see/modify Report
+            if (User.Identity.Name != customerSurvey.UserAccount.userName && User.Identity.Name != customerSurvey.UserAccount1.userName)
+            {
+                TempData["Message"] = "Oops! Only survey observer and supervisor can access the survey report";
+                return RedirectToAction("Index", "CustomerSurvey");
+            }
+
             List<CustomerAnswer> answerList;
 
             //Teacher see only created by student answers
             answerList = customerSurvey.CustomerAnswers.ToList();
+
             //Additional Info to Display
             ViewBag.SurveyTitle = customerSurvey.customerSurveyTitle;
             ViewBag.QuestionsAmount = customerSurvey.GenericSurvey.Questions.Count;
-            ViewBag.QuestionsAnswered = customerSurvey.CustomerAnswers.Count;
+            ViewBag.QuestionsAnswered = answerList.Count;
+
+            double avgObserverStatus = (answerList.Average(x => x.observerStatusValue)) ?? 0;
+            ViewBag.AverageObserverStatus = Math.Round(avgObserverStatus, 2);
+            
+            /* Factor here derrives from AnswerStatusValue Range. 
+             * Minima = 0, Maxima = 4 --> Four answers with value 4 should give 100 %
+             * --> 16/4 * factor = 100 % --> factor = 25 */
+            int factor = 25;
+            double averageAnswerValue = (answerList.Average(z => z.answerStatusValue)) ?? 0;
+            int surveyProgress = (int)Math.Round(averageAnswerValue * factor);
+            ViewBag.SurveyProgress = String.Format("{0}%", surveyProgress);
+
             return View("IndexTeacher", answerList);
 
             //LATER TO DO = STUDENT See all the questions included in generic survey

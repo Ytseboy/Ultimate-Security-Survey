@@ -2,14 +2,19 @@
 
 @{
     ViewBag.Title = "Customer Surveys";
+    bool teacherRoleCheck = User.IsInRole("Teacher");
 }
 
 <h2>Customer Surveys</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
-    @Html.ActionLink("Generic surveys", "Index", "GenericSurvey", null, new { @class="tiny button"})
-</p>
+@if (teacherRoleCheck)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
+        @Html.ActionLink("Generic surveys", "Index", "GenericSurvey", null, new { @class="tiny button"})
+    </p>
+}
+
 
 <table>
     <tr>
@@ -41,7 +46,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+            @if (User.Identity.Name == item.UserAccount.userName || User.Identity.Name == item.UserAccount1.userName)
+            {
+                @Html.ActionLink(item.customerSurveyTitle, "Index", "SurveyReport", 
+                                new { id = item.surveyId }, new { title = "Survey Report" })
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+            }           
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.companyName)
@@ -63,13 +76,23 @@
             @Html.DisplayFor(modelItem => item.endDate)
         </td>
         <td>
-            <div class="iconHolder">
-                @Html.ActionLink(" ", "Edit", new { id = item.surveyId }, new{ title = "Edit", @class = "step fi-pencil size-24 black" })
-                @Html.ActionLink(" ", "Details", new { id = item.surveyId }, new{ title="Details", @class = "fi-page size-24 black" }) 
+            @if (teacherRoleCheck)
+            {
+                <div class="iconHolder">
+                    @Html.ActionLink(" ", "Edit", new { id = item.surveyId }, 
+                        new{ title = "Edit", @class = "step fi-pencil size-24 black" })
+                    @Html.ActionLink(" ", "Details", new { id = item.surveyId }, 
+                        new{ title="Details", @class = "fi-page size-24 black" }) 
 
-                <a href="@Url.Action("Delete", new {id = item.surveyId})" class="fi-trash size-24 black"
-                        title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
-            </div>
+                    <a href="@Url.Action("Delete", new {id = item.surveyId})" class="fi-trash size-24 black"
+                            title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
+                </div>
+            }
+            else
+            {
+                @Html.ActionLink(" ", "Details", new { id = item.surveyId }, 
+                        new{ title="Details", @class = "fi-page size-24 black" })
+            }            
         </td>
     </tr>
 }

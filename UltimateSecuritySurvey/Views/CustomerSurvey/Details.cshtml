@@ -86,7 +86,16 @@
         @Html.DisplayFor(model => model.endComment)
     </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  id=Model.surveyId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="button-group round">
+@if (User.IsInRole("Teacher"))
+{
+    <li>@Html.ActionLink("Edit", "Edit", new {  id=Model.surveyId }, new { @class = "tiny button secondary"})</li>
+}
+@if (User.Identity.Name == Model.UserAccount.userName || User.Identity.Name == Model.UserAccount1.userName)
+{
+    <li>@Html.ActionLink("Survey Report", "Index", "SurveyReport", new {  id=Model.surveyId }, 
+                    new { @class = "tiny button secondary"})</li>
+}
+       
+    <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})</li>
+</ul>
