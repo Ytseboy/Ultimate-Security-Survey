@@ -59,7 +59,9 @@ namespace UltimateSecuritySurvey.Controllers
         {
             var genericsurvey = new GenericSurvey();
             PopulateAssignedData(genericsurvey);
-            ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName");
+
+            var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "firstName");
             return View("CreateEdit", genericsurvey);
         }
 
@@ -78,7 +80,9 @@ namespace UltimateSecuritySurvey.Controllers
                 return HttpNotFound();
             }
             PopulateAssignedData(genericsurvey);
-            ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", genericsurvey.supervisorUserId);
+
+            var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "firstName", genericsurvey.supervisorUserId);
             return View("CreateEdit", genericsurvey);
         }
 
@@ -132,7 +136,9 @@ namespace UltimateSecuritySurvey.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", genericsurvey.supervisorUserId);
+
+            var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "firstName", genericsurvey.supervisorUserId);
             
             return View(genericsurvey);
         }
