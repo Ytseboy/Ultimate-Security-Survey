@@ -44,9 +44,11 @@ namespace UltimateSecuritySurvey.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
+            var students = db.UserAccounts.Where(x => !x.isTeacher).ToList();
+
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName");
             ViewBag.baseSurveyId = new SelectList(db.GenericSurveys, "surveyId", "title");
-            ViewBag.observerUserId = new SelectList(db.UserAccounts, "userId", "firstName");
+            ViewBag.observerUserId = new SelectList(students, "userId", "firstName");
             ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName");
             return View("CreateEdit", new CustomerSurvey());
         }
@@ -61,9 +63,11 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
+            var students = db.UserAccounts.Where(x => !x.isTeacher).ToList();
+
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName", customersurvey.customerId);
             ViewBag.baseSurveyId = new SelectList(db.GenericSurveys, "surveyId", "title", customersurvey.baseSurveyId);
-            ViewBag.observerUserId = new SelectList(db.UserAccounts, "userId", "firstName", customersurvey.observerUserId);
+            ViewBag.observerUserId = new SelectList(students, "userId", "firstName", customersurvey.observerUserId);
             ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", customersurvey.supervisorUserId);
             return View("CreateEdit", customersurvey);
         }
@@ -90,9 +94,11 @@ namespace UltimateSecuritySurvey.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var students = db.UserAccounts.Where(x => !x.isTeacher).ToList();
+
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName", customersurvey.customerId);
             ViewBag.baseSurveyId = new SelectList(db.GenericSurveys, "surveyId", "title", customersurvey.baseSurveyId);
-            ViewBag.observerUserId = new SelectList(db.UserAccounts, "userId", "firstName", customersurvey.observerUserId);
+            ViewBag.observerUserId = new SelectList(students, "userId", "firstName", customersurvey.observerUserId);
             ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", customersurvey.supervisorUserId);
             return View(customersurvey);
         }
