@@ -57,7 +57,7 @@
 
     <div class="row">
         <div class="large-6 columns">
-            @Html.LabelFor(model => model.observerUserId, "UserAccount")
+            @Html.LabelFor(model => model.observerUserId, "Observer")
 
             @Html.DropDownList("observerUserId", String.Empty)
             @Html.ValidationMessageFor(model => model.observerUserId)
@@ -66,9 +66,11 @@
 
     <div class="row">
         <div class="large-6 columns">
-            @Html.LabelFor(model => model.supervisorUserId, "UserAccount1")
+            @Html.LabelFor(model => model.supervisorUserId, "Supervisor")
 
-            @Html.DropDownList("supervisorUserId", String.Empty)
+          <p> @Html.DisplayFor(model => model.UserAccount1.firstName)
+            @Html.DisplayFor(model => model.UserAccount1.lastName)</p> 
+            @Html.HiddenFor(model => model.supervisorUserId)
             @Html.ValidationMessageFor(model => model.supervisorUserId)
         </div>
     </div>
@@ -91,7 +93,7 @@
         </div>
     </div>
 
-        <input type="submit" value="Save" />
+        <input type="submit" value="Save" class="small button success"/>
 
 }
     @Html.ActionLink("Back to List", "Index")

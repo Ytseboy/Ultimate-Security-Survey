@@ -26,7 +26,21 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.GenericSurvey.title)
     </div>
-
+    <div class="display-label">
+        <h5>Status of Answered Questions</h5>
+    </div>
+    <div class="display-field">
+        @ViewBag.QuestionsAnswered / @ViewBag.QuestionsAmount
+    </div>
+    <h5>Average Observer Status</h5>
+    @if (ViewBag.Average != null)
+    {
+    @ViewBag.Average
+    }
+    else
+    {
+        <p>No answers for this survey yet.</p>
+    }
     <div class="display-label">
          <h5>@Html.DisplayNameFor(model => model.startDate)</h5>
     </div>
