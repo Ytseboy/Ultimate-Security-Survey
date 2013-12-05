@@ -8,12 +8,13 @@ using System.Web.Helpers;
 namespace UltimateSecuritySurvey.Models
 {
     public class USSRoleProvider : RoleProvider
-    {
-        SecuritySurveyEntities db = new SecuritySurveyEntities();
+    {        
         String[] ROLES = { "Teacher", "Student" };
 
         public override string[] GetRolesForUser(string userName)
         {
+            SecuritySurveyEntities db = new SecuritySurveyEntities();
+
             string[] role = new string[]{};
 
             UserAccount user = db.UserAccounts.FirstOrDefault(x => x.userName == userName);
@@ -28,6 +29,8 @@ namespace UltimateSecuritySurvey.Models
 
         public override bool IsUserInRole(string userName, string roleName)
         {
+            SecuritySurveyEntities db = new SecuritySurveyEntities();
+
             bool result = false;
 
             UserAccount user = db.UserAccounts.FirstOrDefault(x => x.userName == userName);

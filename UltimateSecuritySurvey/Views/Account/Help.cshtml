@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+    
+    if (Request.IsAuthenticated)
+    {
+        //If user is already logged In --> Redirect to Dashboard
+        Response.Redirect("/Home");
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Help - Ultimate Security Survey</title>
+    @Styles.Render("~/Content/css/foundation.css", "~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="large-3 columns">
+			    <h1><img src="@Url.Content("~/Content/imgs/haaga-helia.png")" alt=""></h1>
+		    </div>
+            <div class="large-9 columns">
+                <h1>Ultimate Security Survey</h1>
+            </div>
+        </div>
+        <hr />
+    </div>
+    
+    <div class="row">
+        <div class="small-6 small-centered columns">
+            <div class="panel">
+                <h3>Help</h3>
+                <p>
+                    Unfortunately, this application can be used only by registered users.
+                    If you want to get one - the best way is to ask for it from your teacher.
+                    In case you forget your password - contact your supervising teacher
+                </p>
+            </div>
+            @Html.ActionLink("LogIn", "Login")
+        </div>
+    </div>
+</body>
+</html>

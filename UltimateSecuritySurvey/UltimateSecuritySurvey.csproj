@@ -139,7 +139,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerOptionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\CustomerAnswerController.cs" />
+    <Compile Include="Controllers\SurveyReportController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerSurveyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -693,10 +693,11 @@
     <Content Include="Views\Account\MyProfile.cshtml" />
     <Content Include="Views\Account\SurveyListPartial.cshtml" />
     <Content Include="Views\Home\SurveyBox.cshtml" />
-    <Content Include="Views\CustomerAnswer\IndexTeacher.cshtml" />
-    <Content Include="Views\CustomerAnswer\Create.cshtml" />
-    <Content Include="Views\CustomerAnswer\Edit.cshtml" />
-    <Content Include="Views\CustomerAnswer\Validate.cshtml" />
+    <Content Include="Views\SurveyReport\IndexTeacher.cshtml" />
+    <Content Include="Views\SurveyReport\Create.cshtml" />
+    <Content Include="Views\SurveyReport\Edit.cshtml" />
+    <Content Include="Views\SurveyReport\Validate.cshtml" />
+    <Content Include="Views\Account\Help.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

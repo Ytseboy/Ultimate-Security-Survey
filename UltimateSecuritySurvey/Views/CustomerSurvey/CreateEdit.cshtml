@@ -30,7 +30,7 @@
     
     <div class="row">
         <div class="large-6 columns">
-            @Html.LabelFor(model => model.baseSurveyId, "GenericSurvey")
+            @Html.LabelFor(model => model.baseSurveyId, "Base Survey")
 
             @Html.DropDownList("baseSurveyId", String.Empty)
             @Html.ValidationMessageFor(model => model.baseSurveyId)
@@ -96,7 +96,7 @@
         <input type="submit" value="Save" class="small button success"/>
 
 }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class="tiny button secondary" })
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

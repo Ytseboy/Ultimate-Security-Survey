@@ -10,7 +10,7 @@ using UltimateSecuritySurvey.Models;
 namespace UltimateSecuritySurvey.Controllers
 {
     [Authorize]
-    public class CustomerAnswerController : Controller
+    public class SurveyReportController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
 

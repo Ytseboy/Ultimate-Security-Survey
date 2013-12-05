@@ -23,7 +23,7 @@
             @Html.DisplayNameFor(model => model.baseLevel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserAccount.firstName)
+            Supervisor
         </th>
         <th>
             Included questions
@@ -43,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.baseLevel)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserAccount.firstName)
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Questions.Count)

@@ -39,10 +39,11 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Average = customersurvey.CustomerAnswers.Average(x => x.observerStatusValue);
 
+            ViewBag.Average = customersurvey.CustomerAnswers.Average(x => x.observerStatusValue);
             ViewBag.QuestionsAmount = customersurvey.GenericSurvey.Questions.Count;
             ViewBag.QuestionsAnswered = customersurvey.CustomerAnswers.Count;
+
             return View(customersurvey);
         }
 
@@ -52,11 +53,12 @@ namespace UltimateSecuritySurvey.Controllers
         public ActionResult Create()
         {
             var students = db.UserAccounts.Where(x => !x.isTeacher).ToList();
+            var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
 
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName");
             ViewBag.baseSurveyId = new SelectList(db.GenericSurveys, "surveyId", "title");
-            ViewBag.observerUserId = new SelectList(students, "userId", "firstName");
-            ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName");
+            ViewBag.observerUserId = new SelectList(students, "userId", "userName");
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "userName", User.Identity.Name);
             return View("CreateEdit", new CustomerSurvey());
         }
 
@@ -74,8 +76,7 @@ namespace UltimateSecuritySurvey.Controllers
 
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName", customersurvey.customerId);
             ViewBag.baseSurveyId = new SelectList(db.GenericSurveys, "surveyId", "title", customersurvey.baseSurveyId);
-            ViewBag.observerUserId = new SelectList(students, "userId", "firstName", customersurvey.observerUserId);
-            ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", customersurvey.supervisorUserId);
+            ViewBag.observerUserId = new SelectList(students, "userId", "userName", customersurvey.observerUserId);
             return View("CreateEdit", customersurvey);
         }
 
@@ -101,12 +102,14 @@ namespace UltimateSecuritySurvey.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             var students = db.UserAccounts.Where(x => !x.isTeacher).ToList();
+            var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
 
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "companyName", customersurvey.customerId);
             ViewBag.baseSurveyId = new SelectList(db.GenericSurveys, "surveyId", "title", customersurvey.baseSurveyId);
-            ViewBag.observerUserId = new SelectList(students, "userId", "firstName", customersurvey.observerUserId);
-            ViewBag.supervisorUserId = new SelectList(db.UserAccounts, "userId", "firstName", customersurvey.supervisorUserId);
+            ViewBag.observerUserId = new SelectList(students, "userId", "userName", customersurvey.observerUserId);
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "userName", customersurvey.supervisorUserId);
             return View(customersurvey);
         }
 
@@ -133,6 +136,7 @@ namespace UltimateSecuritySurvey.Controllers
         {
             CustomerSurvey customersurvey = db.CustomerSurveys.Find(id);
             bool credentials = customersurvey.UserAccount1.userName == User.Identity.Name;
+
             if (credentials)
             {
                 db.CustomerSurveys.Remove(customersurvey);

@@ -81,5 +81,10 @@ namespace UltimateSecuritySurvey.Controllers
 
             return View(user);
         }
+
+        public ActionResult Help()
+        {
+            return View();
+        }
     }
 }

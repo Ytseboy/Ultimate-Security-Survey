@@ -1,13 +1,12 @@
 ﻿@{
     Layout = null;
+    
+    if (Request.IsAuthenticated)
+    {
+        //If user is already logged In --> Redirect to Dashboard
+        Response.Redirect("/Home");
+    }
 }
-
-@if (Request.IsAuthenticated)
-{
-    //If user is already logged In --> Redirect to Dashboard
-    Response.Redirect("/Home");
-}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +51,7 @@
                         @Html.Password("password", "000000")
                        <input type="submit" value="Log In" class="small button"/>
                     </div>
-                    <a href="#">Need help?</a>
+                    @Html.ActionLink("Need help?","Help")
                 </div>
             </div>
     }

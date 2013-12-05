@@ -61,7 +61,7 @@ namespace UltimateSecuritySurvey.Controllers
             PopulateAssignedData(genericsurvey);
 
             var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
-            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "firstName");
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "userName");
             return View("CreateEdit", genericsurvey);
         }
 
@@ -82,7 +82,7 @@ namespace UltimateSecuritySurvey.Controllers
             PopulateAssignedData(genericsurvey);
 
             var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
-            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "firstName", genericsurvey.supervisorUserId);
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "userName", genericsurvey.supervisorUserId);
             return View("CreateEdit", genericsurvey);
         }
 
@@ -138,7 +138,7 @@ namespace UltimateSecuritySurvey.Controllers
             }
 
             var teachers = db.UserAccounts.Where(x => x.isTeacher).ToList();
-            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "firstName", genericsurvey.supervisorUserId);
+            ViewBag.supervisorUserId = new SelectList(teachers, "userId", "userName", genericsurvey.supervisorUserId);
             
             return View(genericsurvey);
         }
