@@ -122,9 +122,7 @@ namespace UltimateSecuritySurvey.Controllers
                 else
                 {
                     var surveyToUpdate = db.GenericSurveys
-                        .Include(i => i.Questions)
-                        .Where(i => i.surveyId == genericsurvey.surveyId)
-                        .Single();
+                        .Include(i => i.Questions).Single(i => i.surveyId == genericsurvey.surveyId);
 
                     UpdateSurveyQuestion(selectedQuestions, surveyToUpdate);
 
@@ -202,9 +200,7 @@ namespace UltimateSecuritySurvey.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             GenericSurvey genericsurvey = db.GenericSurveys
-                .Include(i => i.Questions)
-                .Where(i => i.surveyId == id)
-                .Single();
+                .Include(i => i.Questions).Single(i => i.surveyId == id);
 
             bool childExist = db.CustomerSurveys.Any(x => x.surveyId == id);
 
