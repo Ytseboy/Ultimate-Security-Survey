@@ -2,19 +2,17 @@
 
 @{
     ViewBag.Title = "Customer Surveys";
+    ViewBag.PageHeader = "Customer Surveys";
     bool teacherRoleCheck = User.IsInRole("Teacher");
 }
 
-<h2>Customer Surveys</h2>
-
-@if (teacherRoleCheck)
-{
-    <p>
-        @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
-        @Html.ActionLink("Generic surveys", "Index", "GenericSurvey", null, new { @class="tiny button"})
-    </p>
+@section Sidebar{
+    @if (teacherRoleCheck)
+    {    
+        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Generic surveys", "Index", "GenericSurvey")
+    }
 }
-
 
 <table>
     <tr>

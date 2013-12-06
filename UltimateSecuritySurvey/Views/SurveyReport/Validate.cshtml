@@ -2,9 +2,8 @@
 
 @{
     ViewBag.Title = "Validate";
+    ViewBag.PageHeader = "Validate";
 }
-
-<h2>Validate</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -13,21 +12,9 @@
     <fieldset>
         <legend>CustomerAnswer</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.surveyId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.surveyId)
-            @Html.ValidationMessageFor(model => model.surveyId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.questionId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.questionId)
-            @Html.ValidationMessageFor(model => model.questionId)
-        </div>
+        @Html.HiddenFor(model => model.surveyId)
+        @Html.HiddenFor(model => model.questionId)
+        @Html.HiddenFor(model => model.answerStatusValue)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.answerOptionNumber)
@@ -36,7 +23,6 @@
             @Html.EditorFor(model => model.answerOptionNumber)
             @Html.ValidationMessageFor(model => model.answerOptionNumber)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.answerText)
         </div>
@@ -44,15 +30,6 @@
             @Html.EditorFor(model => model.answerText)
             @Html.ValidationMessageFor(model => model.answerText)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.answerStatusValue)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.answerStatusValue)
-            @Html.ValidationMessageFor(model => model.answerStatusValue)
-        </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.observerStatusValue)
         </div>
@@ -117,15 +94,11 @@
             @Html.ValidationMessageFor(model => model.supervisorCommentDateAndTime)
         </div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+        <input type="submit" value="Save" class="small round button success" />
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@Html.ActionLink("Back to List", "Index", null, new { @class="small button secondary" })
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

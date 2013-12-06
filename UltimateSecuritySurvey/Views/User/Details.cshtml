@@ -2,23 +2,14 @@
 
 @{
     ViewBag.Title = "User details";
+    ViewBag.PageHeader = "Users Details";
 }
 
-<h2>Details</h2>
-        
-    @Html.HiddenFor(model => model.userId)
-
     <div class="display-label">
-        <h5>@Html.DisplayNameFor(model => model.firstName)</h5>
+        <h5>Full name</h5>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.firstName)
-    </div>
-
-    <div class="display-label">
-        <h5>@Html.DisplayNameFor(model => model.lastName)</h5>
-    </div>
-    <div class="display-field">
         @Html.DisplayFor(model => model.lastName)
     </div>
 
@@ -51,29 +42,36 @@
     </div>
 
 <ul class="button-group">
-    @Html.ActionLink("Edit", "Edit", new {id=Model.userId}, new { @class = "tiny button secondary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})
+    @if (User.IsInRole("Teacher"))
+    {
+        <li>@Html.ActionLink("Edit", "Edit", new {id=Model.userId}, new { @class = "tiny button secondary"})</li>
+    }    
+    <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})</li>
 </ul>
 
-<!--Sidebar Info-->
-@{ICollection<UltimateSecuritySurvey.Models.CustomerSurvey> participation;
+@section Sidebar{
+    @{
+        ICollection<UltimateSecuritySurvey.Models.CustomerSurvey> participation;
     
-    //Shows the surveys this user is participating
-    if (Model.isTeacher)
-    {
-        participation = Model.CustomerSurveys1;
-        <h5>Supervisor in surveys:</h5>
+        //Shows the surveys this user is participating
+        if (Model.isTeacher)
+        {
+            participation = Model.CustomerSurveys1;
+            <h5>Supervisor in surveys:</h5>
+        }
+        else
+        {
+            participation = Model.CustomerSurveys;
+            <h5>Observer in surveys:</h5>
+        }
     }
-    else
-    {
-        participation = Model.CustomerSurveys;
-        <h5>Observer in surveys:</h5>
-    }
-}
     <ul>
         @foreach (var item in participation)
         {
-            <li>- @Html.DisplayFor(model => item.customerSurveyTitle)</li>
+            <li>- @Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", 
+                        new { id = item.surveyId }, null)</li>
         }
     </ul>
+}
+
         

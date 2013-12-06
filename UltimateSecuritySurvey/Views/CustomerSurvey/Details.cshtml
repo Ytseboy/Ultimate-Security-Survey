@@ -2,9 +2,8 @@
 
 @{
     ViewBag.Title = "Details";
+    ViewBag.PageHeader = "Customer Details";
 }
-
-<h2>Details</h2>
 
     <div class="display-label">
         <h5>@Html.DisplayNameFor(model => model.customerSurveyTitle)</h5>
@@ -26,22 +25,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.GenericSurvey.title)
     </div>
-    <div class="display-label">
-        <h5>Status of Answered Questions</h5>
-    </div>
-    <div class="display-field">
-        @ViewBag.QuestionsAnswered / @ViewBag.QuestionsAmount
-    </div>
-    <h5>Average Observer Status</h5>
-    @if (ViewBag.Average != null)
-    {
-        @ViewBag.Average
-    }
-    else
-    {
-        <p>No answers for this survey yet.</p>
-    }
-
     <div class="display-label">
          <h5>@Html.DisplayNameFor(model => model.startDate)</h5>
     </div>
@@ -99,3 +82,18 @@
        
     <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})</li>
 </ul>
+
+@section Sidebar{
+    <h5>Status of Answered Questions</h5>
+    @ViewBag.QuestionsAnswered / @ViewBag.QuestionsAmount
+
+    <h5>Average Observer Status</h5>
+    @if (ViewBag.Average != null)
+    {
+        @ViewBag.Average
+    }
+    else
+    {
+        <p>No answers for this survey yet.</p>
+    }
+}

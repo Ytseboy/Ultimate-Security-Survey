@@ -2,21 +2,21 @@
 
 @{
     ViewBag.Title = "Users";
+    ViewBag.PageHeader = "Users";
+    bool teacherRoleCheck = User.IsInRole("Teacher");
 }
 
-<h2>Users</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
-</p>
+@section Sidebar{
+    @if (teacherRoleCheck)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }   
+}
 
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.firstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastName)
+            Name
         </th>
         <th>
             @Html.DisplayNameFor(model => model.email)
@@ -39,8 +39,6 @@
 
         <td>
             @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.lastName)
         </td>
         <td>
@@ -57,13 +55,23 @@
             @Html.DisplayFor(modelItem => item.isTeacher)
         </td>
         <td>
-            <div class="iconHolder">
-                @Html.ActionLink(" ","Edit",new {id = item.userId}, new{ title = "Edit", @class = "step fi-pencil size-24 black" })
-                @Html.ActionLink(" ","Details",new {id = item.userId}, new{title="Details", @class = "fi-page size-24 black" })
+            @if (teacherRoleCheck)
+            {
+                <div class="iconHolder">
+                    @Html.ActionLink(" ","Edit", new { id = item.userId }, 
+                            new{ title = "Edit", @class = "step fi-pencil size-24 black" })
+                    @Html.ActionLink(" ","Details", new { id = item.userId }, 
+                            new{title="Details", @class = "fi-page size-24 black" })
 
-                <a href="@Url.Action("Delete", new {id = item.userId})" class="fi-trash size-24 black"
-                        title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
-            </div> 
+                    <a href="@Url.Action("Delete", new {id = item.userId})" class="fi-trash size-24 black"
+                            title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"> </a>
+                </div>
+            }
+            else
+            {
+                @Html.ActionLink(" ","Details", new { id = item.userId }, 
+                            new{title="Details", @class = "fi-page size-24 black" })
+            }           
         </td>
     </tr>
 }

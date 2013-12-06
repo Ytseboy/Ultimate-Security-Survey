@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Customer details";
     ViewBag.PageHeader = "Customer details";
-    ViewBag.SidebarHeader = "Assigned surveys";
+    string currentUser = User.Identity.Name;
 }
 
     <div class="display-label">
@@ -13,17 +13,10 @@
         @Html.DisplayFor(model => model.companyName)
     </div>
 
-    <div class="display-label">
-        <h5>@Html.DisplayNameFor(model => model.contactFirstName) </h5>
-    </div>
+
+    <h5>Contact name </h5>
     <div class="display-field">
         @Html.DisplayFor(model => model.contactFirstName)
-    </div>
-
-    <div class="display-label">
-       <h5>  @Html.DisplayNameFor(model => model.contactLastName)  </h5>
-    </div>
-    <div class="display-field">
         @Html.DisplayFor(model => model.contactLastName)
     </div>
 
@@ -40,23 +33,37 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
-    
-    <div class="display-label">
-      <h5> Assigned surveys </h5>
-    </div>
 
 <ul class="button-group">
-    @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }, new { @class = "tiny button secondary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})
+    @if (User.IsInRole("Teacher"))
+    {
+        <li>@Html.ActionLink("Edit", "Edit", new { id=Model.customerId }, new { @class = "tiny button secondary"})</li>
+    }
+    
+    <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "tiny button secondary"})</li>
 </ul>
 
 @section Sidebar{
+    <h5>Company security</h5>
+    good / bad 32 %
+}
+
+<div class="panel">
+    <h5> Assigned surveys </h5>
     <ul class="side-nav">
     @foreach(var item in Model.CustomerSurveys)
     {
-
-        <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", new{id=item.surveyId}, null)</li>
+        if (currentUser == item.UserAccount.userName || currentUser == item.UserAccount1.userName)
+        {
+            <li>@Html.ActionLink(item.customerSurveyTitle, "Index", "Survey Report", 
+                        new { id = item.surveyId }, new { title = "Survey Report"})</li>
+        }
+        else
+        {
+            <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", new{id=item.surveyId}, null)</li>
+        }
+        
     }
     </ul>
-}
+</div>
     
