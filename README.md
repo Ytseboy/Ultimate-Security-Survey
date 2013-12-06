@@ -37,8 +37,36 @@ validates the report before it is sent for the company.
 <hr />
 
 <h4>TEAM</h4>
+<table>
+   <tr>
+   	<th>Topi Asikainen</th>
+   	<td>Development team member</td>
+   	<td></td>
+   </tr>
+   <tr>
+   	<th>Antti Marsio</th>
+   	<td>Development team member</td>
+   	<td></td>
+   </tr>
+   <tr>
+   	<th>Daniel Freitas</th>
+   	<td>Development team member</td>
+   	<td>link</td>
+   </tr>
+   <tr>
+   	<th>Alexander Shkunov</th>
+   	<td>Development team member, Scrum master</td>
+   	<td>link</td>
+   </tr>
+</table>
 
 <h4>TECHNOLOGY COLOPHON</h4>
+<ul>
+   <li>MVC 4, Object-Relational Mapping (Entity Framework)</li>
+   <li>LINQ to Entities, T-SQL, MS SQL Server 2012 v11.0</li>
+   <li>HTML 5, CSS 3 (Foundation framework)</li>
+   <li>jQuery Core and Validation, Foundation js libraries</li>
+</ul>
 
 <h4>Contributing</h4>
 <ol>
