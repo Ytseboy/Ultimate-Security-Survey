@@ -1,0 +1,70 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerSurvey>
+
+@{
+    string currentUser = User.Identity.Name;
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.customerSurveyTitle)
+        </th>
+        <th>
+            Base level
+        </th>
+        <th>
+            Included questions
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            Observer
+        </th>
+        <th>
+            Supervisor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (currentUser == item.UserAccount.userName || currentUser == item.UserAccount1.userName)
+            {
+                @Html.ActionLink(item.customerSurveyTitle, "Index", "SurveyReport", new { id = item.surveyId },
+                                        new { title = "Survey Report" })
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.customerSurveyTitle)
+            }            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenericSurvey.baseLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenericSurvey.Questions.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount1.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Details", "CustomerSurvey", new { id = item.surveyId }, 
+                        new{ title="Details", @class = "fi-page size-24 black" })
+        </td>
+    </tr>
+}
+</table>

@@ -41,9 +41,23 @@ namespace UltimateSecuritySurvey.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Average = customersurvey.CustomerAnswers.Average(x => x.observerStatusValue);
-            ViewBag.QuestionsAmount = customersurvey.GenericSurvey.Questions.Count;
-            ViewBag.QuestionsAnswered = customersurvey.CustomerAnswers.Count;
+            //Additional Info For Sidebar
+            var surveyReport = customersurvey.CustomerAnswers;
+
+            int questionsAmount = customersurvey.GenericSurvey.Questions.Count;
+            int questionsAnswered = surveyReport.Count;
+            ViewBag.AnsweredQuestions = String.Format("{0} / {1}", questionsAnswered, questionsAmount);
+            
+            double avgObserverStatus = (surveyReport.Average(x => x.observerStatusValue)) ?? 0;
+            ViewBag.AverageObserverStatus = Math.Round(avgObserverStatus, 2);
+
+            /* Factor here derrives from AnswerStatusValue Range. 
+             * Minima = 0, Maxima = 4 --> Four answers with value 4 should give 100 %
+             * --> 16/4 * factor = 100 % --> factor = 25 */
+            int factor = 25;
+            double averageAnswerValue = (surveyReport.Average(z => z.answerStatusValue)) ?? 0;
+            int surveyProgress = (int)Math.Round(averageAnswerValue * factor);
+            ViewBag.SurveyProgress = String.Format("{0}%", surveyProgress);
 
             return View(customersurvey);
         }

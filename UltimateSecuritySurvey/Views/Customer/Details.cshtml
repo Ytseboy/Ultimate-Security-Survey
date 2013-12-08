@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Customer details";
     ViewBag.PageHeader = "Customer details";
-    string currentUser = User.Identity.Name;
 }
 
     <div class="display-label">
@@ -12,7 +11,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.companyName)
     </div>
-
 
     <h5>Contact name </h5>
     <div class="display-field">
@@ -44,26 +42,28 @@
 </ul>
 
 @section Sidebar{
-    <h5>Company security</h5>
-    good / bad 32 %
+    <div class="panel">
+        <h5>Stats</h5>
+        <table>
+            <tr>
+                <td>Amount of surveys</td>
+                <th>@ViewBag.ImplementedSurveysCount</th>
+            </tr>
+            <tr>
+                <td>Average Base level</td>
+                <th>@ViewBag.AvgBaseLevel</th>
+            </tr>
+        </table>
+
+        <h6>Company security</h6>
+        <div class="progress large-12 @ViewBag.BarColor round">
+            <span class="meter" style="width: @ViewBag.CompanySecurity"></span>
+        </div>
+    </div>
 }
 
 <div class="panel">
-    <h5> Assigned surveys </h5>
-    <ul class="side-nav">
-    @foreach(var item in Model.CustomerSurveys)
-    {
-        if (currentUser == item.UserAccount.userName || currentUser == item.UserAccount1.userName)
-        {
-            <li>@Html.ActionLink(item.customerSurveyTitle, "Index", "Survey Report", 
-                        new { id = item.surveyId }, new { title = "Survey Report"})</li>
-        }
-        else
-        {
-            <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", new{id=item.surveyId}, null)</li>
-        }
-        
-    }
-    </ul>
+    <h5>Implemented surveys</h5>
+    @Html.Partial("ImplementedSurveysPartial", Model.CustomerSurveys)
 </div>
     

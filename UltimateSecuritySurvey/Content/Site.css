@@ -31,7 +31,7 @@
 
 /*BLOCKS
     -----------------------------------------*/
-.scrollable-small, .scrollable-large{
+.scrollable-small, .scrollable-medium, .scrollable-large{
     overflow-y: auto; 
     overflow-x: hidden;
 }
@@ -46,7 +46,7 @@
 }
 
 .scrollable-large{
-    max-height: 1200px;
+    max-height: 1000px;
 }
 
 /*ICONS AND IMAGES*/
@@ -54,22 +54,8 @@
     width: 62px;
 }
 
-.icon-edit, .icon-details, .icon-delete{
-    display:inline-block; 
-    height:24px; 
-    width:28px;
-}
-
-.icon-edit{
-    background: url('imgs/pencil.png') no-repeat center right; 
-}
-
-.icon-details{
-    background: url('imgs/notepad.png') no-repeat center right; 
-}
-
-.icon-delete{
-    background: url('imgs/bin.png') no-repeat center right; 
+.black {
+    color: #444444;
 }
 
 .size-12 { font-size: 12px; }
@@ -93,10 +79,7 @@
 .size-72 { font-size: 72px; }
 
 /*Tables*/
-.Test {
+.ColumnWidth-28 {
     width: 28%
 }
 
-.black {
-    color: #444444;
-}

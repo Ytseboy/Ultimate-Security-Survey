@@ -39,6 +39,54 @@ namespace UltimateSecuritySurvey.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Additional Info for sidebar
+            var surveys = customer.CustomerSurveys;
+
+            int implementedSurveysCount = surveys.Count;
+            ViewBag.ImplementedSurveysCount = implementedSurveysCount;
+
+            double averageBaselevel = (implementedSurveysCount > 0) ?
+                                            (from item in surveys
+                                            select item.GenericSurvey.baseLevel)
+                                            .Average() :
+                                            0;
+
+            ViewBag.AvgBaseLevel = Math.Round(averageBaselevel, 2);
+            
+            /* Factor here derrives from ObserverStatusValue Range for surveys implemented for company. 
+             * Minima = -3, Maxima = +3 
+             * --> Four answers with value +3 should give 100 %
+             * --> Four answers with value -3 should give 0 %
+             * 
+             * --> -12/4 * factor = 0 % --> factor = 0;
+             * --> 12/4 * factor = 100 % --> factor = 4/12 = 1/3
+             * Not good..... To have normal calculations minima and Maxima both should be Natural numbers
+             * 
+             * additionValue = 3 --> Minima = 0, Maxima = 6
+             * --> 24/4 * factor = 100 % --> factor = 100 * 4/24 = 100/6 = 50/3;
+             * percentage = AVG*50/3; */
+            int additionValue = 3;
+
+            /*Here is two factors in order to control arithmetic operations order, 
+             * cause if 50 will be divided by 3 first, then we will never get a clean 100%
+             * 
+             * Example: 6*50/3 = 6*16,66... =  99,99...
+             * But having two factors Example: 6*50/3 = 300/3 = 100 */
+            int factor1 = 50;
+            int factor2 = 3;
+
+            double? avgObserverStatus = (from item in surveys
+                                         from answer in item.CustomerAnswers
+                                         select answer.observerStatusValue + additionValue)
+                                         .Average();
+
+            double percentage = (avgObserverStatus ?? 0) * factor1 / factor2;
+            int companySecurity = (int)Math.Round(percentage, 0);
+
+            ViewBag.BarColor = (companySecurity < 50) ? "alert" : "success";
+            ViewBag.CompanySecurity = String.Format("{0}%", companySecurity);
+
             return View(customer);
         }
 

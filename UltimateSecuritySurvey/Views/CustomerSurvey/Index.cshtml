@@ -7,11 +7,17 @@
 }
 
 @section Sidebar{
-    @if (teacherRoleCheck)
-    {    
-        @Html.ActionLink("Create New", "Create")
-        @Html.ActionLink("Generic surveys", "Index", "GenericSurvey")
-    }
+    <div class="panel">
+        <h5>Related:</h5>
+        <ul class="no-bullet">
+            @if (teacherRoleCheck)
+            {         
+                <li>@Html.ActionLink("Add New Survey", "Create")</li>
+                <li>@Html.ActionLink("Generic Surveys", "Index", "GenericSurvey") </li>             
+            }
+            <li>@Html.ActionLink("My Surveys", "MyProfile", "Account", null, new { title = "My Profile" })</li>
+        </ul>
+    </div>
 }
 
 <table>
