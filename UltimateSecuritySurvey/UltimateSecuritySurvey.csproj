@@ -509,6 +509,7 @@
     <Content Include="Content\imgs\favicon.ico" />
     <Content Include="Content\imgs\haaga-helia.png" />
     <Content Include="Content\imgs\haaga-heliaico.png" />
+    <Content Include="Content\imgs\haaga-heliaico2.png" />
     <Content Include="Content\themes\base\images\logo.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

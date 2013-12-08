@@ -45,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.endDate)
         </td>
         <td>
-            @Html.ActionLink(" ", "Details", new { id = item.surveyId }, 
+            @Html.ActionLink(" ", "Details", "CustomerSurvey", new { id = item.surveyId }, 
                         new{ title="Details", @class = "fi-page size-24 black" }) 
         </td>
     </tr>

@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "My Profile";
     ViewBag.PageHeader = Model.userName;
-    ViewBag.SidebarHeader = "Profile";
 }
 
 <div class="row">
@@ -14,19 +13,22 @@
 </div>
 
 @section Sidebar{
-    <img src="@Url.Content(ViewBag.AvaUrl)" alt="Ava" />
+    <div class="panel">
+        <h5>Profile:</h5>
+        
+        <img src="@Url.Content(ViewBag.AvaUrl)" alt="Ava" />
 
-    <h6>Name</h6>
-    <p>
-        @Html.DisplayFor(model => model.firstName)
-        @Html.DisplayFor(model => model.lastName)
-    </p>
+        <h6>Name</h6>
+        <p>
+            @Html.DisplayFor(model => model.firstName)
+            @Html.DisplayFor(model => model.lastName)
+        </p>
 
-    <h6>Role</h6>
+        <h6>Role</h6>
+        <p>@ViewBag.UserRole</p>
 
-    <p>@ViewBag.UserRole</p>
-
-    @Html.ActionLink("Back to Dashboard", "Index", "Home")
+        @Html.ActionLink("Back to Dashboard", "Index", "Home")
+    </div>   
 }
 
 

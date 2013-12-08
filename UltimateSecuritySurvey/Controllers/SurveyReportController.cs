@@ -129,7 +129,15 @@ namespace UltimateSecuritySurvey.Controllers
         [HttpPost]
         public ActionResult Validate(CustomerAnswer answer)
         {
-            // TO DO later
+            if (ModelState.IsValid)
+            {
+                db.Entry(answer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", new { id = answer.surveyId, number = answer.questionId });
+            }
+
+            //if (Request.IsAjaxRequest())
+            //    return PartialView(answer);
 
             return View(answer);
         }

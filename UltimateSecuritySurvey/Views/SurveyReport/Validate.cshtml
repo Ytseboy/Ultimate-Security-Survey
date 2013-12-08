@@ -2,103 +2,86 @@
 
 @{
     ViewBag.Title = "Validate";
-    ViewBag.PageHeader = "Validate";
+    ViewBag.PageHeader = "Validate Answer";
 }
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>CustomerAnswer</legend>
-
         @Html.HiddenFor(model => model.surveyId)
         @Html.HiddenFor(model => model.questionId)
         @Html.HiddenFor(model => model.answerStatusValue)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.answerOptionNumber)
+    <div class="row">
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.answerOptionNumber, "Answer Option")
+            @Html.HiddenFor(model => model.answerOptionNumber)
+            @Html.DisplayFor(model => model.AnswerOption.answerText)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.answerOptionNumber)
-            @Html.ValidationMessageFor(model => model.answerOptionNumber)
-        </div>
-        <div class="editor-label">
+        <div class="large-4 columns">
             @Html.LabelFor(model => model.answerText)
+            @Html.HiddenFor(model => model.answerText)
+            @Html.DisplayFor(model => model.answerText)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.answerText)
-            @Html.ValidationMessageFor(model => model.answerText)
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.observerStatusValue, "Observer Status")
+            @Html.HiddenFor(model => model.observerStatusValue)
+            @Html.DisplayFor(model => model.ObserverStatu.description)
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.observerStatusValue)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.observerStatusValue)
-            @Html.ValidationMessageFor(model => model.observerStatusValue)
-        </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-4 columns">
             @Html.LabelFor(model => model.countermeasureId1)
+            @Html.HiddenFor(model => model.countermeasureId1)
+            @Html.DisplayFor(model => model.countermeasureId1)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.countermeasureId1)
-            @Html.ValidationMessageFor(model => model.countermeasureId1)
-        </div>
-
-        <div class="editor-label">
+        <div class="large-4 columns">
             @Html.LabelFor(model => model.countermeasureId2)
+            @Html.HiddenFor(model => model.countermeasureId2)
+            @Html.DisplayFor(model => model.countermeasureId2)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.countermeasureId2)
-            @Html.ValidationMessageFor(model => model.countermeasureId2)
-        </div>
-
-        <div class="editor-label">
+        <div class="large-4 columns">
             @Html.LabelFor(model => model.countermeasureId3)
+            @Html.HiddenFor(model => model.countermeasureId3)
+            @Html.DisplayFor(model => model.countermeasureId3)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.countermeasureId3)
-            @Html.ValidationMessageFor(model => model.countermeasureId3)
-        </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-8 columns">
             @Html.LabelFor(model => model.observerComment)
+            @Html.HiddenFor(model => model.observerComment)
+            @Html.DisplayFor(model => model.observerComment)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.observerComment)
-            @Html.ValidationMessageFor(model => model.observerComment)
-        </div>
-
-        <div class="editor-label">
+        <div class="large-4 columns">
             @Html.LabelFor(model => model.observerCommentDateAndTime)
+            @Html.HiddenFor(model => model.observerCommentDateAndTime)
+            @Html.DisplayFor(model => model.observerCommentDateAndTime)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.observerCommentDateAndTime)
-            @Html.ValidationMessageFor(model => model.observerCommentDateAndTime)
-        </div>
+    </div>
 
-        <div class="editor-label">
+    <div class="row">
+        <div class="large-8 columns">
             @Html.LabelFor(model => model.supervisorComment)
-        </div>
-        <div class="editor-field">
+
             @Html.EditorFor(model => model.supervisorComment)
             @Html.ValidationMessageFor(model => model.supervisorComment)
         </div>
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.supervisorCommentDateAndTime, "Supervisor comment Date")
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.supervisorCommentDateAndTime)
-        </div>
-        <div class="editor-field">
             @Html.EditorFor(model => model.supervisorCommentDateAndTime)
             @Html.ValidationMessageFor(model => model.supervisorCommentDateAndTime)
         </div>
+    </div>
 
-        <input type="submit" value="Save" class="small round button success" />
-    </fieldset>
+    <input type="submit" value="Save" class="small round button success" />
 }
 
-@Html.ActionLink("Back to List", "Index", null, new { @class="small button secondary" })
+@Html.ActionLink("Back to List", "Index", new { id = Model.surveyId, number = Model.questionId }, 
+                new { @class = "small button secondary" })
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

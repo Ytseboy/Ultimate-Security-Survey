@@ -11,12 +11,17 @@
     {
         <section>
             <p class="title" data-section-title>
-                @Ajax.ActionLink(String.Format("{0} - {1} \n\n Answer Status: {2} | Observer Status: {3}",
-                                                        questionNumber++, item.Question.questionTextMain,
-                                                        item.answerStatusValue, item.observerStatusValue),
+                @Ajax.ActionLink(String.Format("{0} - {1} ", questionNumber++, item.Question.questionTextMain),
                             "Validate",
                             new { id = item.surveyId, number = item.questionId },
-                            new AjaxOptions{})
+                            new AjaxOptions{
+                                HttpMethod = "GET",
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = item.questionId.ToString()
+                            })
+
+                @String.Format("Answer Status: {0} | Observer Status: {1}", 
+                            item.AnswerStatu.description, item.observerStatusValue)
             </p>
             <div class="content" data-section-content id="@item.questionId">
             </div>
@@ -43,10 +48,10 @@
         <div class="progress large-12 success round">
             <span class="meter" style="width: @ViewBag.SurveyProgress"></span>
         </div>
-    </div>
-    
+    </div>    
 }
 
 @section scripts{
-    @Scripts.Render("~/Scripts/jsF/fSectionMod.js")
+    @Scripts.Render("~/Scripts/jsF/fSectionMod.js",
+        "~/Scripts/jquery.unobtrusive-ajax.min.js")
 }
