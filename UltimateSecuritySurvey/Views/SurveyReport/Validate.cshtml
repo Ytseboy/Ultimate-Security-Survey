@@ -71,8 +71,8 @@
         </div>
         <div class="large-4 columns">
             @Html.LabelFor(model => model.supervisorCommentDateAndTime, "Supervisor comment Date")
-
-            @Html.EditorFor(model => model.supervisorCommentDateAndTime)
+            @Html.HiddenFor(model => model.supervisorCommentDateAndTime)
+            @Html.DisplayFor(model => model.supervisorCommentDateAndTime)
             @Html.ValidationMessageFor(model => model.supervisorCommentDateAndTime)
         </div>
     </div>

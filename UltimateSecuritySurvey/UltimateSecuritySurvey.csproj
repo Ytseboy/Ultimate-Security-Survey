@@ -205,7 +205,8 @@
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\USSRoleProvider.cs" />
+    <Compile Include="Utility\CustomHelpers.cs" />
+    <Compile Include="Utility\USSRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SecuritySurvey.mdf" />

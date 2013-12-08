@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.Helpers;
+using UltimateSecuritySurvey.Models;
 
-namespace UltimateSecuritySurvey.Models
+namespace UltimateSecuritySurvey.Utility
 {
     public class USSRoleProvider : RoleProvider
     {        

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerAnswer>
+@using UltimateSecuritySurvey.Utility
 
 @{
     ViewBag.Title = "Index";
@@ -11,7 +12,9 @@
     {
         <section>
             <p class="title" data-section-title>
-                @Ajax.ActionLink(String.Format("{0} - {1} ", questionNumber++, item.Question.questionTextMain),
+                @Ajax.CustomActionLink(String.Format("{0} - {1} <br /> Answer Status: {2} | Observer Status: {3}", 
+                                        questionNumber++, item.Question.questionTextMain,
+                                        item.AnswerStatu.description, item.observerStatusValue),
                             "Validate",
                             new { id = item.surveyId, number = item.questionId },
                             new AjaxOptions{
@@ -19,9 +22,6 @@
                                 InsertionMode = InsertionMode.Replace,
                                 UpdateTargetId = item.questionId.ToString()
                             })
-
-                @String.Format("Answer Status: {0} | Observer Status: {1}", 
-                            item.AnswerStatu.description, item.observerStatusValue)
             </p>
             <div class="content" data-section-content id="@item.questionId">
             </div>
@@ -36,7 +36,7 @@
         <table>
             <tr>
                 <td>Answered questions</td>
-                <th>@ViewBag.QuestionsAnswered / @ViewBag.QuestionsAmount</th>
+                <th class="ColumnWidth-28">@ViewBag.AnsweredQuestions</th>
             </tr>
             <tr>
                 <td>Average observer status</td>

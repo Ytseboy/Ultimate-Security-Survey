@@ -13,9 +13,7 @@ namespace UltimateSecuritySurvey.Controllers
     public class SurveyReportController : Controller
     {
         private SecuritySurveyEntities db = new SecuritySurveyEntities();
-
-        //
-        // GET: /CustomerAnswer/
+        private enum AnswerStatus : int {NotSet, Reported, Commented, Validated};
 
         public ActionResult Index(int id = 0)
         {
@@ -37,8 +35,10 @@ namespace UltimateSecuritySurvey.Controllers
 
             //Additional Info to Display
             ViewBag.SurveyTitle = customerSurvey.customerSurveyTitle;
-            ViewBag.QuestionsAmount = customerSurvey.GenericSurvey.Questions.Count;
-            ViewBag.QuestionsAnswered = answerList.Count;
+
+            int questionsAmount = customerSurvey.GenericSurvey.Questions.Count;
+            int questionsAnswered = answerList.Count;
+            ViewBag.AnsweredQuestions = String.Format("{0} / {1}", questionsAnswered, questionsAmount);
 
             double avgObserverStatus = (answerList.Average(x => x.observerStatusValue)) ?? 0;
             ViewBag.AverageObserverStatus = Math.Round(avgObserverStatus, 2);
@@ -51,21 +51,18 @@ namespace UltimateSecuritySurvey.Controllers
             int surveyProgress = (int)Math.Round(averageAnswerValue * factor);
             ViewBag.SurveyProgress = String.Format("{0}%", surveyProgress);
 
-            return View("IndexTeacher", answerList);
-
-            //LATER TO DO = STUDENT See all the questions included in generic survey
+            if (User.IsInRole("Teacher"))
+            {
+                return View("IndexTeacher", answerList);
+            }
+            else
+            {
+                //LATER TO DO = STUDENT See all the questions included in generic survey
+                // Own View for student
+                TempData["Message"] = "Nope! Student side has been not implemented yet!";
+                return RedirectToAction("Index", "CustomerSurvey");
+            }           
         }
-
-        //
-        // GET: /CustomerAnswer/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /CustomerAnswer/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -80,22 +77,6 @@ namespace UltimateSecuritySurvey.Controllers
 
             return View(customeranswer);
         }
-
-        //
-        // GET: /CustomerAnswer/Edit/5
-
-        public ActionResult Edit(int id = 0)
-        {
-            CustomerAnswer customeranswer = db.CustomerAnswers.Find(id);
-            if (customeranswer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customeranswer);
-        }
-
-        //
-        // POST: /CustomerAnswer/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -127,19 +108,18 @@ namespace UltimateSecuritySurvey.Controllers
         //Teacher Validation POST
         [Authorize(Roles = "Teacher")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Validate(CustomerAnswer answer)
         {
             if (ModelState.IsValid)
             {
+                answer.supervisorCommentDateAndTime = DateTime.Now;
+                answer.answerStatusValue = (int)AnswerStatus.Validated;
+
                 db.Entry(answer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", new { id = answer.surveyId, number = answer.questionId });
+                db.SaveChanges();                
             }
-
-            //if (Request.IsAjaxRequest())
-            //    return PartialView(answer);
-
-            return View(answer);
+            return RedirectToAction("Index", new { id = answer.surveyId, number = answer.questionId });
         }
 
         protected override void Dispose(bool disposing)
