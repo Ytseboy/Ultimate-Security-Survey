@@ -26,22 +26,35 @@ namespace UltimateSecuritySurvey.Models
         [DataType(DataType.MultilineText)]
         public string answerText { get; set; }
 
+        [DisplayName("Answer Status Value")]
         public Nullable<int> answerStatusValue { get; set; }
+
+         [DisplayName("Observer Status Value")]
         public Nullable<int> observerStatusValue { get; set; }
+
+        [DisplayName("Countermeasure 1")]
         public Nullable<int> countermeasureId1 { get; set; }
+
+        [DisplayName("Countermeasure 2")]
         public Nullable<int> countermeasureId2 { get; set; }
+
+        [DisplayName("Countermeasure 3")]
         public Nullable<int> countermeasureId3 { get; set; }
 
         [DisplayName("Observer comment")]
         [StringLength(1000, ErrorMessage = "Observer Comment value cannot exceed 1000 characters.")]
         [DataType(DataType.MultilineText)]
         public string observerComment { get; set; }
+
+        [DisplayName("Observer comment Date")]
         public Nullable<System.DateTime> observerCommentDateAndTime { get; set; }
 
         [DisplayName("Supervisor comment")]
         [StringLength(1000, ErrorMessage = "Supervisor Comment value cannot exceed 1000 characters.")]
         [DataType(DataType.MultilineText)]
         public string supervisorComment { get; set; }
+
+        [DisplayName("Supervisor comment Date")]
         public Nullable<System.DateTime> supervisorCommentDateAndTime { get; set; }
     
         public virtual AnswerOption AnswerOption { get; set; }
