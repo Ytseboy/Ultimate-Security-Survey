@@ -51,6 +51,13 @@
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-        <input type="submit" value="Delete" class="small button alert"/>     
+    <div class="row">
+        <div class="large-3 columns">
+            <input type="submit" value="Delete" class="small button alert"/>
+        </div>
+        <div class="large-9 columns">
+            @Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, new { @class="small button"})
+        </div>
+    </div>
+             
 }
-@Html.ActionLink("Back to List", "Details", "Question", new {id = Model.questionId }, new { @class="tiny button secondary"})
