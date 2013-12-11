@@ -695,11 +695,10 @@
     <Content Include="Views\Account\SurveyListPartial.cshtml" />
     <Content Include="Views\Home\SurveyBox.cshtml" />
     <Content Include="Views\SurveyReport\IndexTeacher.cshtml" />
-    <Content Include="Views\SurveyReport\Create.cshtml" />
-    <Content Include="Views\SurveyReport\Edit.cshtml" />
     <Content Include="Views\SurveyReport\Validate.cshtml" />
     <Content Include="Views\Account\Help.cshtml" />
     <Content Include="Views\Customer\ImplementedSurveysPartial.cshtml" />
+    <Content Include="Views\SurveyReport\IndexStudent.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

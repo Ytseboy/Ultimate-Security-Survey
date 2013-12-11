@@ -22,21 +22,25 @@ namespace UltimateSecuritySurvey.Controllers
                 return HttpNotFound();
 
             //Only participating users can see/modify Report
-            if (User.Identity.Name != customerSurvey.UserAccount.userName && User.Identity.Name != customerSurvey.UserAccount1.userName)
+            string currentUser = User.Identity.Name;
+            if (currentUser != customerSurvey.UserAccount.userName && currentUser != customerSurvey.UserAccount1.userName)
             {
                 TempData["Message"] = "Oops! Only survey observer and supervisor can access the survey report";
                 return RedirectToAction("Index", "CustomerSurvey");
             }
 
             List<CustomerAnswer> answerList;
+            List<Question> questionList;
 
             //Teacher see only created by student answers
             answerList = customerSurvey.CustomerAnswers.ToList();
+            questionList = customerSurvey.GenericSurvey.Questions.ToList();
 
             //Additional Info to Display
+            #region SidebarInfo
             ViewBag.SurveyTitle = customerSurvey.customerSurveyTitle;
 
-            int questionsAmount = customerSurvey.GenericSurvey.Questions.Count;
+            int questionsAmount = questionList.Count;
             int questionsAnswered = answerList.Count;
             ViewBag.AnsweredQuestions = String.Format("{0} / {1}", questionsAnswered, questionsAmount);
 
@@ -50,6 +54,7 @@ namespace UltimateSecuritySurvey.Controllers
             double averageAnswerValue = (answerList.Average(z => z.answerStatusValue)) ?? 0;
             int surveyProgress = (int)Math.Round(averageAnswerValue * factor);
             ViewBag.SurveyProgress = String.Format("{0}%", surveyProgress);
+            #endregion
 
             if (User.IsInRole("Teacher"))
             {
@@ -57,39 +62,37 @@ namespace UltimateSecuritySurvey.Controllers
             }
             else
             {
-                //LATER TO DO = STUDENT See all the questions included in generic survey
-                // Own View for student
-                TempData["Message"] = "Nope! Student side has been not implemented yet!";
-                return RedirectToAction("Index", "CustomerSurvey");
+                ViewBag.surveyId = customerSurvey.surveyId;
+                return View("IndexStudent", questionList);
             }           
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CustomerAnswer customeranswer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CustomerAnswers.Add(customeranswer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(CustomerAnswer customeranswer)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.CustomerAnswers.Add(customeranswer);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(customeranswer);
-        }
+        //    return View(customeranswer);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(CustomerAnswer customeranswer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(customeranswer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customeranswer);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(CustomerAnswer customeranswer)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(customeranswer).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(customeranswer);
+        //}
 
         //Teacher Validation GET
         [Authorize(Roles="Teacher")]
@@ -121,6 +124,8 @@ namespace UltimateSecuritySurvey.Controllers
             }
             return RedirectToAction("Index", new { id = answer.surveyId, number = answer.questionId });
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
