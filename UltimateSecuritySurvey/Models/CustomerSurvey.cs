@@ -36,7 +36,7 @@ namespace UltimateSecuritySurvey.Models
         [DisplayName("Company")]
         public int customerId { get; set; }
 
-        [Required(ErrorMessage = "Start date is mandatory!")]
+        [Required(ErrorMessage = "Start Date is mandatory!")]
         [DisplayName("Start Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
