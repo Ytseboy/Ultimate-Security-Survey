@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerAnswer>
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.Question>
 @using UltimateSecuritySurvey.Utility
 
 @{
@@ -12,16 +12,10 @@
     {
         <section>
             <p class="title" data-section-title>
-                @Ajax.CustomActionLink(String.Format("{0} - {1} <br /> Answer Status: {2} | Observer Status: {3}", 
-                                        questionNumber++, item.Question.questionTextMain,
-                                        item.AnswerStatu.description, item.observerStatusValue),
-                            "Validate",
-                            new { id = item.surveyId, number = item.questionId },
-                            new AjaxOptions{
-                                HttpMethod = "GET",
-                                InsertionMode = InsertionMode.Replace,
-                                UpdateTargetId = item.questionId.ToString()
-                            })
+                <a href="#">
+                    @(questionNumber++) - @item.questionTextMain <br />
+                    
+                </a>
             </p>
             <div class="content" data-section-content id="@item.questionId">
             </div>
