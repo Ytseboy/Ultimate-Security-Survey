@@ -11,7 +11,7 @@ This folder contains all the related documentation
 </ul>
 
 <h5>Sprint 3 progress (28.11 - 12.12)</h5>
-43% status: On-Time =)
+100% status: Done, on time.
 
 <h5>Sprint 3 Goal</h5>
 Finish the project
@@ -20,7 +20,7 @@ Finish the project
 Application is fully functional
 
 <h5>Sprint 2 progress (13.11 - 27.11)</h5>
-100% status: Done
+100% status: Done, on time.
 
 <h5>Sprint 2 Goal</h5>
 To improve Database and implement basic front-end layout and Application structure.
