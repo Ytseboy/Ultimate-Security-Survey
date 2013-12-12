@@ -2,20 +2,25 @@
 @using UltimateSecuritySurvey.Utility
 
 @{
-    ViewBag.Title = "Survey Report";
+    ViewBag.Title = "Submit Survey Report";
     ViewBag.PageHeader = ViewBag.SurveyTitle;
     int questionNumber = 1;
 }
 
 <div class="section-container accordion" data-section="accordion">
     @foreach(var item in Model)
-    {
+    {                  
         <section>
             <p class="title" data-section-title>
-                <a href="#">
-                    @(questionNumber++) - @item.questionTextMain <br />
-                    
-                </a>
+                @Ajax.CustomActionLink(String.Format("{0} - {1}", 
+                                        questionNumber++, item.questionTextMain),
+                            "Submit",
+                            new { id = ViewBag.surveyId, number = item.questionId },
+                            new AjaxOptions{
+                                HttpMethod = "GET",
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = item.questionId.ToString()
+                            })
             </p>
             <div class="content" data-section-content id="@item.questionId">
             </div>
@@ -31,6 +36,10 @@
             <tr>
                 <td>Answered questions</td>
                 <th class="ColumnWidth-28">@ViewBag.AnsweredQuestions</th>
+            </tr>
+            <tr>
+                <td>Validated questions</td>
+                <th>@ViewBag.ValidatedQuestions</th>
             </tr>
             <tr>
                 <td>Average observer status</td>

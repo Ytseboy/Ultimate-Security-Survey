@@ -2,7 +2,7 @@
 @using UltimateSecuritySurvey.Utility
 
 @{
-    ViewBag.Title = "Survey Report";
+    ViewBag.Title = "Validate Survey Report";
     ViewBag.PageHeader = ViewBag.SurveyTitle;
     int questionNumber = 1;
 }
@@ -39,11 +39,15 @@
                 <th class="ColumnWidth-28">@ViewBag.AnsweredQuestions</th>
             </tr>
             <tr>
+                <td>Validated questions</td>
+                <th>@ViewBag.ValidatedQuestions</th>
+            </tr>
+            <tr>
                 <td>Average observer status</td>
                 <th>@ViewBag.AverageObserverStatus</th>
             </tr>
         </table>
-
+        
         <h6>Survey progress</h6>
         <div class="progress large-12 success round">
             <span class="meter" style="width: @ViewBag.SurveyProgress"></span>

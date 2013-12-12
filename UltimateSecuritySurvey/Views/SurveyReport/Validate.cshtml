@@ -1,7 +1,7 @@
 ﻿@model UltimateSecuritySurvey.Models.CustomerAnswer
 
 @{
-    ViewBag.Title = "Validate";
+    ViewBag.Title = "Validate Answer";
     ViewBag.PageHeader = "Validate Answer";
 }
 
@@ -73,7 +73,6 @@
             @Html.LabelFor(model => model.supervisorCommentDateAndTime, "Supervisor comment Date")
             @Html.HiddenFor(model => model.supervisorCommentDateAndTime)
             @Html.DisplayFor(model => model.supervisorCommentDateAndTime)
-            @Html.ValidationMessageFor(model => model.supervisorCommentDateAndTime)
         </div>
     </div>
 

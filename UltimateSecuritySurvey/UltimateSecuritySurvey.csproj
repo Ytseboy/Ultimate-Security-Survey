@@ -704,6 +704,7 @@
     <Content Include="Views\Customer\ImplementedSurveysPartial.cshtml" />
     <Content Include="Views\SurveyReport\IndexStudent.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\SurveyReport\Submit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

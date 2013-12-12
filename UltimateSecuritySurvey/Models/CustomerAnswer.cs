@@ -18,6 +18,7 @@ namespace UltimateSecuritySurvey.Models
     {
         public int surveyId { get; set; }
         public int questionId { get; set; }
+        [DisplayName("Answer option")]
         public Nullable<int> answerOptionNumber { get; set; }
 
         [Required(ErrorMessage = "Answer text is mandatory!")]
@@ -26,10 +27,10 @@ namespace UltimateSecuritySurvey.Models
         [DataType(DataType.MultilineText)]
         public string answerText { get; set; }
 
-        [DisplayName("Answer Status Value")]
+        [DisplayName("Answer Status")]
         public Nullable<int> answerStatusValue { get; set; }
 
-         [DisplayName("Observer Status Value")]
+         [DisplayName("Observer Status")]
         public Nullable<int> observerStatusValue { get; set; }
 
         [DisplayName("Countermeasure 1")]
