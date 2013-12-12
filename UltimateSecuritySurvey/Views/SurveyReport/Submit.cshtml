@@ -14,6 +14,19 @@
         @Html.HiddenFor(model => model.answerStatusValue)
 
     <div class="row">
+        <div class="large-12 columns">
+            @Html.LabelFor(model => model.Question.questionTextExtra)
+            <p>@Model.Question.questionTextExtra</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            @Html.LabelFor(model => model.Question.baseLevel2RequirementText)
+            <p>@Model.Question.baseLevel2RequirementText</p>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="large-4 columns">
             @Html.LabelFor(model => model.answerOptionNumber)
             @Html.DropDownList("answerOptionNumber", String.Empty)
@@ -84,5 +97,5 @@
                 new { @class = "small button secondary" })
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval", "~/Scripts/jquery.unobtrusive-ajax.min.js")
 }
