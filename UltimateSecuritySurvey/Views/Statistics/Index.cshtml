@@ -1,8 +1,14 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Index";
+    ViewBag.PageHeader = "Statistics";
 }
 
-<h2>Index</h2>
-@ViewBag.chart;
+<table>
+    @foreach (var item in ViewBag.Stats as Dictionary<string, int>) 
+    {
+       <tr>
+            <td>@item.Key</td>
+            <th>@item.Value</th>
+       </tr> 
+    }
+</table>

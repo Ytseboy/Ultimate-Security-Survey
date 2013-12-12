@@ -2,14 +2,23 @@
 
 @{
     ViewBag.Title = "Generic Surveys";
+    ViewBag.PageHeader = "Generic Surveys";
 }
 
-<h2>Generic Surveys</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
-    @Html.ActionLink("Customer surveys", "Index", "CustomerSurvey", null, new { @class="tiny button"})
-</p>
+@section Sidebar
+    {
+    <div class="panel">
+        <h5>Related</h5>
+        <ul class="no-bullet">
+            <li>
+                 @Html.ActionLink("Create New", "Create")
+            </li>
+            <li>
+                 @Html.ActionLink("Customer surveys", "Index", "CustomerSurvey")
+            </li>
+        </ul>
+    </div>
+    }
 
 <table>
     <tr>
@@ -60,3 +69,5 @@
     </tr>
 }
 </table>
+
+

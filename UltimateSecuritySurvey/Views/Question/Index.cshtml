@@ -2,13 +2,21 @@
 
 @{
     ViewBag.Title = "Questions";
+    ViewBag.Pageheader = "Questions";
 }
 
-<h2>Questions</h2>
+@section Sidebar
+    {
+        <div class="panel">
+            <h5>Related:</h5>
+            <ul class="no-bullet">
+                <li>
+                     @Html.ActionLink("Create New", "Create")
+                </li>
+            </ul>
+        </div>
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class="tiny button secondary"})
-</p>
 <table id="myTable">
     <tr>
         <th class="ColumnWidth-28">
