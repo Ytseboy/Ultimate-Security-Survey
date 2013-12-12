@@ -56,7 +56,7 @@ validates the report before it is sent for the company.
    <tr>
    	<th>Alexander Shkunov</th>
    	<td>Development team member, Scrum master</td>
-   	<td>link</td>
+   	<td><a href="http://alexshkunov.com/" target="_blank" >alexshkunov.com</a></td>
    </tr>
 </table>
 
