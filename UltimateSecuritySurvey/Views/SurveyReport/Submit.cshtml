@@ -1,0 +1,88 @@
+﻿@model UltimateSecuritySurvey.Models.CustomerAnswer
+
+@{
+    ViewBag.Title = "Submit Answer";
+    ViewBag.PageHeader = "Submit Answer";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.surveyId)
+        @Html.HiddenFor(model => model.questionId)
+        @Html.HiddenFor(model => model.answerStatusValue)
+
+    <div class="row">
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.answerOptionNumber)
+            @Html.DropDownList("answerOptionNumber", String.Empty)
+            @Html.ValidationMessageFor(model => model.answerOptionNumber)
+        </div>
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.answerText)
+            @if (ViewBag.QuestionType == 1) //1 means long type
+            {
+                @Html.TextAreaFor(model => model.answerText)
+            }
+            else
+            {
+                @Html.TextBoxFor(model => model.answerText)
+            }            
+            @Html.ValidationMessageFor(model => model.answerText)
+        </div>
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.observerStatusValue)
+            @Html.DropDownList("observerStatusValue")
+            @Html.ValidationMessageFor(model => model.observerStatusValue)
+        </div>
+    </div>
+
+    <div class="row">
+        @for (int i = 1; i <= ViewBag.MeasuresAmount; i++)
+        {
+            <div class="large-4 columns">     
+                <label>Counter measure @i</label>
+                @Html.DropDownList("countermeasureId"+i, String.Empty)
+            </div>
+        }
+    </div>   
+
+    <div class="row">
+        <div class="large-8 columns">
+            @Html.LabelFor(model => model.observerComment)
+            @Html.EditorFor(model => model.observerComment)
+            @Html.ValidationMessageFor(model => model.observerComment)
+        </div>
+        <div class="large-4 columns">
+            @Html.LabelFor(model => model.observerCommentDateAndTime)
+            @Html.HiddenFor(model => model.observerCommentDateAndTime)
+            @Html.DisplayFor(model => model.observerCommentDateAndTime)
+        </div>
+    </div>  
+
+    if (Model.supervisorComment != null)
+    {
+        <div class="row">
+            <div class="large-8 columns">
+                @Html.LabelFor(model => model.supervisorComment)
+                @Html.HiddenFor(model => model.supervisorComment)
+                @Html.DisplayFor(model => model.supervisorComment)
+            </div>
+            <div class="large-4 columns">
+                @Html.LabelFor(model => model.supervisorCommentDateAndTime)
+                @Html.HiddenFor(model => model.supervisorCommentDateAndTime)
+                @Html.DisplayFor(model => model.supervisorCommentDateAndTime)
+            </div>
+        </div>         
+    }
+ 
+    <input type="submit" value="Save" class="small round button success" />
+}
+
+@Html.ActionLink("Back to List", "Index", new { id = Model.surveyId, number = Model.questionId }, 
+                new { @class = "small button secondary" })
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
