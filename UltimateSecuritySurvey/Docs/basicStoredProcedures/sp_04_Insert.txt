@@ -12,7 +12,7 @@ INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, 
 VALUES ('Marry',	'Red',			'marry@mail.com',	'-',	'teacher',	'000000',	1);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Markku',	'Kuitanen',		'markku@mail.com',	'-',	'kuima',	'000000',	1);
+VALUES ('Markku',	'Kuitunen',		'markku@mail.com',	'-',	'kuima',	'000000',	1);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
 VALUES ('Juhani',	'Valimaki',		'juhani@mail.com',	'-',	'valju',	'000000',	1);
