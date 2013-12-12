@@ -504,6 +504,7 @@
     <Content Include="Content\foundationicons\svgs\fi-yen.svg" />
     <Content Include="Content\foundationicons\svgs\fi-zoom-in.svg" />
     <Content Include="Content\foundationicons\svgs\fi-zoom-out.svg" />
+    <Content Include="Content\imgs\404.jpg" />
     <Content Include="Content\imgs\ava\1.jpg" />
     <Content Include="Content\imgs\ava\2.jpg" />
     <Content Include="Content\imgs\ava\3.jpg" />
@@ -705,6 +706,7 @@
     <Content Include="Views\SurveyReport\IndexStudent.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
     <Content Include="Views\SurveyReport\Submit.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

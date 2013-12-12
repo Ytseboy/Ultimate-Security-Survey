@@ -52,26 +52,30 @@
 @section Sidebar{
     @{
         ICollection<UltimateSecuritySurvey.Models.CustomerSurvey> participation;
-    
-        //Shows the surveys this user is participating
-        if (Model.isTeacher)
-        {
-            participation = Model.CustomerSurveys1;
-            <h5>Supervisor in surveys:</h5>
-        }
-        else
-        {
-            participation = Model.CustomerSurveys;
-            <h5>Observer in surveys:</h5>
-        }
-    }
-    <ul>
-        @foreach (var item in participation)
-        {
-            <li>- @Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", 
-                        new { id = item.surveyId }, null)</li>
-        }
-    </ul>
+        
+        <div class="panel">
+        
+  @*              //Shows the surveys this user is participating*@
+                    @if (Model.isTeacher)
+                    {
+                        participation = Model.CustomerSurveys1;
+                        <h5>Supervisor in surveys:</h5>
+                    }
+                    else
+                    {
+                        participation = Model.CustomerSurveys;
+                        <h5>Observer in surveys:</h5>
+                    }
+
+                    <ul>
+                        @foreach (var item in participation)
+                        {
+                            <li>@Html.ActionLink(item.customerSurveyTitle, "Details", "CustomerSurvey", 
+                                        new { id = item.surveyId }, null)</li>
+                        }
+                    </ul>
+     </div>
 }
+    }
 
         

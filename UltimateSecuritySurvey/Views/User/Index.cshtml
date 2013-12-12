@@ -7,10 +7,15 @@
 }
 
 @section Sidebar{
+    <div class="panel">
+    <h5>Related:</h5>
+     <ul class="no-bullet">
     @if (teacherRoleCheck)
     {
-        @Html.ActionLink("Create New", "Create")
-    }   
+        <li>@Html.ActionLink("Create New", "Create")</li>
+    }
+    </ul>
+    </div>       
 }
 
 <table>

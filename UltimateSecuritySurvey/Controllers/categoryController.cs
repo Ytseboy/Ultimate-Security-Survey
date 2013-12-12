@@ -41,7 +41,7 @@ namespace UltimateSecuritySurvey.Controllers
             QuestionCategory questioncategory = db.QuestionCategories.Find(id);
             if (questioncategory == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("PageNotFound", "Error");
             }
             return View(questioncategory);
         }
@@ -66,7 +66,7 @@ namespace UltimateSecuritySurvey.Controllers
             QuestionCategory questioncategory = db.QuestionCategories.Find(id);
             if (questioncategory == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("PageNotFound", "Error");
             }
             return View("CreateEdit",questioncategory);
         }
