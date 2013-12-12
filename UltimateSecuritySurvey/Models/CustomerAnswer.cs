@@ -48,6 +48,8 @@ namespace UltimateSecuritySurvey.Models
         public string observerComment { get; set; }
 
         [DisplayName("Observer comment Date")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public Nullable<System.DateTime> observerCommentDateAndTime { get; set; }
 
         [DisplayName("Supervisor comment")]
@@ -56,6 +58,8 @@ namespace UltimateSecuritySurvey.Models
         public string supervisorComment { get; set; }
 
         [DisplayName("Supervisor comment Date")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public Nullable<System.DateTime> supervisorCommentDateAndTime { get; set; }
     
         public virtual AnswerOption AnswerOption { get; set; }

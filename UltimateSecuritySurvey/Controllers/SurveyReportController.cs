@@ -63,6 +63,17 @@ namespace UltimateSecuritySurvey.Controllers
             else
             {
                 ViewBag.surveyId = customerSurvey.surveyId;
+
+                if (TempData["SubmitStatus"] != null && TempData["SubmitStatus"] == "1")
+	            {
+                    ViewBag.Warning = "Answer is saved";
+	            }
+                else if (TempData["SubmitStatus"] != null && TempData["SubmitStatus"] == "0")
+                {
+                    ViewBag.Error = "Wrong input";
+                }
+                
+
                 return View("IndexStudent", questionList);
             }           
         }
@@ -157,18 +168,29 @@ namespace UltimateSecuritySurvey.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Submit(CustomerAnswer answer)
         {
+            bool isAjax = Request.IsAjaxRequest();
 
-            //    if (ModelState.IsValid)
-            //    {
-            //        db.Entry(customeranswer).State = EntityState.Modified;
-            //        db.SaveChanges();
-            //        return RedirectToAction("Index");
-            //    }
-            //    return View(customeranswer);
+            if (ModelState.IsValid)
+            {
+                //Automatique Date And answer Status processing
+                if (answer.answerText != "-" && answer.answerStatusValue == (int)AnswerStatus.NotSet)
+                    answer.answerStatusValue = (int)AnswerStatus.Commented;
+                else if (answer.answerText == "-" && answer.answerStatusValue == (int)AnswerStatus.NotSet)
+                    answer.answerStatusValue = (int)AnswerStatus.Reported;
 
-            //Automatique Date And answer Status processing
+                if (answer.observerComment != null)
+                    answer.observerCommentDateAndTime = DateTime.Now;
 
-            return null;
+                db.Entry(answer).State = EntityState.Modified;
+                db.SaveChanges();
+
+                TempData["SubmitStatus"] = "1";
+            }
+            else
+            {
+                TempData["SubmitStatus"] = "0";
+            }
+            return RedirectToAction("Index", new { id = answer.surveyId, number = answer.questionId });           
         }
 
         protected override void Dispose(bool disposing)
