@@ -188,6 +188,7 @@
     <Compile Include="Models\QuestionType.cs">
       <DependentUpon>surveyEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatisticsModel.cs" />
     <Compile Include="Models\surveyEF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

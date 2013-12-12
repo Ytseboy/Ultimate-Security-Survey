@@ -19,7 +19,6 @@ namespace UltimateSecuritySurvey.Controllers
 
         public ActionResult Index()
         {
-
             //var xvals = db.CustomerSurveys.Select(e => e.startDate).ToList();
 
             //var yvals = db.CustomerSurveys.GroupBy(a => a.startDate.Month);
@@ -32,7 +31,6 @@ namespace UltimateSecuritySurvey.Controllers
             //            }
 
             //var yvals = new List<int>() { 1, 3 };
-
 
 
             //var chart = new Chart();
@@ -73,19 +71,33 @@ namespace UltimateSecuritySurvey.Controllers
             //ViewBag.chart = chart;
             //var test = db.CustomerSurveys.GroupBy(s => s.startDate.Month, x => x.startDate.Year);
             //ViewBag.Count = test;
-            
-            
-            Dictionary<string, int> stats = new Dictionary<string, int>();
-            stats.Add("Users", db.UserAccounts.Count());
-            stats.Add("Customers", db.Customers.Count());
-            stats.Add("Surveys", db.CustomerSurveys.Count());
-            stats.Add("Base Surveys", db.GenericSurveys.Count());
-            stats.Add("Questions", db.Questions.Count());
+
+
+            Dictionary<string, int> stats = new Dictionary<string, int>
+            {
+                {"Users", db.UserAccounts.Count()},
+                {"Customers", db.Customers.Count()},
+                {"Surveys", db.CustomerSurveys.Count()},
+                {"Base Surveys", db.GenericSurveys.Count()},
+                {"Questions", db.Questions.Count()}
+            };
 
             ViewBag.Stats = stats;
-            //ViewBag.Users = db.UserAccounts.
+            ViewBag.Surveys = db.CustomerSurveys
+                .GroupBy(c => c.supervisorUserId)
+                .Join(
+                    db.UserAccounts,
+                    myObject => myObject.FirstOrDefault().supervisorUserId,
+                    name => name.userId,
+                    (myObject, name) =>
+                        new StatisticsModel
+                        {
+                            UserKey = myObject.Key,
+                            MyCount =  myObject.Count(),
+                            Name = name.firstName
+                        }
+                );
             return View();
         }
-
     }
 }

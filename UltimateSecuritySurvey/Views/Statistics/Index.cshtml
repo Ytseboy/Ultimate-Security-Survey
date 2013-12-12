@@ -6,9 +6,31 @@
 <table>
     @foreach (var item in ViewBag.Stats as Dictionary<string, int>) 
     {
-       <tr>
+        <tr>
             <td>@item.Key</td>
             <th>@item.Value</th>
-       </tr> 
+        </tr>  
+    }
+</table>
+
+<table>
+    <tr>
+        <th>
+            Supervisor Name
+        </th>
+        <th>
+            Number of Surveys Supervising
+        </th>
+    </tr>
+    @foreach (var survey in ViewBag.Surveys)
+    {
+        <tr>
+            <td>
+                @survey.Name
+            </td>
+            <td>
+                @survey.MyCount
+            </td>
+        </tr>
     }
 </table>
