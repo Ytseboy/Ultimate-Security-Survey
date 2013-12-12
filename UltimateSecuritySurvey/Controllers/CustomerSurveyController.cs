@@ -154,7 +154,13 @@ namespace UltimateSecuritySurvey.Controllers
 
             if (credentials)
             {
+                var customerAnswersList = customersurvey.CustomerAnswers.ToList();
+                foreach (var item in customerAnswersList)
+                {
+                    db.CustomerAnswers.Remove(item);
+                }
                 db.CustomerSurveys.Remove(customersurvey);
+
                 db.SaveChanges();
             }
             else 
