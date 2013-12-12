@@ -1,22 +1,21 @@
-﻿@model IEnumerable<UltimateSecuritySurvey.Models.CustomerAnswer>
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.Question>
 @using UltimateSecuritySurvey.Utility
 
 @{
-    ViewBag.Title = "Validate Survey Report";
+    ViewBag.Title = "Submit Survey Report";
     ViewBag.PageHeader = ViewBag.SurveyTitle;
     int questionNumber = 1;
 }
 
 <div class="section-container accordion" data-section="accordion">
     @foreach(var item in Model)
-    {
+    {                  
         <section>
             <p class="title" data-section-title>
-                @Ajax.CustomActionLink(String.Format("{0} - {1} <br /> Answer Status: {2} | Observer Status: {3}", 
-                                        questionNumber++, item.Question.questionTextMain,
-                                        item.AnswerStatu.description, item.observerStatusValue),
-                            "Validate",
-                            new { id = item.surveyId, number = item.questionId },
+                @Ajax.CustomActionLink(String.Format("{0} - {1}", 
+                                        questionNumber++, item.questionTextMain),
+                            "Submit",
+                            new { id = ViewBag.surveyId, number = item.questionId },
                             new AjaxOptions{
                                 HttpMethod = "GET",
                                 InsertionMode = InsertionMode.Replace,
@@ -47,7 +46,7 @@
                 <th>@ViewBag.AverageObserverStatus</th>
             </tr>
         </table>
-        
+
         <h6>Survey progress</h6>
         <div class="progress large-12 success round">
             <span class="meter" style="width: @ViewBag.SurveyProgress"></span>

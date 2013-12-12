@@ -1,8 +1,4 @@
-﻿        public int surveyId { get; set; }
-        public int questionId { get; set; }
-        public Nullable<int> answerOptionNumber { get; set; }
-
-        [Required(ErrorMessage = "Answer text is mandatory!")]
+﻿		[Required(ErrorMessage = "Answer text is mandatory!")]
         [DisplayName("Answer text")]
         [StringLength(500, ErrorMessage = "Answer text value cannot exceed 500 characters.")]
         [DataType(DataType.MultilineText)]
