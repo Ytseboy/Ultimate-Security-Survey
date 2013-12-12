@@ -6,31 +6,31 @@ EXEC dbo.sp_03_DeleteData;
 --Independent Tables --
 /*UserAccount*/
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('John',		'Doe',			'john@mail.com',	'-',	'student',	'1',	0);
+VALUES ('John',		'Doe',			'john@mail.com',	'-',	'student',	'000000',	0);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Marry',	'Red',			'marry@mail.com',	'-',	'teacher',	'1',	1);
+VALUES ('Marry',	'Red',			'marry@mail.com',	'-',	'teacher',	'000000',	1);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Markku',	'Kuitanen',		'markku@mail.com',	'-',	'kuima',	'123',	1);
+VALUES ('Markku',	'Kuitanen',		'markku@mail.com',	'-',	'kuima',	'000000',	1);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Juhani',	'Valimaki',		'juhani@mail.com',	'-',	'valju',	'123',	1);
+VALUES ('Juhani',	'Valimaki',		'juhani@mail.com',	'-',	'valju',	'000000',	1);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Alex',		'Shkunov',		'alex@mail.com',	'-',	'shkal',	'123',	0);
+VALUES ('Alex',		'Shkunov',		'alex@mail.com',	'-',	'shkal',	'000000',	0);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Daniel',	'Freitas',		'daniel@mail.com',	'-',	'freda',	'123',	0);
+VALUES ('Daniel',	'Freitas',		'daniel@mail.com',	'-',	'freda',	'000000',	0);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Antti',	'Marsio',		'antti@mail.com',	'-',	'maran',	'123',	0);
+VALUES ('Antti',	'Marsio',		'antti@mail.com',	'-',	'maran',	'000000',	0);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Topi',		'Asikainen',	'topi@mail.com',	'-',	'asito',	'123',	0);
+VALUES ('Topi',		'Asikainen',	'topi@mail.com',	'-',	'asito',	'000000',	0);
 
 INSERT INTO UserAccount (firstName, lastName, email, phone, userName, password, isTeacher)
-VALUES ('Ksenia',	'Aksenova',		'ksenia@mail.com',	'-',	'aksks',	'123',	0);
+VALUES ('Ksenia',	'Aksenova',		'ksenia@mail.com',	'-',	'aksks',	'000000',	0);
 
 /*Customer*/
 INSERT INTO Customer (companyName, contactFirstName, contactLastName, email, phone)
@@ -92,16 +92,16 @@ VALUES (3,	'Security excellent');
 
 /*AnswerStatus*/
 INSERT INTO AnswerStatus(statusValue, description)
-VALUES (0, 'status not set yet');
+VALUES (0, 'Not set');
 
 INSERT INTO AnswerStatus(statusValue, description)
-VALUES (1, 'observer saved the answer in review');
+VALUES (1, 'Reported');
 
 INSERT INTO AnswerStatus(statusValue, description)
-VALUES (2, 'observer selected three prioritaized countermeasures and writes a comment');
+VALUES (2, 'Commented');
 
 INSERT INTO AnswerStatus(statusValue, description)
-VALUES (3, 'supervisor checked the countermeasures and comment');
+VALUES (3, 'Validated');
 
 -- First level dendency Tables --
 /*GenericSurvey*/
@@ -116,6 +116,12 @@ VALUES ('Basic Survey',				'General survey containts basic questions',			2, 12);
 
 INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
 VALUES ('HR survey',				'General survey with personell questions',			2, 13);
+
+INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
+VALUES ('Advanced IT survey',		'More difficulties',								3, 14);
+
+INSERT INTO GenericSurvey (title, description, baseLevel, supervisorUserId)
+VALUES ('Unusual hard survey',		'Very difficult',									4, 14);
 
 /*Question*/
 INSERT INTO Question 
@@ -152,6 +158,7 @@ VALUES
 'It is a top-level security document, which is approved by the top management. ',
 '-', '-');
 
+/*5*/
 INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
 VALUES 
 (1, 2, 'Does the security policy take into account the obligations of general legislation?', 
@@ -187,6 +194,7 @@ VALUES
 'A probation period is used.',
 '-', '-');
 
+/*10*/
 INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
 VALUES 
 (2, 1, 'How a new employee is introduced to the security regulations of the company?', 
@@ -194,16 +202,99 @@ VALUES
 'Introduction to security.',
 '-', '-');
 
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(3, 2, 'Is it necessary to control movement on the site and premises with fences, gates and traffic barriers?', 
+'-',
+'There are no structural requirements for fences, gates and traffic barriers.',
+'-', 'All persons and vehicles entering the site of the premises have been checked.');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(3, 2, 'Is it possible to monitor the movement within the area?', 
+'-',
+'Sufficient lighting required for the area.',
+'-', 'It must be possible to identify accurately enough the vehicles and people ');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(3, 2, 'Are there very large doors, e.g. garage doors?', 
+'-',
+'special attention shall be paid to technically protecting the opening',
+'-', 'Overhead garage doors are often the weak points when looking at breaking and entering prevention.');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(3, 1, 'How are access rights managed?', 
+'-',
+'shall be granted by the designated person responsible for this in the company',
+'-', 'shall be unambiguously designated in the process.');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(3, 1, 'What are the procedures to identify external employees and visitors? ', 
+'Have the personnel been given instructions for hosting visitors?',
+'Badges with photographs',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(4, 1, 'Have the management connections been adequately protected?', 
+'-',
+'Traffic is encrypted',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(4, 1, 'How are the wireless networks protected?', 
+'-',
+'Wireless is only for public network',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(4, 1, 'How are the network, systems and their use monitored?', 
+'do the resources meet the operational requirements?',
+'A procedure shall be in place to detect, deal with and prevent a cyber attack/attempt to misuse ',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(4, 1, 'How has the security of routing been taken care of?', 
+'-',
+'Routing messages are verified.',
+'-', '-');
+
+INSERT INTO Question (categoryId, questionTypeId, questionTextMain, questionTextExtra, baseLevel2RequirementText, additionalInfo, additionalNote)
+VALUES 
+(4, 1, 'What is done to reduce the risks caused by malware?', 
+'-',
+'Malware detection, prevention and recovery procedures are in place, as well as instructions that keep users
+adequately in an alert mode.',
+'-', '-');
+ 
 -- Second level dependency Tables --
 /*Answer*/
 INSERT INTO AnswerOption (questionId, answerText)
-VALUES (103, 'The materials are strengthened with steel.');
+VALUES (101, 'No');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (101, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (102, 'No');
 
 INSERT INTO AnswerOption (questionId, answerText)
 VALUES (102, 'Yes');
 
 INSERT INTO AnswerOption (questionId, answerText)
-VALUES (101, 'No, the company does not do security checks.');
+VALUES (103, 'The materials are strengthened with steel.');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (103, 'The materials are wood.');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (104, 'No, Never');
 
 INSERT INTO AnswerOption (questionId, answerText)
 VALUES (104, 'Yes, every half of year');
@@ -212,10 +303,37 @@ INSERT INTO AnswerOption (questionId, answerText)
 VALUES (105, 'No, company managment does not think that it is nessesary');
 
 INSERT INTO AnswerOption (questionId, answerText)
+VALUES (105, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
 VALUES (106, 'No, usually all explanations have a verbal manner');
 
 INSERT INTO AnswerOption (questionId, answerText)
+VALUES (106, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
 VALUES (107, 'No, company managment does not think that it is nessesary');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (107, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (108, 'No');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (108, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (109, 'No');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (109, 'Yes');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (110, 'During signing contract');
+
+INSERT INTO AnswerOption (questionId, answerText)
+VALUES (110, 'Seminar every year');
 
 /*SurveyQuestion*/
 INSERT INTO SurveyQuestion (surveyId, questionId)
@@ -225,16 +343,37 @@ INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (11, 102);
 
 INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (11, 103);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (11, 104);
- 
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (11, 105);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (11, 106);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (12, 102); 
+
 INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (12, 103);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (12, 104);
 
 INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (12, 105);
 
 INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (12, 106);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (13, 105);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (13, 106);
 
 INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (13, 107);
@@ -245,11 +384,88 @@ VALUES (13, 108);
 INSERT INTO SurveyQuestion (surveyId, questionId)
 VALUES (13, 109);
 
-/*Customer Survey*/
-INSERT INTO CustomerSurvey (surveyId, customerId, startDate, startComment, customerSurveyTitle, observerUserId, supervisorUserId)
-VALUES (11, 11, '2013-11-17', 'Difficult one',	'First survey for Sony',	11, 12);
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (14, 105);
 
-INSERT INTO CustomerSurvey (surveyId, customerId, startDate, startComment, customerSurveyTitle, observerUserId, supervisorUserId)
-VALUES (13, 12, '2013-11-18', 'Easy one',		'First survey for Kiva',	16, 13);
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (14, 106);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (14, 107);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (14, 108);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (14, 109);
+
+INSERT INTO SurveyQuestion (surveyId, questionId)
+VALUES (14, 110);
+
+/*Customer Survey*/
+INSERT INTO CustomerSurvey (customerSurveyTitle, baseSurveyId, customerId, startDate, startComment, observerUserId, supervisorUserId)
+VALUES ('First survey for Sony',	11, 11, '2013-11-17', 'Difficult one',			15, 12);
+
+INSERT INTO CustomerSurvey (customerSurveyTitle, baseSurveyId, customerId, startDate, startComment, observerUserId, supervisorUserId)
+VALUES ('First survey for Kiva',	13, 12, '2013-11-18', 'Easy one',				16, 13);
+
+INSERT INTO CustomerSurvey (customerSurveyTitle, baseSurveyId, customerId, startDate, startComment, observerUserId, supervisorUserId)
+VALUES ('First survey for Elisa',	12, 13, '2013-11-20', 'Something to start',		17, 14);
+
+INSERT INTO CustomerSurvey (customerSurveyTitle, baseSurveyId, customerId, startDate, startComment, observerUserId, supervisorUserId)
+VALUES ('First survey for Valio',	14, 14, '2013-11-22', 'Milky survey',			18, 13);
+
+/*CounterMeasure*/
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (101, 'Responsible person',	'Hire Rosponsible person',			'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (101, 'Redesign process',	'Reengineer the existing process',	'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (101, 'Find security holes',	'Find security holes in the area',	'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (101, 'Hire more',			'Hire more security agents',		'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (102, 'Responsible person',	'Hire Rosponsible person',			'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (102, 'Redesign process',	'Reengineer the existing process',	'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (102, 'Find security holes',	'Find security holes in the area',	'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (102, 'Hire more',			'Hire more security agents',		'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (103, 'Responsible person',	'Hire Rosponsible person',			'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (103, 'Redesign process',	'Reengineer the existing process',	'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (103, 'Find security holes',	'Find security holes in the area',	'2013-10-10');
+
+INSERT INTO GenericCountermeasure(questionId, title, description, dateAndTime)
+VALUES (103, 'Hire more',			'Hire more security agents',		'2013-10-10');
+
+/*Customer Answer*/
+INSERT INTO CustomerAnswer(surveyId, questionId, answerOptionNumber, answerText, answerStatusValue, observerStatusValue)
+VALUES (101, 101, 1,	'Cool stuff there once', 2, 2);
+
+INSERT INTO CustomerAnswer(surveyId, questionId, answerOptionNumber, answerText, answerStatusValue, observerStatusValue)
+VALUES (101, 102, 3,	'Cool stuff there twice', 2, 1);
+
+INSERT INTO CustomerAnswer(surveyId, questionId, answerOptionNumber, answerText, answerStatusValue, observerStatusValue)
+VALUES (101, 103, 5,	'Cool stuff there three', 2, 3);
+
+INSERT INTO CustomerAnswer(surveyId, questionId, answerOptionNumber, answerText, answerStatusValue, observerStatusValue)
+VALUES (101, 104, 7,	'Cool stuff there fourth', 2, 3);
+
+INSERT INTO CustomerAnswer(surveyId, questionId, answerOptionNumber, answerText, answerStatusValue)
+VALUES (101, 105, 9,	'-', 1);
 
 RETURN 1

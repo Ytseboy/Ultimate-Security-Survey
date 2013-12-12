@@ -121,20 +121,22 @@ CREATE TABLE [dbo].[SurveyQuestion]
 
 CREATE TABLE [dbo].[CustomerSurvey]
 (
-	[surveyId]				INTEGER			NOT NULL,
-	[customerId]			INTEGER			NOT NULL,
-	[startDate]				DATE			NOT NULL,
-	[startComment]			VARCHAR(MAX)	NOT NULL,
-	[customerSurveyTitle]	VARCHAR(100)	NOT NULL,
-
-	[observerUserId]		INTEGER			NOT NULL,
-	[supervisorUserId]		INTEGER			NOT NULL,
+	[surveyId]				INTEGER			IDENTITY(101,1)	NOT NULL,
+	[customerSurveyTitle]	VARCHAR(100)					NOT NULL,
 	
-	[endDate]				DATE,
-	[endComment]			VARCHAR(MAX)
+	[baseSurveyId]			INTEGER							NOT NULL,
+	[customerId]			INTEGER							NOT NULL,
+	[startDate]				DATETIME						NOT NULL,
+	[startComment]			VARCHAR(1000)					NOT NULL,
+	
+	[observerUserId]		INTEGER							NOT NULL,
+	[supervisorUserId]		INTEGER							NOT NULL,
+	
+	[endDate]				DATETIME,
+	[endComment]			VARCHAR(1000)
 
-	CONSTRAINT [PK_CustomerSurvey] PRIMARY KEY CLUSTERED ([surveyId] ASC, [customerId] ASC, [startDate] ASC),
-	CONSTRAINT [FK_CustomerSurvey_ToGenericSurvey] FOREIGN KEY ([surveyId]) REFERENCES [GenericSurvey]([surveyId]),
+	CONSTRAINT [PK_CustomerSurvey] PRIMARY KEY CLUSTERED ([surveyId] ASC),
+	CONSTRAINT [FK_CustomerSurvey_ToGenericSurvey] FOREIGN KEY ([baseSurveyId]) REFERENCES [GenericSurvey]([surveyId]),
 	CONSTRAINT [FK_CustomerSurvey_ToCustomer] FOREIGN KEY ([customerId]) REFERENCES [Customer]([customerId]),
 
 	CONSTRAINT [FK_CustomerSurvey_ToObserver] FOREIGN KEY ([observerUserId]) REFERENCES [UserAccount]([userId]),
@@ -146,7 +148,7 @@ CREATE TABLE [dbo].[GenericCountermeasure]
 	[countermeasureId]		INTEGER		IDENTITY(1001,1)	NOT NULL,
 	[questionId]			INTEGER							NOT NULL,
 	[title]					VARCHAR(100)					NOT NULL,
-	[description]			VARCHAR(MAX)					NOT NULL,
+	[description]			VARCHAR(1000)					NOT NULL,
 	[dateAndTime]			DATETIME						NOT NULL,
 	[motherCountermeasure]	INTEGER
 
@@ -159,33 +161,31 @@ CREATE TABLE [dbo].[GenericCountermeasure]
 --Third level Dependency
 CREATE TABLE [dbo].[CustomerAnswer]
 (
-	[surveyId]						INTEGER			NOT NULL,
-	[customerId]					INTEGER			NOT NULL,
-	[startDate]						DATE			NOT NULL,
-	[questionId]					INTEGER			NOT NULL,
+	[surveyId]						INTEGER						NOT NULL,
+	[questionId]					INTEGER						NOT NULL,
 
-	[answerStatusValue]				INTEGER			NOT NULL,
-	[answerOptionQuestionId]		INTEGER,
 	[answerOptionNumber]			INTEGER,
-	[answerText]					VARCHAR(MAX)	NOT NULL,
-	[observerStatusValue]			INTEGER			NOT NULL,
+	[answerText]					VARCHAR(500)				NOT NULL,
+
+	[answerStatusValue]				INTEGER			DEFAULT 0,
+	[observerStatusValue]			INTEGER			DEFAULT 0,
 
 	[countermeasureId1]				INTEGER,
 	[countermeasureId2]				INTEGER,
 	[countermeasureId3]				INTEGER,
 
-	[observerComment]				VARCHAR(MAX),
+	[observerComment]				VARCHAR(1000),
 	[observerCommentDateAndTime]	DATETIME,
 
-	[supervisorComment]				VARCHAR(MAX),
+	[supervisorComment]				VARCHAR(1000),
 	[supervisorCommentDateAndTime]	DATETIME
 
-	CONSTRAINT [PK_CustomerAnswer] PRIMARY KEY CLUSTERED ([surveyId] ASC, [customerId] ASC, [startDate] ASC, [questionId] ASC),
-	CONSTRAINT [FK_CustomerAnswer_ToCustomerSurvey] FOREIGN KEY ([surveyId], [customerId], [startDate])
-						REFERENCES [CustomerSurvey]([surveyId], [customerId], [startDate]),
+	CONSTRAINT [PK_CustomerAnswer] PRIMARY KEY CLUSTERED ([surveyId] ASC, [questionId] ASC),
+	CONSTRAINT [FK_CustomerAnswer_ToCustomerSurvey] FOREIGN KEY ([surveyId])
+						REFERENCES [CustomerSurvey]([surveyId]),
 
 	CONSTRAINT [FK_CustomerAnswer_ToQuestion] FOREIGN KEY ([questionId]) REFERENCES [Question]([questionId]),
-	CONSTRAINT [FK_CustomerAnswer_ToAnswerOption] FOREIGN KEY ([answerOptionQuestionId], [answerOptionNumber])
+	CONSTRAINT [FK_CustomerAnswer_ToAnswerOption] FOREIGN KEY ([questionId], [answerOptionNumber])
 						REFERENCES [AnswerOption]([questionId], [answerNumber]),
 
 	CONSTRAINT [FK_CustomerAnswer_ToAnswerStatus] FOREIGN KEY ([answerStatusValue])
