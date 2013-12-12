@@ -16,7 +16,7 @@ namespace UltimateSecuritySurvey.Controllers
         /// 404 code error
         /// </summary>
         /// <returns>404 custom view</returns>
-        [HttpPost]
+       
         public ActionResult PageNotFound()
         {
             return View();
