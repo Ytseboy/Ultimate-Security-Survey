@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UltimateSecuritySurvey.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@*TODO: Render the view in a more elegant manner. Add the icon links for each question rendered. Fetch items from different databases.*@
+<table id="myTable">
+    <tr>
+        <th class="ColumnWidth-28">
+            All Categories
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.questionTextMain)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.questionTextExtra)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionCategory.categoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.questionTextMain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.questionTextExtra)
+            </td>
+            <td>
+                <div class="iconHolder">
+                    @Html.ActionLink(" ", "Edit", "Question", new { id = item.questionId }, new { title = "Edit", @class = "step fi-pencil size-24 black" })
+
+                    @Html.ActionLink(" ", "Details", "Question", new { id = item.questionId }, new { title = "Details", @class = "fi-page size-24 black" })
+
+                    <a href="@Url.Action("Delete", "Question", new { id = item.questionId })" class="fi-trash size-24 black"
+                       title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"></a>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
