@@ -1,36 +1,59 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Statistics";
     ViewBag.PageHeader = "Statistics";
 }
 
-<table>
-    @foreach (var item in ViewBag.Stats as Dictionary<string, int>) 
-    {
-        <tr>
-            <td>@item.Key</td>
-            <th>@item.Value</th>
-        </tr>  
-    }
-</table>
+<div class="row">
+    <div class="large-6 columns">
+        <table>
+            @foreach (var item in ViewBag.BasicStats as Dictionary<string, int>) 
+            {
+                <tr>
+                    <td>@item.Key</td>
+                    <th>@item.Value</th>
+                </tr>  
+            }
+        </table>
+    </div>
+    <div class="large-6 columns">
+        <table>
+            <tr>
+                <th>
+                    Supervisor Name
+                </th>
+                <th>
+                    Number of Surveys Supervising
+                </th>
+            </tr>
+            @foreach (var user in ViewBag.UserActivity)
+            {
+                <tr>
+                    <td>
+                        @user.Name
+                    </td>
+                    <td>
+                        @user.MyCount
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
 
-<table>
-    <tr>
-        <th>
-            Supervisor Name
-        </th>
-        <th>
-            Number of Surveys Supervising
-        </th>
-    </tr>
-    @foreach (var survey in ViewBag.Surveys)
-    {
-        <tr>
-            <td>
-                @survey.Name
-            </td>
-            <td>
-                @survey.MyCount
-            </td>
-        </tr>
-    }
-</table>
+<div class="row">
+    <div class="large-6">
+        <table>
+            <tr><th>Date period</th><th>Amount of surveys</th></tr>
+
+            @foreach (var entry in ViewBag.SurveysPerMonths as Dictionary<string, int>)
+            {
+                <tr>
+                    <td>@entry.Key</td>
+                    <th>@entry.Value</th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+

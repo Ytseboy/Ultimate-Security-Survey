@@ -7,6 +7,7 @@ using UltimateSecuritySurvey.Models;
 using System.Web.UI.DataVisualization;
 using System.Web.UI.DataVisualization.Charting;
 using System.Drawing;
+using System.Globalization;
 
 
 namespace UltimateSecuritySurvey.Controllers
@@ -19,6 +20,7 @@ namespace UltimateSecuritySurvey.Controllers
 
         public ActionResult Index()
         {
+            #region ChartControl attempt
             //var xvals = db.CustomerSurveys.Select(e => e.startDate).ToList();
 
             //var yvals = db.CustomerSurveys.GroupBy(a => a.startDate.Month);
@@ -71,9 +73,9 @@ namespace UltimateSecuritySurvey.Controllers
             //ViewBag.chart = chart;
             //var test = db.CustomerSurveys.GroupBy(s => s.startDate.Month, x => x.startDate.Year);
             //ViewBag.Count = test;
+            #endregion
 
-
-            Dictionary<string, int> stats = new Dictionary<string, int>
+            Dictionary<string, int> basicStats = new Dictionary<string, int>
             {
                 {"Users", db.UserAccounts.Count()},
                 {"Customers", db.Customers.Count()},
@@ -82,8 +84,9 @@ namespace UltimateSecuritySurvey.Controllers
                 {"Questions", db.Questions.Count()}
             };
 
-            ViewBag.Stats = stats;
-            ViewBag.Surveys = db.CustomerSurveys
+            ViewBag.BasicStats = basicStats;
+
+            ViewBag.UserActivity = db.CustomerSurveys
                 .GroupBy(c => c.supervisorUserId)
                 .Join(
                     db.UserAccounts,
@@ -97,7 +100,49 @@ namespace UltimateSecuritySurvey.Controllers
                             Name = name.firstName
                         }
                 );
+
+            ViewBag.SurveysPerMonths = surveysPerMonths();
+
             return View();
+        }
+
+        private Dictionary<string, int> surveysPerMonths()
+        {
+            DateTime firstMonth = db.CustomerSurveys.Min(x => x.startDate);
+            DateTime lastMonth = db.CustomerSurveys.Max(x => x.startDate);
+
+            int firstYear = firstMonth.Year;
+            int lastYear = lastMonth.Year;
+            int yearRange = lastYear - firstYear;
+
+            var surveysPerMonth =
+                    //Provides entries Joining with empty months as well
+                    (from year in Enumerable.Range(firstYear, yearRange + 1)
+                    from month in Enumerable.Range(1, 12)
+                    let key = new { Year = year, Month = month }
+                    join item in db.CustomerSurveys on key
+                              equals new
+                              {
+                                  item.startDate.Year,
+                                  item.startDate.Month
+                              } into g
+                    select new { Date = key, Count = g.Count() })
+                    //Skip first dummy entries
+                    .Skip(firstMonth.Month - 1).Reverse()
+                    //Skip last dummy entries
+                    .Skip(12 - lastMonth.Month)
+                    //Take last 12 months
+                    .Take(12).Reverse();
+
+            Dictionary<string, int> dataToSend = new Dictionary<string, int>();
+            CultureInfo eng = new CultureInfo("en-US");
+
+            foreach (var item in surveysPerMonth)
+            {
+                dataToSend.Add((new DateTime(item.Date.Year, item.Date.Month, 1)).ToString("MMMM yyyy", eng), item.Count);
+            }
+
+            return dataToSend;
         }
     }
 }
