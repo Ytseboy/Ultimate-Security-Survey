@@ -140,6 +140,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerOptionController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\SurveyReportController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -708,6 +709,7 @@
     <Content Include="Views\Statistics\Index.cshtml" />
     <Content Include="Views\SurveyReport\Submit.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

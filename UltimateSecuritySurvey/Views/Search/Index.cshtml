@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<UltimateSecuritySurvey.Models.Question>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Search results";
+    ViewBag.PageHeader = "Search results";
 }
 
-<h2>Index</h2>
+
 @*TODO: Render the view in a more elegant manner. Add the icon links for each question rendered. Fetch items from different databases.*@
 <table id="myTable">
     <tr>
@@ -27,20 +28,34 @@
                 @Html.DisplayFor(modelItem => item.QuestionCategory.categoryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.questionTextMain)
+                @if (ViewBag.query != null)
+                {
+                    @Html.Raw(item.questionTextMain.Replace(ViewBag.query, String.Format("<b>{0}</b>", ViewBag.query)))
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.questionTextMain)
+                }
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.questionTextExtra)
             </td>
             <td>
-                <div class="iconHolder">
-                    @Html.ActionLink(" ", "Edit", "Question", new { id = item.questionId }, new { title = "Edit", @class = "step fi-pencil size-24 black" })
+                @if (User.IsInRole("Teacher"))
+                {
+                    //Only teacher can go to question controller
+                    <div class="iconHolder">
+                        @Html.ActionLink(" ", "Edit", "Question", new { id = item.questionId }, 
+                                new { title = "Edit", @class = "step fi-pencil size-24 black" })
 
-                    @Html.ActionLink(" ", "Details", "Question", new { id = item.questionId }, new { title = "Details", @class = "fi-page size-24 black" })
+                        @Html.ActionLink(" ", "Details", "Question", new { id = item.questionId }, 
+                                new { title = "Details", @class = "fi-page size-24 black" })
 
-                    <a href="@Url.Action("Delete", "Question", new { id = item.questionId })" class="fi-trash size-24 black"
-                       title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"></a>
-                </div>
+                        <a href="@Url.Action("Delete", "Question", new { id = item.questionId })" class="fi-trash size-24 black"
+                           title="Delete" data-reveal-id="deleteModal" data-reveal-ajax="true"></a>
+                    </div>
+                }                
             </td>
         </tr>
     }
