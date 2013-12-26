@@ -1,18 +1,14 @@
-﻿<img src="/haaga-helia-small-logo.png"/>
 <h1>Ultimate Security Survey</h1>
 
 Scrum Project For Haaga-Helia University of Applied Sciences.
 Helsinki, Finland.
-
-<a href="http://myy.haaga-helia.fi/~a1203246/sprinto/" target="_blank">
-	Sprinto webpage &rarr;</a>
 	
 <a href="https://github.com/Ytseboy/Ultimate-Security-Survey/tree/master/Documentation#documentation---ultimate-security-survey" >
 	Documentation &rarr;</a>
 
 ==========================
 
-<h5>USS screenshot here later<h5>
+﻿<img src="/USS_screen.PNG"/>
 
 <h4>About</h4>
 
